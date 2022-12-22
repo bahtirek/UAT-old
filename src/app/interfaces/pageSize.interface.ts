@@ -1,8 +1,8 @@
 export interface Pages {
-    uiBrExtReport?: PageSize,
-    uiBrExtReview?: PageSize,
+    uiBrExtSearch?: PageSize,
+    uiBrExtCreate?: PageSize,
     uiBrExtSettings?: PageSize,
-    uiBrExtVideo?: PageSize,
+    uiBrExtExecute?: PageSize,
 }
 
 

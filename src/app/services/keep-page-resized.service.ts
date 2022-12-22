@@ -9,10 +9,10 @@ export class KeepPageResizedService {
   constructor() { }
 
   pages: Pages = {
-    uiBrExtReport: {},
-    uiBrExtReview: {},
+    uiBrExtSearch: {},
+    uiBrExtCreate: {},
     uiBrExtSettings: {},
-    uiBrExtVideo: {},
+    uiBrExtExecute: {},
   }
 
 }

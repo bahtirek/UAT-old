@@ -6,10 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-page.component.less']
 })
 export class CreatePageComponent implements OnInit {
+  showHide: boolean = true;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  toggleBody(state: boolean){
+    this.showHide = state  
+  }
+
 }
+

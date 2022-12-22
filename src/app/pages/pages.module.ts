@@ -13,6 +13,7 @@ import { CreatePageComponent } from './create-page/create-page.component';
 import { ExecutePageComponent } from './execute-page/execute-page.component';
 import { SearchPageComponent } from './search-page/search-page.component';
 import { MinimizeDropBodyComponent } from '../shared/minimize-drop-body/minimize-drop-body.component';
+import { CreateStepComponent } from '../shared/create-step/create-step.component';
 
 
 
@@ -29,14 +30,18 @@ import { MinimizeDropBodyComponent } from '../shared/minimize-drop-body/minimize
     CreatePageComponent,
     ExecutePageComponent,
     SearchPageComponent,
-    MinimizeDropBodyComponent
+    MinimizeDropBodyComponent,
+    CreateStepComponent
   ],
   imports: [
     CommonModule,
     FormsModule
   ],
   exports: [
-    SettingsPageComponent
+    SettingsPageComponent,
+    CreatePageComponent,
+    ExecutePageComponent,
+    SearchPageComponent
   ]
 })
 export class PagesModule { }

@@ -17,7 +17,7 @@ declare global {
 @NgModule({
   declarations: [
     AppComponent,
-    ExtensionComponent
+    ExtensionComponent,
   ],
   imports: [
     BrowserModule,

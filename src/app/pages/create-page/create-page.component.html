@@ -1,1 +1,10 @@
-<p>create-page works!</p>
+
+<div class="ui-br-ext-dropdown-item ui-br-ext-create">
+    <div class="ui-br-ext-drop-title-wrap">
+        <div class="ui-br-ext-drop-title">Create</div>
+        <app-minimize-drop-body (toggleBody)="toggleBody($event)" class="ui-br-ext-minimizedropbody2"></app-minimize-drop-body>
+    </div>
+    <div class="ui-br-ext-drop-body"  id="uiBrExtCreate" [ngClass]="{'ui-br-ext-hide': !showHide}">
+        <app-resize [pageId]="'uiBrExtCreate'"></app-resize>
+    </div>
+</div>

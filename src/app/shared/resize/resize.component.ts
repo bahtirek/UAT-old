@@ -54,12 +54,12 @@ export class ResizeComponent implements OnInit {
 
   setInitialSize = (event: any) => {
     event.preventDefault();
-    this.positions.resizeX = this.positions.width + (event.clientX - this.positions.clientX - 20);
+    this.positions.resizeX = this.positions.width + (event.clientX - this.positions.clientX);
     if(this.positions.resizeX > 300) {
       this.positions.element.style.width = this.positions.resizeX + 'px';
       (this.keepResized.pages as any)[this.pageId]['width'] = this.positions.resizeX + 'px';
     }
-    this.positions.resizeY = this.positions.height + (event.clientY - this.positions.clientY - 20);
+    this.positions.resizeY = this.positions.height + (event.clientY - this.positions.clientY);
     if(this.positions.resizeY > 80) {
       this.positions.element.style.height = this.positions.resizeY + 'px';
       (this.keepResized.pages as any)[this.pageId]['height'] = this.positions.resizeY + 'px';

@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchPageComponent implements OnInit {
 
+  showHide: boolean = true;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  toggleBody(state: boolean){
+    this.showHide = state  
   }
 
 }
