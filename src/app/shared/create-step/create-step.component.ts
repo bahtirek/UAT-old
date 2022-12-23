@@ -7,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateStepComponent implements OnInit {
 
+  form = {
+    expectedResults: "",
+    description: "",
+  }
+
   constructor() { }
 
   ngOnInit(): void {

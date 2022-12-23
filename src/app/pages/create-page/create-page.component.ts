@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreatePageComponent implements OnInit {
   showHide: boolean = true;
+  isModalOneOn: boolean = false;
+  isModalTwoOn: boolean = false;
 
   constructor() { }
 
@@ -15,6 +17,14 @@ export class CreatePageComponent implements OnInit {
 
   toggleBody(state: boolean){
     this.showHide = state  
+  }
+
+  toggleModal(val: string){
+    if(val == 'one') {
+      this.isModalOneOn = !this.isModalOneOn;
+    } else {
+      this.isModalTwoOn = !this.isModalTwoOn;
+    }
   }
 
 }

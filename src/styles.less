@@ -1,6 +1,7 @@
 @import "less/forms.less";
 @import "less/variables.less";
 @import "less/menu-button.less";
+@import "less/modal.less";
 
 @extensionId :~"__MSG_@@extension_id__";
 
@@ -60,6 +61,7 @@ body {
     background-color: #ffffff;
     z-index: 99999999;
     line-height: normal !important;
+    color: #1e1e1e;
 
 
     @media (max-width: 767px) {
@@ -222,11 +224,15 @@ body {
         padding: 10px 10px;
         cursor: default;
         overflow: auto;
+        overflow-x: hidden;
         flex-direction: column;
-        max-height: 80vh;
-
+        
         @media(max-width: 767px) {
             max-height: 500px;
+        }
+
+        .ui-br-ext-page-content {
+            max-height: 80vh;
         }
 
         .ui-br-ext-drop-title-wrap {

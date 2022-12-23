@@ -1,10 +1,24 @@
 
 <div class="ui-br-ext-dropdown-item ui-br-ext-create">
-    <div class="ui-br-ext-drop-title-wrap">
-        <div class="ui-br-ext-drop-title">Create</div>
-        <app-minimize-drop-body (toggleBody)="toggleBody($event)" class="ui-br-ext-minimizedropbody2"></app-minimize-drop-body>
-    </div>
-    <div class="ui-br-ext-drop-body"  id="uiBrExtCreate" [ngClass]="{'ui-br-ext-hide': !showHide}">
-        <app-resize [pageId]="'uiBrExtCreate'"></app-resize>
+    <div class="ui-br-ext-page-content" id="uiBrExtCreate">
+
+        <div class="ui-br-ext-drop-title-wrap">
+            <div class="ui-br-ext-drop-title">Create</div>
+            <app-minimize-drop-body (toggleBody)="toggleBody($event)" class="ui-br-ext-minimizedropbody2"></app-minimize-drop-body>
+        </div>
+        <div class="ui-br-ext-drop-body"   [ngClass]="{'ui-br-ext-hide': !showHide}">
+            <button (click)="toggleModal('one')">test</button>
+            <button (click)="toggleModal('two')">test</button>
+            <app-modal *ngIf="isModalOneOn" (closeModal)="toggleModal('one')">
+                <app-create-case-title></app-create-case-title>
+            </app-modal>
+            <app-modal *ngIf="isModalTwoOn" (closeModal)="toggleModal('two')">
+                <app-create-step></app-create-step>
+            </app-modal>
+            <app-create-step></app-create-step>
+            <app-create-step></app-create-step>
+            <app-create-step></app-create-step>
+            <app-resize [pageId]="'uiBrExtCreate'"></app-resize>
+        </div>
     </div>
 </div>

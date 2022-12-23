@@ -14,6 +14,8 @@ import { ExecutePageComponent } from './execute-page/execute-page.component';
 import { SearchPageComponent } from './search-page/search-page.component';
 import { MinimizeDropBodyComponent } from '../shared/minimize-drop-body/minimize-drop-body.component';
 import { CreateStepComponent } from '../shared/create-step/create-step.component';
+import { ModalComponent } from '../shared/modal/modal.component';
+import { CreateCaseTitleComponent } from '../shared/create-case-title/create-case-title.component';
 
 
 
@@ -31,7 +33,9 @@ import { CreateStepComponent } from '../shared/create-step/create-step.component
     ExecutePageComponent,
     SearchPageComponent,
     MinimizeDropBodyComponent,
-    CreateStepComponent
+    CreateStepComponent,
+    ModalComponent,
+    CreateCaseTitleComponent,
   ],
   imports: [
     CommonModule,
@@ -41,7 +45,8 @@ import { CreateStepComponent } from '../shared/create-step/create-step.component
     SettingsPageComponent,
     CreatePageComponent,
     ExecutePageComponent,
-    SearchPageComponent
+    SearchPageComponent,
+    ModalComponent,
   ]
 })
 export class PagesModule { }
