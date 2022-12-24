@@ -14,11 +14,11 @@ export class MinimizeDropBodyComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  @Output() toggleBody = new EventEmitter<boolean>()
+  @Output() minimizePage = new EventEmitter<boolean>()
 
   toggleBtn() {
     this.minimize = !this.minimize;
-    this.toggleBody.emit(this.minimize);
+    this.minimizePage.emit(this.minimize);
   }
 
 }

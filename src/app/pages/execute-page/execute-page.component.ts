@@ -14,7 +14,7 @@ export class ExecutePageComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  toggleBody(state: boolean){
+  minimizePage(state: boolean){
     this.showHide = state  
   }
 

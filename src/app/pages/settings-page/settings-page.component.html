@@ -1,7 +1,7 @@
 <div class="ui-br-ext-dropdown-item ui-br-ext-settings">
     <div class="ui-br-ext-drop-title-wrap">
         <div class="ui-br-ext-drop-title">Settings</div>
-        <app-minimize-drop-body (toggleBody)="toggleBody($event)" class="ui-br-ext-minimizedropbody2"></app-minimize-drop-body>
+        <app-minimize-drop-body (minimizePage)="minimizePage($event)" class="ui-br-ext-minimizedropbody2"></app-minimize-drop-body>
     </div>
     <div class="ui-br-ext-drop-body" id="uiBrExtSettings" [ngClass]="{'ui-br-ext-hide': !showHide}">
         <app-resize [pageId]="'uiBrExtSettings'"></app-resize>
