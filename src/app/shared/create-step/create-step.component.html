@@ -2,14 +2,28 @@
 
 <div class="ui-br-ext-form-container">
     <h3>Step</h3>
-    <div class="ui-br-ext-form-container ui-br-ext-textarea">
-        <label for="ui-br-ext-description">Description</label>
-        <textarea name="ui-br-ext-description" [(ngModel)]="form.description" rows="3" data-gramm="false" maxlength="1000" ></textarea>
-        <span class="ui-br-ext-message">Field is required</span>
-    </div>
-    <div class="ui-br-ext-form-container ui-br-ext-textarea">
-        <label for="ui-br-ext-description">Expected results</label>
-        <textarea name="ui-br-ext-description" [(ngModel)]="form.expectedResults" rows="3" data-gramm="false" maxlength="1000" ></textarea>
-        <span class="ui-br-ext-message">Field is required</span>
+    <div class="ui-br-ext-width-full">
+        <div class="ui-br-ext-flex ui-br-ext-nowrap ui-br-ext-gap-12">
+            <div class="ui-br-ext-form-container ui-br-ext-textarea">
+                <label for="ui-br-ext-description">Description</label>
+                <textarea name="ui-br-ext-description" [(ngModel)]="form.description" rows="3" data-gramm="false" maxlength="1000" ></textarea>
+                <span class="ui-br-ext-message">Field is required</span>
+            </div>
+            <div class="ui-br-ext-form-container ui-br-ext-textarea">
+                <label for="ui-br-ext-description">Expected results</label>
+                <textarea name="ui-br-ext-description" [(ngModel)]="form.expectedResults" rows="3" data-gramm="false" maxlength="1000" ></textarea>
+                <span class="ui-br-ext-message">Field is required</span>
+            </div>
+        </div>
+        <div class="ui-br-ext-btn-group">
+            <button class="ui-br-ext-btn"  data-listener="off" >
+                <span class="ui-br-ext-spinner"></span>
+                <span>Save</span> 
+            </button>
+            <button class="ui-br-ext-btn-danger"  data-listener="off">
+                <span class="ui-br-ext-spinner"></span>
+                <span>Cancel</span> 
+            </button>
+        </div>
     </div>
 </div>

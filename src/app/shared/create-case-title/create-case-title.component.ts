@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-create-case-title',
@@ -8,10 +8,30 @@ import { Component, OnInit } from '@angular/core';
 export class CreateCaseTitleComponent implements OnInit {
 
   title = "";
+  error: string[] = [];
+
+  formError = {
+    title: this.error
+  }
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  @Output() cancel = new EventEmitter<null>();
+  @Output() saveTitle = new EventEmitter<string>();
+
+  onSaveTitle(){
+    this.formError.title = []
+    if(this.title) {
+      this.saveTitle.emit(this.title);
+    } else {
+      this.formError.title.push('Field is required');
+    }
+  }
+
+  onCancel(){
+    this.cancel.emit();
+  }
 }

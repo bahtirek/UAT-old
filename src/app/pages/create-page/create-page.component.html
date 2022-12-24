@@ -1,23 +1,32 @@
 
-<div class="ui-br-ext-dropdown-item ui-br-ext-create">
+<div class="ui-br-ext-dropdown-item ui-br-ext-create-page">
     <div class="ui-br-ext-page-content" id="uiBrExtCreate">
 
         <div class="ui-br-ext-drop-title-wrap">
-            <div class="ui-br-ext-drop-title">Create</div>
+            <div class="ui-br-ext-drop-title">Create new test case</div>
             <app-minimize-drop-body (toggleBody)="toggleBody($event)" class="ui-br-ext-minimizedropbody2"></app-minimize-drop-body>
         </div>
         <div class="ui-br-ext-drop-body"   [ngClass]="{'ui-br-ext-hide': !showHide}">
-            <button (click)="toggleModal('one')">test</button>
-            <button (click)="toggleModal('two')">test</button>
+            <ng-container *ngIf="!title">
+                <button (click)="toggleModal('one')" class="ui-br-ext-btn-link">Add case title</button>
+            </ng-container>
+            <ng-container *ngIf="title">
+                <div>
+                    <span class="ui-uat-ext-title">Case title: </span><span>{{title}}</span>
+                </div>
+                <br>
+                <div>
+                    <span class="ui-uat-ext-title">Steps: </span>
+                </div>
+                <button (click)="toggleModal('two')" class="ui-br-ext-btn-link">Add new step</button>
+            </ng-container>
             <app-modal *ngIf="isModalOneOn" (closeModal)="toggleModal('one')">
-                <app-create-case-title></app-create-case-title>
+                <app-create-case-title (saveTitle)="saveTitle($event)" (cancel)="toggleModal('one')"></app-create-case-title>
             </app-modal>
-            <app-modal *ngIf="isModalTwoOn" (closeModal)="toggleModal('two')">
+            <app-modal *ngIf="isModalTwoOn" (closeModal)="toggleModal('two')" [propClass]="'ui-br-ext-width-full'">
                 <app-create-step></app-create-step>
             </app-modal>
-            <app-create-step></app-create-step>
-            <app-create-step></app-create-step>
-            <app-create-step></app-create-step>
+            
             <app-resize [pageId]="'uiBrExtCreate'"></app-resize>
         </div>
     </div>

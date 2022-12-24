@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-create-page',
@@ -9,6 +9,7 @@ export class CreatePageComponent implements OnInit {
   showHide: boolean = true;
   isModalOneOn: boolean = false;
   isModalTwoOn: boolean = false;
+  title: string = '';
 
   constructor() { }
 
@@ -26,6 +27,12 @@ export class CreatePageComponent implements OnInit {
       this.isModalTwoOn = !this.isModalTwoOn;
     }
   }
+
+  saveTitle(val: string){
+    this.title = val;
+    this.isModalOneOn = false;
+  }
+
 
 }
 
