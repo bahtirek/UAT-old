@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { ExtensionComponent } from './extension/extension.component';
 import { MenuModule } from './menu/menu.module';
 import { PagesModule } from './pages/pages.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 declare global {
   interface Window {
@@ -24,6 +24,7 @@ declare global {
     MenuModule,
     PagesModule,
     HttpClientModule,
+    ReactiveFormsModule,
     FormsModule
   ],
   providers: [],

@@ -4,27 +4,32 @@
 
         <div class="ui-br-ext-drop-title-wrap">
             <div class="ui-br-ext-drop-title">Create new test case</div>
-            <app-minimize-drop-body (toggleBody)="toggleBody($event)" class="ui-br-ext-minimizedropbody2"></app-minimize-drop-body>
+            <app-minimize-drop-body (minimizePage)="minimizePage($event)" class="ui-br-ext-minimizedropbody2"></app-minimize-drop-body>
         </div>
         <div class="ui-br-ext-drop-body"   [ngClass]="{'ui-br-ext-hide': !showHide}">
             <ng-container *ngIf="!title">
-                <button (click)="toggleModal('one')" class="ui-br-ext-btn-link">Add case title</button>
+                <div class="ui-br-ext-flex ui-br-ext-justify-end">
+                    <button (click)="toggleModal('one')" class="ui-br-ext-btn-link">Add case title</button>
+                </div>
             </ng-container>
             <ng-container *ngIf="title">
                 <div>
-                    <span class="ui-uat-ext-title">Case title: </span><span>{{title}}</span>
+                    <span class="ui-uat-ext-title ">Case title: </span><span data-title="Click to edit" class="ui-uat-show-data-tooltip" (click)="onCaseTitleEdit(title)">{{title}}</span>
                 </div>
                 <br>
                 <div>
                     <span class="ui-uat-ext-title">Steps: </span>
                 </div>
-                <button (click)="toggleModal('two')" class="ui-br-ext-btn-link">Add new step</button>
+                <div *ngFor="let step of steps; index as i">{{step.description}} {{step.expectedResults}}</div>
+                <div class="ui-br-ext-flex ui-br-ext-justify-end">
+                    <button (click)="toggleModal('two')" class="ui-br-ext-btn-link">Add new step</button>
+                </div>
             </ng-container>
             <app-modal *ngIf="isModalOneOn" (closeModal)="toggleModal('one')">
-                <app-create-case-title (saveTitle)="saveTitle($event)" (cancel)="toggleModal('one')"></app-create-case-title>
+                <app-create-case-title (saveTitle)="saveTitle($event)" (cancel)="toggleModal('one')" [title]="titleToEdit"></app-create-case-title>
             </app-modal>
             <app-modal *ngIf="isModalTwoOn" (closeModal)="toggleModal('two')" [propClass]="'ui-br-ext-width-full'">
-                <app-create-step></app-create-step>
+                <app-create-step (saveStep)="saveStep($event)" (cancel)="toggleModal('two')"></app-create-step>
             </app-modal>
             
             <app-resize [pageId]="'uiBrExtCreate'"></app-resize>

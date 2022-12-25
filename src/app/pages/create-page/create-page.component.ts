@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Step } from 'src/app/interfaces/step.interface';
 
 @Component({
   selector: 'app-create-page',
@@ -9,14 +10,16 @@ export class CreatePageComponent implements OnInit {
   showHide: boolean = true;
   isModalOneOn: boolean = false;
   isModalTwoOn: boolean = false;
-  title: string = '';
+  title: string = 'ready';
+  titleToEdit: string = '';
+  steps: Step[] = [];
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  toggleBody(state: boolean){
+  minimizePage(state: boolean){
     this.showHide = state  
   }
 
@@ -31,6 +34,16 @@ export class CreatePageComponent implements OnInit {
   saveTitle(val: string){
     this.title = val;
     this.isModalOneOn = false;
+  }
+
+  saveStep(step: Step){
+    this.steps.push(step)
+    
+  }
+
+  onCaseTitleEdit(title: string){
+    this.titleToEdit = this.title;
+    this.toggleModal('one')
   }
 
 

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { Step } from 'src/app/interfaces/step.interface';
 
 @Component({
   selector: 'app-create-step',
@@ -7,14 +9,44 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateStepComponent implements OnInit {
 
-  form = {
-    expectedResults: "",
-    description: "",
+  submitClicked: boolean = false;
+
+  get description() {
+    return this.stepForm.get('description');
   }
 
-  constructor() { }
+  get expectedResults() {
+    return this.stepForm.get('expectedResults');
+  }
+
+  stepForm: FormGroup = this.fb.group({
+    description: ['', [Validators.required, ]],
+    expectedResults: ['', [Validators.required, ]]
+  });
+
+  constructor(private fb: FormBuilder,) { }
 
   ngOnInit(): void {
+    
   }
 
+  @Input() stepFormProp: Step = {};
+
+  @Output() cancel = new EventEmitter<null>();
+  @Output() saveStep = new EventEmitter<Step>();
+
+  onStepSave(){
+    this.submitClicked = true;
+    if(this.stepForm.valid) {
+      const step: Step = Object.assign(this.stepFormProp, this.stepForm.value);
+      this.saveStep.emit({...step});
+      this.stepForm.reset();
+      this.submitClicked = false;
+    }
+    
+  }
+
+  onCancel(){
+    this.cancel.emit();
+  }
 }

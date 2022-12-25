@@ -4,7 +4,7 @@ import { SettingsPageComponent } from './settings-page/settings-page.component';
 import { ResizeComponent } from '../shared/resize/resize.component';
 import { ElementSelectorComponent } from '../shared/element-selector/element-selector.component';
 import { ScreenCapturerComponent } from '../shared/screen-capturer/screen-capturer.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TabsComponent } from '../shared/tabs/tabs.component';
 import { BugDetailsComponent } from '../shared/bug-details/bug-details.component';
 import { SubmitBugComponent } from '../shared/submit-bug/submit-bug.component';
@@ -39,7 +39,8 @@ import { CreateCaseTitleComponent } from '../shared/create-case-title/create-cas
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     SettingsPageComponent,

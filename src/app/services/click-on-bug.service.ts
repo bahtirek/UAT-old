@@ -9,7 +9,7 @@ export class ClickOnBugService {
 
     constructor(private http: HttpClient, private errorService: HandleErrorService) { }
 
-    activeBugElement = null;
+    activeBugElement: any = null;
 
     blockBugElement = (element: any) => {
         if(element) {

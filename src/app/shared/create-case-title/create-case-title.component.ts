@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-create-case-title',
@@ -7,17 +7,16 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class CreateCaseTitleComponent implements OnInit {
 
-  title = "";
   error: string[] = [];
 
-  formError = {
-    title: this.error
-  }
+  formError: FormError = {} 
 
   constructor() { }
 
   ngOnInit(): void {
   }
+
+  @Input() title: string = '';
 
   @Output() cancel = new EventEmitter<null>();
   @Output() saveTitle = new EventEmitter<string>();
@@ -34,4 +33,7 @@ export class CreateCaseTitleComponent implements OnInit {
   onCancel(){
     this.cancel.emit();
   }
+}
+export interface FormError {
+  title?: string[]
 }

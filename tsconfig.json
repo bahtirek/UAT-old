@@ -22,7 +22,8 @@
       "es2020",
       "dom"
     ],
-    "allowJs": true
+    "allowJs": true,
+    "strictNullChecks": false,
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
