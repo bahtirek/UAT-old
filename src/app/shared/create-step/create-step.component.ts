@@ -10,6 +10,7 @@ import { Step } from 'src/app/interfaces/step.interface';
 export class CreateStepComponent implements OnInit {
 
   submitClicked: boolean = false;
+  editing: boolean = false;
 
   get description() {
     return this.stepForm.get('description');
@@ -27,10 +28,14 @@ export class CreateStepComponent implements OnInit {
   constructor(private fb: FormBuilder,) { }
 
   ngOnInit(): void {
-    
+    if(this.stepToEdit){
+      this.stepForm.controls['description'].setValue(this.stepToEdit.description);
+      this.stepForm.controls['expectedResults'].setValue(this.stepToEdit.expectedResults);
+      this.editing = true;
+    }
   }
 
-  @Input() stepFormProp: Step = {};
+  @Input() stepToEdit: Step = {};
 
   @Output() cancel = new EventEmitter<null>();
   @Output() saveStep = new EventEmitter<Step>();
@@ -38,10 +43,13 @@ export class CreateStepComponent implements OnInit {
   onStepSave(){
     this.submitClicked = true;
     if(this.stepForm.valid) {
-      const step: Step = Object.assign(this.stepFormProp, this.stepForm.value);
+      const step: Step = Object.assign(this.stepToEdit, this.stepForm.value);
       this.saveStep.emit({...step});
       this.stepForm.reset();
       this.submitClicked = false;
+      if(this.editing) {
+        this.onCancel();
+      }
     }
     
   }

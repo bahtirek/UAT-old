@@ -20,7 +20,7 @@
                 <div>
                     <span class="ui-uat-ext-title">Steps: </span>
                 </div>
-                <div *ngFor="let step of steps; index as i">{{step.description}} {{step.expectedResults}}</div>
+                <div *ngFor="let step of steps; index as i"  (click)="onStepEdit(step)">{{step.description}} {{step.expectedResults}}</div>
                 <div class="ui-br-ext-flex ui-br-ext-justify-end">
                     <button (click)="toggleModal('two')" class="ui-br-ext-btn-link">Add new step</button>
                 </div>
@@ -29,7 +29,7 @@
                 <app-create-case-title (saveTitle)="saveTitle($event)" (cancel)="toggleModal('one')" [title]="titleToEdit"></app-create-case-title>
             </app-modal>
             <app-modal *ngIf="isModalTwoOn" (closeModal)="toggleModal('two')" [propClass]="'ui-br-ext-width-full'">
-                <app-create-step (saveStep)="saveStep($event)" (cancel)="toggleModal('two')"></app-create-step>
+                <app-create-step (saveStep)="saveStep($event)" (cancel)="toggleModal('two')" [stepToEdit]="stepToEdit"></app-create-step>
             </app-modal>
             
             <app-resize [pageId]="'uiBrExtCreate'"></app-resize>

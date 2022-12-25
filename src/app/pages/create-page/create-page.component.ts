@@ -12,7 +12,25 @@ export class CreatePageComponent implements OnInit {
   isModalTwoOn: boolean = false;
   title: string = 'ready';
   titleToEdit: string = '';
-  steps: Step[] = [];
+  steps: Step[] = [
+    {
+      id: 1,
+      description: '111',
+      expectedResults: '111'
+    },
+    {
+      id: 2,
+      description: '222',
+      expectedResults: '222'
+    },
+    {
+      id: 3,
+      description: '333',
+      expectedResults: '333'
+    },
+  ];
+
+  stepToEdit: Step;
 
   constructor() { }
 
@@ -37,13 +55,23 @@ export class CreatePageComponent implements OnInit {
   }
 
   saveStep(step: Step){
-    this.steps.push(step)
-    
+    if(step.id) {
+      const existingStep = this.steps.find(item => item.id == step.id);
+      existingStep.description = step.description;
+      existingStep.expectedResults = step.expectedResults;
+    } else {
+      this.steps.push(step)
+    }
   }
 
   onCaseTitleEdit(title: string){
     this.titleToEdit = this.title;
     this.toggleModal('one')
+  }
+
+  onStepEdit(step: Step){
+    this.stepToEdit = {...step};
+    this.toggleModal('two')
   }
 
 
