@@ -14,19 +14,46 @@ export class CreatePageComponent implements OnInit {
   titleToEdit: string = '';
   steps: Step[] = [
     {
+      id: 3,
+      description: '333',
+      expectedResults: '333',
+      order:2
+    },
+    {
       id: 1,
       description: '111',
-      expectedResults: '111'
+      expectedResults: '111',
+      order: 0
     },
     {
       id: 2,
       description: '222',
-      expectedResults: '222'
+      expectedResults: '222',
+      order: 1
     },
     {
-      id: 3,
-      description: '333',
-      expectedResults: '333'
+      id: 7,
+      description: '777',
+      expectedResults: '777',
+      order: 6
+    },
+    {
+      id: 4,
+      description: '444',
+      expectedResults: '444',
+      order: 3
+    },
+    {
+      id: 6,
+      description: '666',
+      expectedResults: '666',
+      order: 5
+    },
+    {
+      id: 5,
+      description: '555',
+      expectedResults: '555',
+      order: 4
     },
   ];
 
@@ -35,6 +62,21 @@ export class CreatePageComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    if(this.steps && this.steps.length > 0) this.sortSteps(this.steps)
+  }
+
+  sortSteps(array: Step[]) {
+    const length = array.length;
+    for (let index = 0; index < array.length; index++) {
+      const element = array.splice(index, 1)[0];
+      array.splice(element.order, 0, element);
+    }
+  }
+
+  sortArray(arr: Step[], fromIndex: number, toIndex: number) {
+    var element = arr[fromIndex];
+    arr.splice(fromIndex, 1);
+    arr.splice(toIndex, 0, element);
   }
 
   minimizePage(state: boolean){
