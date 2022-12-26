@@ -1,0 +1,31 @@
+.ui-br-ext-extension {    
+    .ui-uat-ext-drop-menu {
+        position: relative;
+        &:hover {
+            .ui-uat-ext-drop-menu-body {
+                display: block; 
+            }
+        }
+        .ui-uat-ext-drop-menu-body {
+            position: absolute;
+            background-color: #ffffff;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            top: 20px;
+            right: 0;
+            padding: 8px;
+            border-radius: 3px;
+            width: max-content;
+            z-index: 10;
+            display: none;
+
+            ul {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                li:not(:last-child) {
+                    margin-bottom: 10px;
+                }
+            }
+        }
+    }
+}

@@ -20,7 +20,41 @@
                 <div>
                     <span class="ui-uat-ext-title">Steps: </span>
                 </div>
-                <div *ngFor="let step of steps; index as i"  (click)="onStepEdit(step)">{{step.description}} {{step.expectedResults}}</div>
+                <table>
+                    <tr>
+                        <th>Description</th>
+                        <th>Expected results</th>
+                      </tr>
+                    <tr *ngFor="let step of steps; index as i" class="ui-br-ext-width-full">
+                        <td class="ui-br-ext-width-half">{{step.description}}</td>
+                        <td class="ui-br-ext-width-half">{{step.expectedResults}}</td>
+                        <td>
+                            <div class="ui-uat-ext-drop-menu">
+                                <span class="ui-uat-svg-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+                                </span>
+                                <div class="ui-uat-ext-drop-menu-body">
+                                    <ul>
+                                        <li>
+                                            <button (click)="toggleModal('two')" class="ui-br-ext-btn-link">Edit</button>
+                                        </li>
+                                        <li>
+                                            <button (click)="moveUp()" class="ui-br-ext-btn-link">Move Up</button>
+                                        </li>
+                                        <li>
+                                            <button (click)="moveDown()" class="ui-br-ext-btn-link">Move Down</button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                        </td>
+                    </tr>
+                </table>
+                <div >
+                    <div></div>
+                    <div></div>
+                </div>
                 <div class="ui-br-ext-flex ui-br-ext-justify-end">
                     <button (click)="toggleModal('two')" class="ui-br-ext-btn-link">Add new step</button>
                 </div>

@@ -16,7 +16,7 @@ export class CreatePageComponent implements OnInit {
     {
       id: 3,
       description: '333',
-      expectedResults: '333',
+      expectedResults: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis assumenda ipsam cumque! Porro esse eveniet vitae rerum odit at consequatur earum culpa, accusamus, magni voluptates, fuga autem distinctio et natus!',
       order:2
     },
     {
@@ -116,6 +116,13 @@ export class CreatePageComponent implements OnInit {
     this.toggleModal('two')
   }
 
+  moveUp(){
+    
+  }
+
+  moveDown(){
+
+  }
 
 }
 

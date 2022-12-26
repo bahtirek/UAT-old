@@ -1,6 +1,25 @@
 .ui-br-ext-create-page {
     .ui-br-ext-page-content {
         width: 600px;
+        table {
+            margin: 6px 0;
+        } 
+        table, th, td {
+            border: 1px solid #d3d3d3;
+            border-collapse: collapse;
+        }
+        td {
+            padding: 6px 10px;
+            vertical-align: top;
+        }
+        th {
+            padding: 10px;
+            vertical-align: top;
+            text-align: left;
+        }
 
+        tr:nth-child(even) {
+            background-color: #fbfbfb;
+        }
     }
 }
