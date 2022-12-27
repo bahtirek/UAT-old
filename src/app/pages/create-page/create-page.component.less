@@ -1,8 +1,8 @@
 .ui-br-ext-create-page {
     .ui-br-ext-page-content {
-        width: 600px;
+        
         table {
-            margin: 6px 0 ;
+            margin: 6px 0 18px;
         } 
         table, th, td {
             border: 1px solid #d3d3d3;
@@ -24,11 +24,6 @@
 
         tr {
             &:last-child {
-                td {
-                    .ui-uat-ext-drop-menu-body {
-                        background-color: yellow;
-                    }
-                }
                 .ui-br-uat-move-down {
                     display: none;
                 }
@@ -43,6 +38,22 @@
         .ui-uat-ext-drop-menu{
             height: 20px;
             margin-top: -3px;
+        }
+
+        .ui-br-ext-drop-body {
+            width: 600px;
+            .ui-br-ext-btn-link-group {
+                padding-bottom: 50px;
+            }
+        }
+    }
+
+    .ui-uat-ext-case-title {
+        display: flex;
+        flex-wrap: nowrap;
+        & > div {
+            margin-left: auto;
+            margin-right: 12px;
         }
     }
 }

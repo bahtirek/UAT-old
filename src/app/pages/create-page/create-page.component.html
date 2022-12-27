@@ -1,20 +1,33 @@
 
 <div class="ui-br-ext-dropdown-item ui-br-ext-create-page">
-    <div class="ui-br-ext-page-content" id="uiBrExtCreate">
+    <div class="ui-br-ext-page-content">
 
         <div class="ui-br-ext-drop-title-wrap">
             <div class="ui-br-ext-drop-title">Create new test case</div>
             <app-minimize-drop-body (minimizePage)="minimizePage($event)" class="ui-br-ext-minimizedropbody2"></app-minimize-drop-body>
         </div>
-        <div class="ui-br-ext-drop-body"   [ngClass]="{'ui-br-ext-hide': !showHide}">
+        <div class="ui-br-ext-drop-body"  id="uiBrExtCreate"  [ngClass]="{'ui-br-ext-hide': !showHide}">
             <ng-container *ngIf="!title">
                 <div class="ui-br-ext-flex ui-br-ext-justify-end">
                     <button (click)="toggleModal('one')" class="ui-br-ext-btn-link">Add case title</button>
                 </div>
             </ng-container>
             <ng-container *ngIf="title">
-                <div>
-                    <span class="ui-uat-ext-title ">Case title: </span><span data-title="Click to edit" class="ui-uat-show-data-tooltip" (click)="onCaseTitleEdit(title)">{{title}}</span>
+                <div class="ui-uat-ext-case-title">
+                    <span class="ui-uat-ext-title ">Case title: </span>
+                    <span >{{title}}</span>
+                    <div class="ui-uat-ext-drop-menu">
+                        <span class="ui-uat-svg-icon ui-uat-ext-more-btn">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+                        </span>
+                        <div class="ui-uat-ext-drop-menu-body">
+                            <ul>
+                                <li>
+                                    <button (click)="onCaseTitleEdit(title)" class="ui-br-ext-btn-link">Edit</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
                 <br>
                 <div>
@@ -52,7 +65,8 @@
                         </td>
                     </tr>
                 </table>
-                <div class="ui-br-ext-flex ui-br-ext-justify-end">
+                <div class="ui-br-ext-flex ui-br-ext-justify-end ui-br-ext-btn-link-group">
+                    <button (click)="onStepAdd()" class="ui-br-ext-btn-link">Import steps</button>
                     <button (click)="onStepAdd()" class="ui-br-ext-btn-link">Add new step</button>
                 </div>
             </ng-container>
