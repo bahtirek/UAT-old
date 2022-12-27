@@ -57,7 +57,7 @@ export class CreatePageComponent implements OnInit {
     },
   ];
 
-  stepToEdit: Step;
+  stepToEdit: Step = {};
 
   constructor() { }
 
@@ -73,12 +73,6 @@ export class CreatePageComponent implements OnInit {
     }
   }
 
-  sortArray(arr: Step[], fromIndex: number, toIndex: number) {
-    var element = arr[fromIndex];
-    arr.splice(fromIndex, 1);
-    arr.splice(toIndex, 0, element);
-  }
-
   minimizePage(state: boolean){
     this.showHide = state  
   }
@@ -92,11 +86,15 @@ export class CreatePageComponent implements OnInit {
   }
 
   saveTitle(val: string){
+    this.titleToEdit = '';
+    //if has id then patch
     this.title = val;
     this.isModalOneOn = false;
   }
 
   saveStep(step: Step){
+    this.stepToEdit = {};
+    //if has id then patch
     if(step.id) {
       const existingStep = this.steps.find(item => item.id == step.id);
       existingStep.description = step.description;
@@ -113,15 +111,21 @@ export class CreatePageComponent implements OnInit {
 
   onStepEdit(step: Step){
     this.stepToEdit = {...step};
+    this.toggleModal('two');
+  }
+
+  onStepAdd(){
     this.toggleModal('two')
   }
 
-  moveUp(){
-    
-  }
+  moveStep(index: number){
+    const element2 = this.steps[index-1]
+    const element = this.steps.splice(index, 1)[0];    
 
-  moveDown(){
+    element.order= element.order - 1;
+    element2.order= element2.order + 1;
 
+    this.steps.splice(element.order, 0, element);
   }
 
 }

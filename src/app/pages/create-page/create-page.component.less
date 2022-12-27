@@ -2,7 +2,7 @@
     .ui-br-ext-page-content {
         width: 600px;
         table {
-            margin: 6px 0;
+            margin: 6px 0 ;
         } 
         table, th, td {
             border: 1px solid #d3d3d3;
@@ -20,6 +20,29 @@
 
         tr:nth-child(even) {
             background-color: #fbfbfb;
+        }
+
+        tr {
+            &:last-child {
+                td {
+                    .ui-uat-ext-drop-menu-body {
+                        background-color: yellow;
+                    }
+                }
+                .ui-br-uat-move-down {
+                    display: none;
+                }
+            }
+            &:nth-child(2) {
+                .ui-br-uat-move-up {
+                    display: none;
+                }
+            }
+        }
+
+        .ui-uat-ext-drop-menu{
+            height: 20px;
+            margin-top: -3px;
         }
     }
 }

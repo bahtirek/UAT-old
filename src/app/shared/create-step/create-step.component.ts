@@ -28,11 +28,7 @@ export class CreateStepComponent implements OnInit {
   constructor(private fb: FormBuilder,) { }
 
   ngOnInit(): void {
-    if(this.stepToEdit){
-      this.stepForm.controls['description'].setValue(this.stepToEdit.description);
-      this.stepForm.controls['expectedResults'].setValue(this.stepToEdit.expectedResults);
-      this.editing = true;
-    }
+    this.setStepFormValue();
   }
 
   @Input() stepToEdit: Step = {};
@@ -43,6 +39,9 @@ export class CreateStepComponent implements OnInit {
   onStepSave(){
     this.submitClicked = true;
     if(this.stepForm.valid) {
+      console.log(this.stepToEdit );
+      console.log(this.stepForm.value );
+      
       const step: Step = Object.assign(this.stepToEdit, this.stepForm.value);
       this.saveStep.emit({...step});
       this.stepForm.reset();
@@ -52,6 +51,15 @@ export class CreateStepComponent implements OnInit {
       }
     }
     
+  }
+
+    
+  setStepFormValue() {
+    if(this.stepToEdit && this.stepToEdit.description && this.stepToEdit.expectedResults){
+      this.stepForm.controls['description'].setValue(this.stepToEdit.description);
+      this.stepForm.controls['expectedResults'].setValue(this.stepToEdit.expectedResults);
+      this.editing = true;
+    }
   }
 
   onCancel(){

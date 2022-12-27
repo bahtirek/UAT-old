@@ -22,41 +22,38 @@
                 </div>
                 <table>
                     <tr>
+                        <th>#</th>
                         <th>Description</th>
                         <th>Expected results</th>
-                      </tr>
-                    <tr *ngFor="let step of steps; index as i" class="ui-br-ext-width-full">
+                    </tr>
+                    <tr *ngFor="let step of steps; index as i" class="ui-br-ext-width-full ui-uat-ext-staep-details-row">
+                        <td>{{step.order + 1}}</td>
                         <td class="ui-br-ext-width-half">{{step.description}}</td>
                         <td class="ui-br-ext-width-half">{{step.expectedResults}}</td>
                         <td>
                             <div class="ui-uat-ext-drop-menu">
-                                <span class="ui-uat-svg-icon">
+                                <span class="ui-uat-svg-icon ui-uat-ext-more-btn">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
                                 </span>
                                 <div class="ui-uat-ext-drop-menu-body">
                                     <ul>
                                         <li>
-                                            <button (click)="toggleModal('two')" class="ui-br-ext-btn-link">Edit</button>
+                                            <button (click)="onStepEdit(step)" class="ui-br-ext-btn-link">Edit</button>
                                         </li>
                                         <li>
-                                            <button (click)="moveUp()" class="ui-br-ext-btn-link">Move Up</button>
+                                            <button (click)="moveStep(i)" class="ui-br-ext-btn-link ui-br-uat-move-up">Move Up</button>
                                         </li>
                                         <li>
-                                            <button (click)="moveDown()" class="ui-br-ext-btn-link">Move Down</button>
+                                            <button (click)="moveStep(i+1)" class="ui-br-ext-btn-link ui-br-uat-move-down">Move Down</button>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
-                            
                         </td>
                     </tr>
                 </table>
-                <div >
-                    <div></div>
-                    <div></div>
-                </div>
                 <div class="ui-br-ext-flex ui-br-ext-justify-end">
-                    <button (click)="toggleModal('two')" class="ui-br-ext-btn-link">Add new step</button>
+                    <button (click)="onStepAdd()" class="ui-br-ext-btn-link">Add new step</button>
                 </div>
             </ng-container>
             <app-modal *ngIf="isModalOneOn" (closeModal)="toggleModal('one')">
