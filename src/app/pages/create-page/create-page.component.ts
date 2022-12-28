@@ -8,8 +8,9 @@ import { Step } from 'src/app/interfaces/step.interface';
 })
 export class CreatePageComponent implements OnInit {
   showHide: boolean = true;
-  isModalOneOn: boolean = false;
-  isModalTwoOn: boolean = false;
+  isCaseTitleModalOn: boolean = false;
+  isAddStepModalOn: boolean = false;
+  isDeleteModalOn: boolean = false
   title: string = 'ready';
   titleToEdit: string = '';
   steps: Step[] = [
@@ -58,6 +59,7 @@ export class CreatePageComponent implements OnInit {
   ];
 
   stepToEdit: Step = {};
+  stepToDelete: Step = {};
 
   constructor() { }
 
@@ -78,18 +80,21 @@ export class CreatePageComponent implements OnInit {
   }
 
   toggleModal(val: string){
-    if(val == 'one') {
-      this.isModalOneOn = !this.isModalOneOn;
-    } else {
-      this.isModalTwoOn = !this.isModalTwoOn;
+    if(val == 'caseTitleModal') {
+      this.isCaseTitleModalOn = !this.isCaseTitleModalOn;
+    } else if(val == 'addnewStepModal'){
+      this.isAddStepModalOn = !this.isAddStepModalOn;
+    } else if(val == 'deleteStepModal'){
+      this.isDeleteModalOn = !this.isDeleteModalOn;
     }
+    
   }
 
   saveTitle(val: string){
     this.titleToEdit = '';
     //if has id then patch
     this.title = val;
-    this.isModalOneOn = false;
+    this.isCaseTitleModalOn = false;
   }
 
   saveStep(step: Step){
@@ -104,18 +109,30 @@ export class CreatePageComponent implements OnInit {
     }
   }
 
+  onDeleteStep(index: number){
+    this.stepToDelete = this.steps[index];
+    this.isDeleteModalOn = true;
+  }
+
+  deleteStep(){
+    const index = this.steps.findIndex(step => step.id == this.stepToDelete.id)
+    this.steps.splice(index, 1);
+    this.stepToDelete = {};
+    this.toggleModal('deleteStepModal')
+  }
+
   onCaseTitleEdit(title: string){
     this.titleToEdit = this.title;
-    this.toggleModal('one')
+    this.toggleModal('caseTitleModal')
   }
 
   onStepEdit(step: Step){
     this.stepToEdit = {...step};
-    this.toggleModal('two');
+    this.toggleModal('addnewStepModal');
   }
 
   onStepAdd(){
-    this.toggleModal('two')
+    this.toggleModal('addnewStepModal')
   }
 
   moveStep(index: number){

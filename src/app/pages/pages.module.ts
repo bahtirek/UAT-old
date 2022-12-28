@@ -16,6 +16,7 @@ import { MinimizeDropBodyComponent } from '../shared/minimize-drop-body/minimize
 import { CreateStepComponent } from '../shared/create-step/create-step.component';
 import { ModalComponent } from '../shared/modal/modal.component';
 import { CreateCaseTitleComponent } from '../shared/create-case-title/create-case-title.component';
+import { DeleteStepComponent } from '../shared/delete-step/delete-step.component';
 
 
 
@@ -36,6 +37,7 @@ import { CreateCaseTitleComponent } from '../shared/create-case-title/create-cas
     CreateStepComponent,
     ModalComponent,
     CreateCaseTitleComponent,
+    DeleteStepComponent
   ],
   imports: [
     CommonModule,

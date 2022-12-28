@@ -9,7 +9,7 @@
         <div class="ui-br-ext-drop-body"  id="uiBrExtCreate"  [ngClass]="{'ui-br-ext-hide': !showHide}">
             <ng-container *ngIf="!title">
                 <div class="ui-br-ext-flex ui-br-ext-justify-end">
-                    <button (click)="toggleModal('one')" class="ui-br-ext-btn-link">Add case title</button>
+                    <button (click)="toggleModal('caseTitleModal')" class="ui-br-ext-btn-link">Add case title</button>
                 </div>
             </ng-container>
             <ng-container *ngIf="title">
@@ -59,6 +59,9 @@
                                         <li>
                                             <button (click)="moveStep(i+1)" class="ui-br-ext-btn-link ui-br-uat-move-down">Move Down</button>
                                         </li>
+                                        <li>
+                                            <button (click)="onDeleteStep(i)" class="ui-br-ext-btn-link">Delete</button>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -70,11 +73,17 @@
                     <button (click)="onStepAdd()" class="ui-br-ext-btn-link">Add new step</button>
                 </div>
             </ng-container>
-            <app-modal *ngIf="isModalOneOn" (closeModal)="toggleModal('one')">
-                <app-create-case-title (saveTitle)="saveTitle($event)" (cancel)="toggleModal('one')" [title]="titleToEdit"></app-create-case-title>
+            <app-modal *ngIf="isCaseTitleModalOn" (closeModal)="toggleModal('caseTitleModal')">
+                <app-create-case-title (saveTitle)="saveTitle($event)" (cancel)="toggleModal('caseTitleModal')" [title]="titleToEdit"></app-create-case-title>
             </app-modal>
-            <app-modal *ngIf="isModalTwoOn" (closeModal)="toggleModal('two')" [propClass]="'ui-br-ext-width-full'">
-                <app-create-step (saveStep)="saveStep($event)" (cancel)="toggleModal('two')" [stepToEdit]="stepToEdit"></app-create-step>
+            <app-modal *ngIf="isAddStepModalOn" (closeModal)="toggleModal('addnewStepModal')" [propClass]="'ui-br-ext-width-full'">
+                <app-create-step (saveStep)="saveStep($event)" (cancel)="toggleModal('addnewStepModal')" [stepToEdit]="stepToEdit"></app-create-step>
+            </app-modal>
+            <app-modal *ngIf="isAddStepModalOn" (closeModal)="toggleModal('addnewStepModal')" [propClass]="'ui-br-ext-width-full'">
+                <app-create-step (saveStep)="saveStep($event)" (cancel)="toggleModal('addnewStepModal')" [stepToEdit]="stepToEdit"></app-create-step>
+            </app-modal>
+            <app-modal *ngIf="isDeleteModalOn" (closeModal)="toggleModal('deleteStepModal')">
+                <app-delete-step (deleteStep)="deleteStep()" (cancel)="toggleModal('deleteStepModal')" [stepToDelete]="stepToDelete"></app-delete-step>
             </app-modal>
             
             <app-resize [pageId]="'uiBrExtCreate'"></app-resize>

@@ -1,0 +1,16 @@
+<div class="ui-br-ext-form-container">
+    <h3>Delete Step?</h3>
+    <div class="ui-br-ext-width-full">
+        <p>{{stepToDelete.description}}</p>
+        <div class="ui-br-ext-btn-group">
+            <button class="ui-br-ext-btn"  data-listener="off" (click)="delete()">
+                <span class="ui-br-ext-spinner"></span>
+                <span>Delete</span> 
+            </button>
+            <button class="ui-br-ext-btn-danger"  data-listener="off" (click)="onCancel()">
+                <span class="ui-br-ext-spinner"></span>
+                <span>Cancel</span> 
+            </button>
+        </div>
+    </div>
+</div>
