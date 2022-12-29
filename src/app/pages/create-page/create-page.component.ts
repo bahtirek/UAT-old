@@ -10,7 +10,7 @@ import { TitleService } from 'src/app/services/title.service';
   styleUrls: ['./create-page.component.less']
 })
 export class CreatePageComponent implements OnInit {
-  
+
   showHide: boolean = true;
   title: Title = {};
 
@@ -18,8 +18,7 @@ export class CreatePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.titleService.titleSource.pipe(take(2)).subscribe((title: Title) => {
-      //this.title = title;
-      this.title = {title: 'case'};
+      this.title = title;
     })
   }
 

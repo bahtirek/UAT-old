@@ -13,10 +13,10 @@ import { CreatePageComponent } from './create-page/create-page.component';
 import { ExecutePageComponent } from './execute-page/execute-page.component';
 import { SearchPageComponent } from './search-page/search-page.component';
 import { MinimizeDropBodyComponent } from '../shared/minimize-drop-body/minimize-drop-body.component';
-import { CreateStepComponent } from '../shared/create-step/create-step.component';
+import { CreateStepComponent } from './create-page/case-steps/create-step/create-step.component';
 import { ModalComponent } from '../shared/modal/modal.component';
-import { CreateCaseTitleComponent } from '../shared/create-case-title/create-case-title.component';
-import { DeleteStepComponent } from '../shared/delete-step/delete-step.component';
+import { CreateCaseTitleComponent } from './create-page/case-title/create-case-title/create-case-title.component';
+import { DeleteStepComponent } from './create-page/case-steps/delete-step/delete-step.component';
 import { CaseTitleComponent } from './create-page/case-title/case-title.component';
 import { CaseStepsComponent } from './create-page/case-steps/case-steps.component';
 
