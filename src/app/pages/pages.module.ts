@@ -18,6 +18,7 @@ import { ModalComponent } from '../shared/modal/modal.component';
 import { CreateCaseTitleComponent } from '../shared/create-case-title/create-case-title.component';
 import { DeleteStepComponent } from '../shared/delete-step/delete-step.component';
 import { CaseTitleComponent } from './create-page/case-title/case-title.component';
+import { CaseStepsComponent } from './create-page/case-steps/case-steps.component';
 
 
 
@@ -39,7 +40,8 @@ import { CaseTitleComponent } from './create-page/case-title/case-title.componen
     ModalComponent,
     CreateCaseTitleComponent,
     DeleteStepComponent,
-    CaseTitleComponent
+    CaseTitleComponent,
+    CaseStepsComponent
   ],
   imports: [
     CommonModule,
