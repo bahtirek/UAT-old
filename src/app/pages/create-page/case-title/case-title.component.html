@@ -1,0 +1,27 @@
+<ng-container *ngIf="!title.title">
+    <div class="ui-br-ext-flex ui-br-ext-justify-end">
+        <button (click)="addTitle()" class="ui-br-ext-btn-link">Add case title</button>
+    </div>
+</ng-container>
+<ng-container *ngIf="title.title">
+    <div class="ui-uat-ext-case-title">
+        <span class="ui-uat-ext-title ">Case title: </span>
+        <span >{{title.title}}</span>
+        <div class="ui-uat-ext-drop-menu">
+            <span class="ui-uat-svg-icon ui-uat-ext-more-btn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+            </span>
+            <div class="ui-uat-ext-drop-menu-body">
+                <ul>
+                    <li>
+                        <button (click)="onCaseTitleEdit()" class="ui-br-ext-btn-link">Edit</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+<app-modal *ngIf="isCaseTitleModalOn" (closeModal)="toggleModal()">
+    <app-create-case-title (cancel)="toggleModal()" [title]="titleToEdit"></app-create-case-title>
+</app-modal>

@@ -1,5 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Step } from 'src/app/interfaces/step.interface';
+import { Title } from 'src/app/interfaces/title.interface';
+import { TitleService } from 'src/app/services/title.service';
 
 @Component({
   selector: 'app-create-page',
@@ -8,11 +10,8 @@ import { Step } from 'src/app/interfaces/step.interface';
 })
 export class CreatePageComponent implements OnInit {
   showHide: boolean = true;
-  isCaseTitleModalOn: boolean = false;
   isAddStepModalOn: boolean = false;
   isDeleteModalOn: boolean = false
-  title: string = 'ready';
-  titleToEdit: string = '';
   steps: Step[] = [
     {
       id: 3,
@@ -61,10 +60,10 @@ export class CreatePageComponent implements OnInit {
   stepToEdit: Step = {};
   stepToDelete: Step = {};
 
-  constructor() { }
+  constructor(private titleService: TitleService) { }
 
   ngOnInit(): void {
-    if(this.steps && this.steps.length > 0) this.sortSteps(this.steps)
+    if(this.steps && this.steps.length > 0) this.sortSteps(this.steps);
   }
 
   sortSteps(array: Step[]) {
@@ -80,21 +79,12 @@ export class CreatePageComponent implements OnInit {
   }
 
   toggleModal(val: string){
-    if(val == 'caseTitleModal') {
-      this.isCaseTitleModalOn = !this.isCaseTitleModalOn;
-    } else if(val == 'addnewStepModal'){
+    if(val == 'addnewStepModal'){
       this.isAddStepModalOn = !this.isAddStepModalOn;
     } else if(val == 'deleteStepModal'){
       this.isDeleteModalOn = !this.isDeleteModalOn;
     }
     
-  }
-
-  saveTitle(val: string){
-    this.titleToEdit = '';
-    //if has id then patch
-    this.title = val;
-    this.isCaseTitleModalOn = false;
   }
 
   saveStep(step: Step){
@@ -119,11 +109,6 @@ export class CreatePageComponent implements OnInit {
     this.steps.splice(index, 1);
     this.stepToDelete = {};
     this.toggleModal('deleteStepModal')
-  }
-
-  onCaseTitleEdit(title: string){
-    this.titleToEdit = this.title;
-    this.toggleModal('caseTitleModal')
   }
 
   onStepEdit(step: Step){

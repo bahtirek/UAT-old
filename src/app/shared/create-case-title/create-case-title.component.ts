@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Title } from 'src/app/interfaces/title.interface';
+import { TitleService } from 'src/app/services/title.service';
 
 @Component({
   selector: 'app-create-case-title',
@@ -8,23 +10,29 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class CreateCaseTitleComponent implements OnInit {
 
   error: string[] = [];
+  formError: FormError = {}; 
 
-  formError: FormError = {} 
-
-  constructor() { }
+  constructor(private titleService: TitleService) { }
 
   ngOnInit(): void {
+    this.titleService.titleSource.subscribe(()=>{
+      this.onCancel()
+    })
   }
 
-  @Input() title: string = '';
+  @Input() title: Title;
 
   @Output() cancel = new EventEmitter<null>();
-  @Output() saveTitle = new EventEmitter<string>();
+  @Output() saveTitle = new EventEmitter<Title>();
 
   onSaveTitle(){
     this.formError.title = []
-    if(this.title) {
-      this.saveTitle.emit(this.title);
+    if(this.title && this.title.title) {
+      if(this.title.id) {
+        this.titleService.updateTitle(this.title)
+      } else {
+        this.titleService.postTitle(this.title)
+      }
     } else {
       this.formError.title.push('Field is required');
     }

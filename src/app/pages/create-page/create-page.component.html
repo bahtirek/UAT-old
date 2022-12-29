@@ -7,75 +7,52 @@
             <app-minimize-drop-body (minimizePage)="minimizePage($event)" class="ui-br-ext-minimizedropbody2"></app-minimize-drop-body>
         </div>
         <div class="ui-br-ext-drop-body"  id="uiBrExtCreate"  [ngClass]="{'ui-br-ext-hide': !showHide}">
-            <ng-container *ngIf="!title">
-                <div class="ui-br-ext-flex ui-br-ext-justify-end">
-                    <button (click)="toggleModal('caseTitleModal')" class="ui-br-ext-btn-link">Add case title</button>
-                </div>
-            </ng-container>
-            <ng-container *ngIf="title">
-                <div class="ui-uat-ext-case-title">
-                    <span class="ui-uat-ext-title ">Case title: </span>
-                    <span >{{title}}</span>
-                    <div class="ui-uat-ext-drop-menu">
-                        <span class="ui-uat-svg-icon ui-uat-ext-more-btn">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
-                        </span>
-                        <div class="ui-uat-ext-drop-menu-body">
-                            <ul>
-                                <li>
-                                    <button (click)="onCaseTitleEdit(title)" class="ui-br-ext-btn-link">Edit</button>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <div>
-                    <span class="ui-uat-ext-title">Steps: </span>
-                </div>
-                <table>
-                    <tr>
-                        <th>#</th>
-                        <th>Description</th>
-                        <th>Expected results</th>
-                    </tr>
-                    <tr *ngFor="let step of steps; index as i" class="ui-br-ext-width-full ui-uat-ext-staep-details-row">
-                        <td>{{step.order + 1}}</td>
-                        <td class="ui-br-ext-width-half">{{step.description}}</td>
-                        <td class="ui-br-ext-width-half">{{step.expectedResults}}</td>
-                        <td>
-                            <div class="ui-uat-ext-drop-menu">
-                                <span class="ui-uat-svg-icon ui-uat-ext-more-btn">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
-                                </span>
-                                <div class="ui-uat-ext-drop-menu-body">
-                                    <ul>
-                                        <li>
-                                            <button (click)="onStepEdit(step)" class="ui-br-ext-btn-link">Edit</button>
-                                        </li>
-                                        <li>
-                                            <button (click)="moveStep(i)" class="ui-br-ext-btn-link ui-br-uat-move-up">Move Up</button>
-                                        </li>
-                                        <li>
-                                            <button (click)="moveStep(i+1)" class="ui-br-ext-btn-link ui-br-uat-move-down">Move Down</button>
-                                        </li>
-                                        <li>
-                                            <button (click)="onDeleteStep(i)" class="ui-br-ext-btn-link">Delete</button>
-                                        </li>
-                                    </ul>
-                                </div>
+            
+            <app-case-title></app-case-title>
+            <br>
+            <div>
+                <span class="ui-uat-ext-title">Steps: </span>
+            </div>
+            <table>
+                <tr>
+                    <th>#</th>
+                    <th>Description</th>
+                    <th>Expected results</th>
+                </tr>
+                <tr *ngFor="let step of steps; index as i" class="ui-br-ext-width-full ui-uat-ext-staep-details-row">
+                    <td>{{step.order + 1}}</td>
+                    <td class="ui-br-ext-width-half">{{step.description}}</td>
+                    <td class="ui-br-ext-width-half">{{step.expectedResults}}</td>
+                    <td>
+                        <div class="ui-uat-ext-drop-menu">
+                            <span class="ui-uat-svg-icon ui-uat-ext-more-btn">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+                            </span>
+                            <div class="ui-uat-ext-drop-menu-body">
+                                <ul>
+                                    <li>
+                                        <button (click)="onStepEdit(step)" class="ui-br-ext-btn-link">Edit</button>
+                                    </li>
+                                    <li>
+                                        <button (click)="moveStep(i)" class="ui-br-ext-btn-link ui-br-uat-move-up">Move Up</button>
+                                    </li>
+                                    <li>
+                                        <button (click)="moveStep(i+1)" class="ui-br-ext-btn-link ui-br-uat-move-down">Move Down</button>
+                                    </li>
+                                    <li>
+                                        <button (click)="onDeleteStep(i)" class="ui-br-ext-btn-link">Delete</button>
+                                    </li>
+                                </ul>
                             </div>
-                        </td>
-                    </tr>
-                </table>
-                <div class="ui-br-ext-flex ui-br-ext-justify-end ui-br-ext-btn-link-group">
-                    <button (click)="onStepAdd()" class="ui-br-ext-btn-link">Import steps</button>
-                    <button (click)="onStepAdd()" class="ui-br-ext-btn-link">Add new step</button>
-                </div>
-            </ng-container>
-            <app-modal *ngIf="isCaseTitleModalOn" (closeModal)="toggleModal('caseTitleModal')">
-                <app-create-case-title (saveTitle)="saveTitle($event)" (cancel)="toggleModal('caseTitleModal')" [title]="titleToEdit"></app-create-case-title>
-            </app-modal>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <div class="ui-br-ext-flex ui-br-ext-justify-end ui-br-ext-btn-link-group">
+                <button (click)="onStepAdd()" class="ui-br-ext-btn-link">Import steps</button>
+                <button (click)="onStepAdd()" class="ui-br-ext-btn-link">Add new step</button>
+            </div>
+            
             <app-modal *ngIf="isAddStepModalOn" (closeModal)="toggleModal('addnewStepModal')" [propClass]="'ui-br-ext-width-full'">
                 <app-create-step (saveStep)="saveStep($event)" (cancel)="toggleModal('addnewStepModal')" [stepToEdit]="stepToEdit"></app-create-step>
             </app-modal>
