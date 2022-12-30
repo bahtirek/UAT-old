@@ -8,7 +8,7 @@
         </div>
         <div class="ui-br-ext-drop-body"  id="uiBrExtCreate"  [ngClass]="{'ui-br-ext-hide': !showHide}">
             <app-case-title></app-case-title>
-            <ng-container *ngIf="title.title">
+            <ng-container *ngIf="!title.title">
                 <br>
                 <app-case-steps></app-case-steps>
             </ng-container>

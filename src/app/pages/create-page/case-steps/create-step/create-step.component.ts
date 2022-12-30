@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Step } from 'src/app/interfaces/step.interface';
+import { StepService } from 'src/app/services/step.service';
 
 @Component({
   selector: 'app-create-step',
@@ -25,7 +26,7 @@ export class CreateStepComponent implements OnInit {
     expectedResults: ['', [Validators.required, ]]
   });
 
-  constructor(private fb: FormBuilder,) { }
+  constructor(private fb: FormBuilder, private stepService: StepService) { }
 
   ngOnInit(): void {
     this.setStepFormValue();
@@ -34,25 +35,22 @@ export class CreateStepComponent implements OnInit {
   @Input() stepToEdit: Step = {};
 
   @Output() cancel = new EventEmitter<null>();
-  @Output() saveStep = new EventEmitter<Step>();
 
   onStepSave(){
     this.submitClicked = true;
     if(this.stepForm.valid) {
-      console.log(this.stepToEdit );
-      console.log(this.stepForm.value );
-      
       const step: Step = Object.assign(this.stepToEdit, this.stepForm.value);
-      this.saveStep.emit({...step});
+      //will use it as observable
+    setTimeout(() => {
+      this.stepService.saveStep({...step});
       this.stepForm.reset();
       this.submitClicked = false;
       if(this.editing) {
         this.onCancel();
       }
+    }, 1000);
     }
-    
   }
-
     
   setStepFormValue() {
     if(this.stepToEdit && this.stepToEdit.description && this.stepToEdit.expectedResults){

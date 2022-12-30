@@ -9,60 +9,60 @@ export class StepService {
 
   constructor() { }
 
-  //steps: Step[]
-  steps: Step[] = [
-    {
-      id: 3,
-      description: '333',
-      expectedResults: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis assumenda ipsam cumque! Porro esse eveniet vitae rerum odit at consequatur earum culpa, accusamus, magni voluptates, fuga autem distinctio et natus!',
-      order:2
-    },
-    {
-      id: 1,
-      description: '111',
-      expectedResults: '111',
-      order: 0
-    },
-    {
-      id: 2,
-      description: '222',
-      expectedResults: '222',
-      order: 1
-    },
-    {
-      id: 7,
-      description: '777',
-      expectedResults: '777',
-      order: 6
-    },
-    {
-      id: 4,
-      description: '444',
-      expectedResults: '444',
-      order: 3
-    },
-    {
-      id: 6,
-      description: '666',
-      expectedResults: '666',
-      order: 5
-    },
-    {
-      id: 5,
-      description: '555',
-      expectedResults: '555',
-      order: 4
-    },
-  ];
+  steps: Step[];
 
   stepsSource = new Subject<Step[]>()
 
   pushSteps(steps: Step[]){
+    if(steps && steps.length > 0) this.sortSteps(steps);
     this.stepsSource.next(steps);
     this.steps = steps
+  }
+
+  saveStep(step: Step){
+    if(step.id) {
+      const existingStep = this.steps.find(item => item.id == step.id);
+      existingStep.description = step.description;
+      existingStep.expectedResults = step.expectedResults;
+      this.pushSteps(this.steps);
+    } else {
+      this.steps.push(step)
+      this.pushSteps(this.steps);
+    }
+  }
+
+  moveStep(index: number){
+    const element2 = this.steps[index-1]
+    const element = this.steps.splice(index, 1)[0];    
+
+    element.order= element.order - 1;
+    element2.order= element2.order + 1;
+
+    this.steps.splice(element.order, 0, element);
+    this.stepsSource.next(this.steps);
+  }
+
+  deleteStep(id: number){
+    const index = this.steps.findIndex(step => step.id == id)
+    this.steps.splice(index, 1);
+    for (let index = 0; index < this.steps.length; index++) {
+      this.steps[index].order = index;
+      if(index == this.steps.length - 1) {
+        this.stepsSource.next(this.steps);
+      }
+    }
   }
 
   getSteps(){
     return this.steps;
   }
+
+  sortSteps(array: Step[]) {
+    const length = array.length;
+    for (let index = 0; index < array.length; index++) {
+      const element = array.splice(index, 1)[0];
+      array.splice(element.order, 0, element);
+    }
+  }
+
 }

@@ -4,8 +4,8 @@
 <table>
     <tr>
         <th>#</th>
-        <th>Description</th>
-        <th>Expected results</th>
+        <th class="ui-br-ext-width-half">Description</th>
+        <th class="ui-br-ext-width-half">Expected results</th>
     </tr>
     <tr *ngFor="let step of steps; index as i" class="ui-br-ext-width-full ui-uat-ext-staep-details-row">
         <td>{{step.order + 1}}</td>
@@ -41,7 +41,7 @@
     <button (click)="onStepAdd()" class="ui-br-ext-btn-link">Add new step</button>
 </div>
 <app-modal *ngIf="isAddStepModalOn" (closeModal)="toggleModal('addnewStepModal')" [propClass]="'ui-br-ext-width-full'">
-    <app-create-step (saveStep)="saveStep($event)" (cancel)="toggleModal('addnewStepModal')" [stepToEdit]="stepToEdit"></app-create-step>
+    <app-create-step (cancel)="toggleModal('addnewStepModal')" [stepToEdit]="stepToEdit"></app-create-step>
 </app-modal>
 <app-modal *ngIf="isDeleteModalOn" (closeModal)="toggleModal('deleteStepModal')">
     <app-delete-step (deleteStep)="deleteStep()" (cancel)="toggleModal('deleteStepModal')" [stepToDelete]="stepToDelete"></app-delete-step>
