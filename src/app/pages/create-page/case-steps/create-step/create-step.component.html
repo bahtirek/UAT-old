@@ -18,11 +18,11 @@
             </div>
         </form>
         <div class="ui-br-ext-btn-group">
-            <button class="ui-br-ext-btn"  data-listener="off" (click)="onStepSave()">
-                <span class="ui-br-ext-spinner"></span>
+            <button class="ui-br-ext-btn"  data-listener="off" (click)="onStepSave()" [disabled]="submitInProgress">
+                <span class="ui-br-ext-spinner" [ngClass]="{'active': submitInProgress}"></span>
                 <span>Save</span> 
             </button>
-            <button class="ui-br-ext-btn-danger"  data-listener="off" (click)="onCancel()">
+            <button class="ui-br-ext-btn-danger"  data-listener="off" (click)="onCancel()" [disabled]="submitInProgress">
                 <span class="ui-br-ext-spinner"></span>
                 <span>Cancel</span> 
             </button>

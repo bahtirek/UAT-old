@@ -12,6 +12,7 @@ export class CreateStepComponent implements OnInit {
 
   submitClicked: boolean = false;
   editing: boolean = false;
+  submitInProgress: boolean = false;
 
   get description() {
     return this.stepForm.get('description');
@@ -38,6 +39,7 @@ export class CreateStepComponent implements OnInit {
 
   onStepSave(){
     this.submitClicked = true;
+    this.submitInProgress = true;
     if(this.stepForm.valid) {
       const step: Step = Object.assign(this.stepToEdit, this.stepForm.value);
       //will use it as observable
@@ -45,6 +47,7 @@ export class CreateStepComponent implements OnInit {
       this.stepService.saveStep({...step});
       this.stepForm.reset();
       this.submitClicked = false;
+      this.submitInProgress = false;
       if(this.editing) {
         this.onCancel();
       }

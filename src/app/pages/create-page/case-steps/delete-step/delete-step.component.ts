@@ -8,6 +8,8 @@ import { Step } from 'src/app/interfaces/step.interface';
 })
 export class DeleteStepComponent implements OnInit {
 
+  submitInProgress: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -19,6 +21,7 @@ export class DeleteStepComponent implements OnInit {
   @Output() deleteStep = new EventEmitter<Step>();
 
   delete(){
+    this.submitInProgress = true;
     this.deleteStep.emit(this.stepToDelete)
   }
 

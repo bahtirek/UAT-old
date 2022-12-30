@@ -10,7 +10,8 @@ import { TitleService } from 'src/app/services/title.service';
 export class CreateCaseTitleComponent implements OnInit {
 
   error: string[] = [];
-  formError: FormError = {}; 
+  formError: FormError = {};
+  submitInProgress: boolean = false; 
 
   constructor(private titleService: TitleService) { }
 
@@ -26,15 +27,18 @@ export class CreateCaseTitleComponent implements OnInit {
   @Output() saveTitle = new EventEmitter<Title>();
 
   onSaveTitle(){
-    this.formError.title = []
+    this.formError.title = [];
+    this.submitInProgress = true;
     if(this.title && this.title.title) {
       if(this.title.id) {
         this.titleService.updateTitle(this.title)
       } else {
         this.titleService.postTitle(this.title)
       }
+      this.submitInProgress = false;
     } else {
       this.formError.title.push('Field is required');
+      this.submitInProgress = false;
     }
   }
 

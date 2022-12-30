@@ -1,4 +1,55 @@
 .ui-br-ext-extension {
+
+    .ui-br-ext-btn, .ui-br-ext-btn-danger{
+        font-family: Roboto, Arial!important;
+        font-size: 14px !important;
+        height: 29px !important;
+        padding: 7px 12px !important;
+        border-radius: 4px !important;
+        margin: 10px 25px 0 auto;
+        display: block !important;
+        border: none !important;
+        background-color: #ffffff !important;
+        font-weight: bold !important;
+        box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px !important;
+
+        &:hover:not(:disabled) {
+            cursor: pointer;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px !important;
+        }
+
+        &:active:not(:disabled) {
+            box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px !important;
+        }
+    }
+
+    .ui-br-ext-btn {
+        color: @primary-color !important;
+        &:disabled {
+            color: #c4c8c7;
+            pointer-events: none;
+            cursor: not-allowed;
+        }
+    }
+    .ui-br-ext-btn-danger {
+        color: @danger-color !important;
+        &:disabled {
+            color: #c4c8c7;
+            pointer-events: none;
+            cursor: not-allowed;
+        }
+    }
+
+    .ui-br-ext-btn-group {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        width: 100%;
+
+        .ui-br-ext-btn, .ui-br-ext-btn-danger{
+            margin: 10px 14px 0!important;
+        }
+    }
     .ui-br-ext-btn-link{
         border: none;
         background: none;
@@ -11,5 +62,43 @@
         &:hover {
             border-bottom-width: 2px;
         }
+    }
+
+    .ui-br-ext-spinner {
+        display: none;
+        width: 25px;
+        height: 10px;
+        position: relative;
+        margin-right: 4px;
+
+        &::before {
+            content: "";
+            //background-image: url("chrome-extension://@{extensionId}/assets/spinner.svg");
+            background-image: url("../assets/spinner.svg");
+            position: absolute;
+            top: -5px;
+            left: 0;
+            background-size: 20px 20px;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 20px;
+            width: 20px;
+            -webkit-animation: spin 1s infinite linear;
+            animation: spin 1s infinite linear;
+        }
+
+        &.active {
+            display: inline-block;
+        }
+    }
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
     }
 }
