@@ -13,13 +13,13 @@
             <ul>
                 <li *ngFor="let title of titles; index as i">
                     <span class="ui-br-ext-module-label" (click)="onImport(title.id)">{{title.title}}</span>
+                    <span class="ui-br-ext-spinner" [ngClass]="submitInProgress == title.id ? 'active' : ''"></span>
                 </li>
             </ul>
         </div>
     </div>
     <div class="ui-br-ext-btn-group">
         <button class="ui-br-ext-btn-danger"  data-listener="off" (click)="onCancel()">
-            <span class="ui-br-ext-spinner"></span>
             <span>Cancel</span> 
         </button>
     </div>

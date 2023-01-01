@@ -11,7 +11,7 @@ import { StepService } from 'src/app/services/step.service';
 export class SearchTestCaseComponent implements OnInit {
 
   title: string = '';
-  submitInProgress: boolean = false;
+  submitInProgress: number;
   titles: Title[] = [
     {
       title: 'Title 1',
@@ -51,12 +51,15 @@ export class SearchTestCaseComponent implements OnInit {
   @Output() cancel = new EventEmitter<void>();
 
   onImport(id: number){
-    console.log(id);
-    
-    this.stepService.stepsSource.pipe(take(2)).subscribe((steps) => {
-      this.onCancel();
-    })
-    this.stepService.importSteps(id)
+
+    if(!this.submitInProgress) {
+      this.submitInProgress = id;
+      
+      this.stepService.stepsSource.pipe(take(1)).subscribe((steps) => {
+        this.onCancel();
+      })
+      this.stepService.importSteps(id);
+    }
   }
 
   onCancel(){
