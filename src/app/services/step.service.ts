@@ -130,9 +130,11 @@ export class StepService {
     this.stepsSource.next(this.steps);
   }
 
-  deleteStep(id: number){
+  async deleteStep(id: number){
     const index = this.steps.findIndex((step: Step) => step.id == id)
     this.steps.splice(index, 1);
+    this.steps = await this.assignIndexAsOrder([...this.steps]);
+    this.stepsSource.next(this.steps);
   }
 
   async importSteps(id: number){
@@ -154,8 +156,7 @@ export class StepService {
         const element = array.splice(index, 1)[0];
         array.splice(element.order, 0, element);
         if(index == array.length - 1) {
-          await this.myDelay()
-          resolve([...array])
+          resolve(array)
         };
       }
     })
@@ -166,19 +167,10 @@ export class StepService {
       for (let index = 0; index < array.length; index++) {
         array[index].order = index;
         if(index == array.length - 1) {
-          await this.myDelay()
           resolve(array)
         }
       }
     })
   }
 
-
-  myDelay(){
-    return new Promise ((resolve)=>{
-      setTimeout(() => {
-        resolve(true)
-      }, 0);
-    })
-  }
 }
