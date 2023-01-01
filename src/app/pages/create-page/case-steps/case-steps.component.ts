@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Step } from 'src/app/interfaces/step.interface';
 import { StepService } from 'src/app/services/step.service';
+import { ImportStepsComponent } from './import-steps/import-steps.component';
 
 @Component({
   selector: 'app-case-steps',
@@ -22,8 +23,10 @@ export class CaseStepsComponent implements OnInit {
       this.steps = steps;
     })
 
-    this.stepService.pushSteps([])
+    this.stepService.pushSteps(this.steps2)
   }
+
+  @ViewChild(ImportStepsComponent) importSteps!: ImportStepsComponent;
 
   toggleModal(val: string){
     if(val == 'addnewStepModal'){
@@ -57,6 +60,10 @@ export class CaseStepsComponent implements OnInit {
       this.stepToDelete = {};
       this.toggleModal('deleteStepModal')
     }, 1000);
+  }
+  
+  onImportSteps(){
+    this.importSteps.toggleModal()
   }
 
   steps2: Step[] = [

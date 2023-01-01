@@ -37,7 +37,7 @@
     </tr>
 </table>
 <div class="ui-br-ext-flex ui-br-ext-justify-end ui-br-ext-btn-link-group">
-    <button (click)="onStepAdd()" class="ui-br-ext-btn-link">Import steps</button>
+    <button (click)="onImportSteps()" class="ui-br-ext-btn-link">Import steps</button>
     <button (click)="onStepAdd()" class="ui-br-ext-btn-link">Add new step</button>
 </div>
 <app-modal *ngIf="isAddStepModalOn" (closeModal)="toggleModal('addnewStepModal')" [propClass]="'ui-br-ext-width-full'">
@@ -46,3 +46,5 @@
 <app-modal *ngIf="isDeleteModalOn" (closeModal)="toggleModal('deleteStepModal')">
     <app-delete-step (deleteStep)="deleteStep()" (cancel)="toggleModal('deleteStepModal')" [stepToDelete]="stepToDelete"></app-delete-step>
 </app-modal>
+<app-import-steps></app-import-steps>
+

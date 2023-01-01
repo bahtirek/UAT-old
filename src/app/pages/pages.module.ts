@@ -19,6 +19,8 @@ import { CreateCaseTitleComponent } from './create-page/case-title/create-case-t
 import { DeleteStepComponent } from './create-page/case-steps/delete-step/delete-step.component';
 import { CaseTitleComponent } from './create-page/case-title/case-title.component';
 import { CaseStepsComponent } from './create-page/case-steps/case-steps.component';
+import { ImportStepsComponent } from './create-page/case-steps/import-steps/import-steps.component';
+import { SearchTestCaseComponent } from '../shared/search-test-case/search-test-case.component';
 
 
 
@@ -41,7 +43,9 @@ import { CaseStepsComponent } from './create-page/case-steps/case-steps.componen
     CreateCaseTitleComponent,
     DeleteStepComponent,
     CaseTitleComponent,
-    CaseStepsComponent
+    CaseStepsComponent,
+    ImportStepsComponent,
+    SearchTestCaseComponent
   ],
   imports: [
     CommonModule,
