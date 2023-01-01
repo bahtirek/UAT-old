@@ -15,9 +15,9 @@ th {
     text-align: left;
 }
 
-tr:nth-child(even) {
+/* tr:nth-child(even) {
     background-color: #fbfbfb;
-}
+} */
 
 tr {
     &:last-child {
@@ -29,6 +29,15 @@ tr {
         .ui-br-uat-move-up {
             display: none;
         }
+    }
+    &.ui-br-uat-th {
+        background-color: #ededed;
+        th {
+            border-color: #b7b7b7;
+        }
+    }
+    &:hover:not(&.ui-br-uat-th) {
+        background-color: #f2f2f2;
     }
 }
 

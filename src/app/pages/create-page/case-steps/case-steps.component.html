@@ -2,10 +2,11 @@
     <span class="ui-uat-ext-title">Steps: </span>
 </div>
 <table>
-    <tr>
+    <tr class="ui-br-uat-th">
         <th>#</th>
         <th class="ui-br-ext-width-half">Description</th>
         <th class="ui-br-ext-width-half">Expected results</th>
+        <th></th>
     </tr>
     <tr *ngFor="let step of steps; index as i" class="ui-br-ext-width-full ui-uat-ext-staep-details-row">
         <td>{{step.order + 1}}</td>
