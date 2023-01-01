@@ -178,7 +178,7 @@ export class StepService {
     return new Promise ((resolve)=>{
       setTimeout(() => {
         resolve(true)
-      }, 2000);
+      }, 0);
     })
   }
 }

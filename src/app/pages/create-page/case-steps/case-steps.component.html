@@ -18,18 +18,10 @@
                 </span>
                 <div class="ui-uat-ext-drop-menu-body">
                     <ul>
-                        <li>
-                            <button (click)="onStepEdit(step)" class="ui-br-ext-btn-link">Edit</button>
-                        </li>
-                        <li>
-                            <button (click)="moveStep(i)" class="ui-br-ext-btn-link ui-br-uat-move-up">Move Up</button>
-                        </li>
-                        <li>
-                            <button (click)="moveStep(i+1)" class="ui-br-ext-btn-link ui-br-uat-move-down">Move Down</button>
-                        </li>
-                        <li>
-                            <button (click)="onDeleteStep(i)" class="ui-br-ext-btn-link">Delete</button>
-                        </li>
+                        <li (click)="onStepEdit(step)">Edit</li>
+                        <li (click)="moveStep(i)" class="ui-br-uat-move-up">Move Up</li>
+                        <li (click)="moveStep(i+1)" class="ui-br-uat-move-down">Move Down</li>
+                        <li (click)="onDeleteStep(i)">Delete</li>
                     </ul>
                 </div>
             </div>
