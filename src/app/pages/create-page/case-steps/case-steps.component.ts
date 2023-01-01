@@ -31,8 +31,10 @@ export class CaseStepsComponent implements OnInit {
   toggleModal(val: string){
     if(val == 'addnewStepModal'){
       this.isAddStepModalOn = !this.isAddStepModalOn;
+      if(!this.isAddStepModalOn) this.stepToEdit = {};
     } else if(val == 'deleteStepModal'){
       this.isDeleteModalOn = !this.isDeleteModalOn;
+      if(!this.isDeleteModalOn) this.stepToEdit = {};
     }
   }
 

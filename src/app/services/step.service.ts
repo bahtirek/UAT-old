@@ -52,50 +52,6 @@ export class StepService {
       order: 4
     },
   ];
-  steps3: Step[] = [
-    {
-      id: 13,
-      description: '11333',
-      expectedResults: '11 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis assumenda ipsam cumque! Porro esse eveniet vitae rerum odit at consequatur earum culpa, accusamus, magni voluptates, fuga autem distinctio et natus!',
-      order:2
-    },
-    {
-      id: 11,
-      description: '11 111',
-      expectedResults: '11 111',
-      order: 0
-    },
-    {
-      id: 12,
-      description: '11 222',
-      expectedResults: '11 222',
-      order: 1
-    },
-    {
-      id: 17,
-      description: '11 777',
-      expectedResults: '11 777',
-      order: 6
-    },
-    {
-      id: 14,
-      description: '11 444',
-      expectedResults: '11 444',
-      order: 3
-    },
-    {
-      id: 16,
-      description: '11 666',
-      expectedResults: '11 666',
-      order: 5
-    },
-    {
-      id: 15,
-      description: '11 555',
-      expectedResults: '11 555',
-      order: 4
-    },
-  ];
   steps: any = [];
 
   stepsSource = new Subject<Step[]>()
@@ -107,14 +63,15 @@ export class StepService {
     }
   }
 
-  saveStep(step: Step){
+  async saveStep(step: Step){
     if(step.id) {
       const existingStep = this.steps.find((item: Step) => item.id == step.id);
       existingStep.description = step.description;
       existingStep.expectedResults = step.expectedResults;
       this.pushSteps(this.steps);
     } else {
-      this.steps.push(step)
+      this.steps.push(step);
+      this.steps[this.steps.length - 1].order = this.steps.length - 1;
       this.pushSteps(this.steps);
     }
   }
