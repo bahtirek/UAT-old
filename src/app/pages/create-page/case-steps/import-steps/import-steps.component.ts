@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { take } from 'rxjs';
+import { StepService } from 'src/app/services/step.service';
 
 @Component({
   selector: 'app-import-steps',
@@ -11,12 +13,20 @@ export class ImportStepsComponent implements OnInit {
   submitInProgress: boolean = false;
   isSearchTestCaseModalOn: boolean = false;
 
-  constructor() { }
+  constructor(private stepService: StepService) { }
 
   ngOnInit(): void {
   }
 
   @Input() stepIndex: number;
+
+  titleEmit(id: number) {
+    this.stepService.stepsSource.pipe(take(1)).subscribe((steps) => {
+      this.toggleModal();
+    })
+    this.stepService.importSteps(id, this.stepIndex);
+  }
+
 
   toggleModal(){
     this.isSearchTestCaseModalOn = !this.isSearchTestCaseModalOn;

@@ -36,7 +36,7 @@ export class SearchTestCaseComponent implements OnInit {
   ];
   titleSearch = new Subject<string>();
 
-  constructor(private stepService: StepService) {}
+  constructor() {}
 
   ngOnInit(): void {
   }
@@ -48,20 +48,16 @@ export class SearchTestCaseComponent implements OnInit {
     });
   }
 
-  
   @Input() stepIndex: number;
 
   @Output() cancel = new EventEmitter<void>();
+  @Output() titleEmit = new EventEmitter<number>();
 
   onImport(id: number){
 
     if(!this.submitInProgress) {
       this.submitInProgress = id;
-      
-      this.stepService.stepsSource.pipe(take(1)).subscribe((steps) => {
-        this.onCancel();
-      })
-      this.stepService.importSteps(id, this.stepIndex);
+      this.titleEmit.emit(id)
     }
   }
 
