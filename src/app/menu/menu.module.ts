@@ -6,6 +6,7 @@ import { SettingsBtnComponent } from './settings-btn/settings-btn.component';
 import { ExecuteBtnComponent } from './execute-btn/execute-btn.component';
 import { SearchBtnComponent } from './search-btn/search-btn.component';
 import { CreateBtnComponent } from './create-btn/create-btn.component';
+import { EventBtnComponent } from './event-btn/event-btn.component';
 ;
 
 
@@ -17,6 +18,7 @@ import { CreateBtnComponent } from './create-btn/create-btn.component';
     ExecuteBtnComponent,
     SearchBtnComponent,
     CreateBtnComponent,
+    EventBtnComponent,
   ],
   imports: [
     CommonModule
