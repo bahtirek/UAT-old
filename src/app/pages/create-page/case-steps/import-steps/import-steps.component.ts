@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-import-steps',
@@ -16,8 +16,13 @@ export class ImportStepsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  @Input() stepIndex: number;
+
   toggleModal(){
     this.isSearchTestCaseModalOn = !this.isSearchTestCaseModalOn;
+    if(!this.isSearchTestCaseModalOn) {
+      this.stepIndex = null;
+    }
   }
 
 }

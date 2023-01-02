@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { debounceTime, distinctUntilChanged, Subject, take } from 'rxjs';
 import { Title } from 'src/app/interfaces/title.interface';
 import { StepService } from 'src/app/services/step.service';
@@ -48,6 +48,9 @@ export class SearchTestCaseComponent implements OnInit {
     });
   }
 
+  
+  @Input() stepIndex: number;
+
   @Output() cancel = new EventEmitter<void>();
 
   onImport(id: number){
@@ -58,12 +61,13 @@ export class SearchTestCaseComponent implements OnInit {
       this.stepService.stepsSource.pipe(take(1)).subscribe((steps) => {
         this.onCancel();
       })
-      this.stepService.importSteps(id);
+      this.stepService.importSteps(id, this.stepIndex);
     }
   }
 
   onCancel(){
     this.cancel.emit();
+    this.stepIndex = null;
   }
 
 }

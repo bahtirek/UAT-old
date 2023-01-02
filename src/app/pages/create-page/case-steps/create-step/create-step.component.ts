@@ -34,7 +34,7 @@ export class CreateStepComponent implements OnInit {
   }
 
   @Input() stepToEdit: Step = {};
-  @Input() stepIndex: Number;
+  @Input() stepIndex: number;
 
   @Output() cancel = new EventEmitter<null>();
 

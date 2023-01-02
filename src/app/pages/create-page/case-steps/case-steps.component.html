@@ -41,5 +41,5 @@
 <app-modal *ngIf="isDeleteModalOn" (closeModal)="toggleModal('deleteStepModal')">
     <app-delete-step (deleteStep)="deleteStep()" (cancel)="toggleModal('deleteStepModal')" [stepToDelete]="stepToDelete"></app-delete-step>
 </app-modal>
-<app-import-steps></app-import-steps>
+<app-import-steps [stepIndex]="stepIndex"></app-import-steps>
 
