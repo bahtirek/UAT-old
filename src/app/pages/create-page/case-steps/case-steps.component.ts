@@ -15,6 +15,7 @@ export class CaseStepsComponent implements OnInit {
   isAddStepModalOn: boolean = false;
   isDeleteModalOn: boolean = false;
   stepToDelete: Step;
+  stepIndex: number;
 
   constructor(private stepService: StepService) { }
 
@@ -31,11 +32,17 @@ export class CaseStepsComponent implements OnInit {
   toggleModal(val: string){
     if(val == 'addnewStepModal'){
       this.isAddStepModalOn = !this.isAddStepModalOn;
-      if(!this.isAddStepModalOn) this.stepToEdit = {};
+      if(!this.isAddStepModalOn) {
+        this.stepToEdit = {};
+        this.stepIndex = null;
+      }
     } else if(val == 'deleteStepModal'){
       this.isDeleteModalOn = !this.isDeleteModalOn;
-      if(!this.isDeleteModalOn) this.stepToEdit = {};
-    }
+      if(!this.isDeleteModalOn) {
+        this.stepToEdit = {};
+        this.stepIndex = null;
+      }
+    } 
   }
 
   onStepEdit(step: Step){
@@ -43,7 +50,8 @@ export class CaseStepsComponent implements OnInit {
     this.toggleModal('addnewStepModal');
   }
 
-  onStepAdd(){
+  onStepAdd(index?: number){
+    if(index) this.stepIndex = index;
     this.toggleModal('addnewStepModal')
   }
 
@@ -64,7 +72,8 @@ export class CaseStepsComponent implements OnInit {
     }, 1000);
   }
   
-  onImportSteps(){
+  onImportSteps(index?: number){
+    if(index) this.stepIndex = index;
     this.importSteps.toggleModal()
   }
 

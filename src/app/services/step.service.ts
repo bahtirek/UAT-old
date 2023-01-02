@@ -63,16 +63,23 @@ export class StepService {
     }
   }
 
-  async saveStep(step: Step){
+  async saveStep(step: Step, stepIndex?: any){
     if(step.id) {
       const existingStep = this.steps.find((item: Step) => item.id == step.id);
       existingStep.description = step.description;
       existingStep.expectedResults = step.expectedResults;
       this.pushSteps(this.steps);
     } else {
-      this.steps.push(step);
-      this.steps[this.steps.length - 1].order = this.steps.length - 1;
-      this.pushSteps(this.steps);
+      if(stepIndex) {
+        step.order = stepIndex;
+        this.steps.splice(stepIndex + 1, 0, step);
+        this.steps = await this.assignIndexAsOrder([...this.steps]);
+        this.stepsSource.next(this.steps);
+      } else {
+        this.steps.push(step);
+        this.steps[this.steps.length - 1].order = this.steps.length - 1;
+        this.stepsSource.next(this.steps);
+      }
     }
   }
 
@@ -101,6 +108,7 @@ export class StepService {
     this.steps  = this.steps.concat(array);
     this.steps = await this.assignIndexAsOrder([...this.steps]);
     this.stepsSource.next(this.steps);
+    /* array.splice.apply(this, [index, 0].concat(items))*/
   }
 
   getSteps(id?: number){

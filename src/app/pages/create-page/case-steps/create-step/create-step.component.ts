@@ -34,6 +34,7 @@ export class CreateStepComponent implements OnInit {
   }
 
   @Input() stepToEdit: Step = {};
+  @Input() stepIndex: Number;
 
   @Output() cancel = new EventEmitter<null>();
 
@@ -43,15 +44,15 @@ export class CreateStepComponent implements OnInit {
     if(this.stepForm.valid) {
       const step: Step = Object.assign(this.stepToEdit, this.stepForm.value);
       //will use it as observable
-    setTimeout(() => {
-      this.stepService.saveStep({...step});
-      this.stepForm.reset();
-      this.submitClicked = false;
-      this.submitInProgress = false;
-      if(this.editing) {
-        this.onCancel();
-      }
-    }, 1000);
+      setTimeout(() => {
+        this.stepService.saveStep({...step}, this.stepIndex);
+        this.stepForm.reset();
+        this.submitClicked = false;
+        this.submitInProgress = false;
+        if(this.editing || this.stepIndex) {
+          this.onCancel();
+        }
+      }, 1000);
     }
   }
     

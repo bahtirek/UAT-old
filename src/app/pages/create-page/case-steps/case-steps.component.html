@@ -20,6 +20,8 @@
                 <div class="ui-uat-ext-drop-menu-body">
                     <ul>
                         <li (click)="onStepEdit(step)">Edit</li>
+                        <li (click)="onStepAdd(i)">Add</li>
+                        <li (click)="onImportSteps(i)">Import</li>
                         <li (click)="moveStep(i)" class="ui-br-uat-move-up">Move Up</li>
                         <li (click)="moveStep(i+1)" class="ui-br-uat-move-down">Move Down</li>
                         <li (click)="onDeleteStep(i)">Delete</li>
@@ -34,7 +36,7 @@
     <button (click)="onStepAdd()" class="ui-br-ext-btn-link">Add new step</button>
 </div>
 <app-modal *ngIf="isAddStepModalOn" (closeModal)="toggleModal('addnewStepModal')" [propClass]="'ui-br-ext-width-full'">
-    <app-create-step (cancel)="toggleModal('addnewStepModal')" [stepToEdit]="stepToEdit"></app-create-step>
+    <app-create-step (cancel)="toggleModal('addnewStepModal')" [stepToEdit]="stepToEdit" [stepIndex]="stepIndex"></app-create-step>
 </app-modal>
 <app-modal *ngIf="isDeleteModalOn" (closeModal)="toggleModal('deleteStepModal')">
     <app-delete-step (deleteStep)="deleteStep()" (cancel)="toggleModal('deleteStepModal')" [stepToDelete]="stepToDelete"></app-delete-step>
