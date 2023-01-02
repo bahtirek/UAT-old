@@ -60,9 +60,7 @@ export class ClickOnBugService {
             prevEl.classList.add('ui-br-ext-selected-element-outline-red');
             prevEl.classList.remove('ui-br-ext-selected-element-outline-green');                  
         }
-        console.log(bugId);
         
-
         //eventBus.$emit('show-details', bugId); display details
         this.activeBugElement = element;
     }

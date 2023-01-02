@@ -26,8 +26,6 @@ export class TabsComponent implements OnInit {
   tabClicked(tabId: string){
     this.activeTabId = tabId;
     this.activeTab.emit(tabId);
-    console.log(tabId);
-    
   }
 
 }

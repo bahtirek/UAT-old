@@ -71,7 +71,6 @@ export class SelectedElementsService {
         } catch(e) {
             console.log(e)
         }
-  console.log(elementData);
   
         element.classList.add('ui-br-ext-outlined-element-selected', elementData.outline, 'ui-br-ext-selected-element-outline-red');
         element.setAttribute('ez-bug-selected-label', elementData.dataLabel);

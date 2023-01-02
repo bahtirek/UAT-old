@@ -32,8 +32,6 @@ export class ExtensionComponent implements OnInit {
     this.activeBtnService.activeBtnSubject.subscribe(
       activeBtn => {
         this.activeBtn = activeBtn;
-        console.log(this.activeBtn);
-        
       }
     )
     this.unsavedBugStorage.getReportFromStorage();

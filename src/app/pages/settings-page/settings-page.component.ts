@@ -15,9 +15,7 @@ export class SettingsPageComponent implements OnInit {
   }
 
   minimizePage(state: boolean){
-    this.showHide = state
-    console.log(state);
-    
+    this.showHide = state;
   }
 
 }

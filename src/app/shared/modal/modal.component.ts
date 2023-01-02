@@ -17,7 +17,6 @@ export class ModalComponent implements OnInit {
   @Output() closeModal = new EventEmitter<boolean>()
 
   onCloseBtnClick(){
-    console.log('clicked');
     this.closeModal.emit(false);
   }
 

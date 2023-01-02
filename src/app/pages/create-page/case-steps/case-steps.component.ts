@@ -24,7 +24,8 @@ export class CaseStepsComponent implements OnInit {
       this.steps = steps;
     })
 
-    this.stepService.pushSteps(this.steps2)
+    //this.stepService.pushSteps(this.steps2)
+    this.stepService.pushSteps([])
   }
 
   @ViewChild(ImportStepsComponent) importSteps!: ImportStepsComponent;

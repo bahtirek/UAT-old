@@ -22,14 +22,6 @@ export class CreatePageComponent implements OnInit {
     })
   }
 
-  sortSteps(array: Step[]) {
-    const length = array.length;
-    for (let index = 0; index < array.length; index++) {
-      const element = array.splice(index, 1)[0];
-      array.splice(element.order, 0, element);
-    }
-  }
-
   minimizePage(state: boolean){
     this.showHide = state  
   }
