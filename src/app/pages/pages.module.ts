@@ -21,6 +21,11 @@ import { CaseTitleComponent } from './create-page/case-title/case-title.componen
 import { CaseStepsComponent } from './create-page/case-steps/case-steps.component';
 import { ImportStepsComponent } from './create-page/case-steps/import-steps/import-steps.component';
 import { SearchTestCaseComponent } from '../shared/search-test-case/search-test-case.component';
+import { EventsPageComponent } from './events-page/events-page.component';
+import { CreateEventComponent } from './events-page/create-event/create-event.component';
+import { SearchEventComponent } from './events-page/search-event/search-event.component';
+import { EventTitleComponent } from './events-page/create-event/event-title/event-title.component';
+import { CreateEventTitleComponent } from './events-page/create-event/event-title/create-event-title/create-event-title.component';
 
 
 
@@ -45,7 +50,12 @@ import { SearchTestCaseComponent } from '../shared/search-test-case/search-test-
     CaseTitleComponent,
     CaseStepsComponent,
     ImportStepsComponent,
-    SearchTestCaseComponent
+    SearchTestCaseComponent,
+    EventsPageComponent,
+    EventTitleComponent,
+    CreateEventComponent,
+    SearchEventComponent,
+    CreateEventTitleComponent
   ],
   imports: [
     CommonModule,
@@ -58,6 +68,7 @@ import { SearchTestCaseComponent } from '../shared/search-test-case/search-test-
     ExecutePageComponent,
     SearchPageComponent,
     ModalComponent,
+    EventsPageComponent
   ]
 })
 export class PagesModule { }

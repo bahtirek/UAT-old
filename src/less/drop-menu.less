@@ -30,8 +30,10 @@
                 li {
                     padding: 8px 16px;
                     cursor: pointer;
-                    &:hover {
-                        background-color: #f1f1f1;
+                    &:not(:only-child){
+                        &:hover {
+                            background-color: #f1f1f1;
+                        }
                     }
                 }
             }

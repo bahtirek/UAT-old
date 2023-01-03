@@ -1,0 +1,17 @@
+<div class="ui-br-ext-dropdown-item ui-br-ext-create-page">
+    <div class="ui-br-ext-page-content">
+
+        <div class="ui-br-ext-drop-title-wrap">
+            <div class="ui-br-ext-drop-title">Create new test case</div>
+            <app-minimize-drop-body (minimizePage)="minimizePage($event)" class="ui-br-ext-minimizedropbody2"></app-minimize-drop-body>
+        </div>
+        <div class="ui-br-ext-drop-body"  id="uiBrExtCreate"  [ngClass]="{'ui-br-ext-hide': !showHide}">
+            <app-event-title></app-event-title>
+            <ng-container *ngIf="title.title">
+                <br>
+            </ng-container>
+            
+            <app-resize [pageId]="'uiBrExtCreate'"></app-resize>
+        </div>
+    </div>
+</div>
