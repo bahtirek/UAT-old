@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Event } from 'src/app/interfaces/event.interface';
 import { Title } from 'src/app/interfaces/title.interface';
-import { EventTitleService } from 'src/app/services/event-title.service';
+import { EventService } from 'src/app/services/event.service';
 
 @Component({
   selector: 'app-event-title',
@@ -9,30 +10,23 @@ import { EventTitleService } from 'src/app/services/event-title.service';
 })
 export class EventTitleComponent implements OnInit {
 
-  title: Title;
-  titleToEdit: Title;
+  event: Event = {};
   isEventTitleModalOn: boolean = false;
 
-  constructor(private titleService: EventTitleService) { }
+  constructor(private eventService: EventService) { }
 
   ngOnInit(): void {
-    this.titleService.titleSource.subscribe((title: Title) => {
-      console.log(title);
-      
-      this.title = title;
+    this.eventService.eventSource.subscribe((event: Event) => {
+      this.event = event
     })
-    this.titleService.pushTitle({})
+    this.eventService.pushEvent({})
   }
 
   onEventTitleEdit(){
-    console.log(this.title);
-    this.titleToEdit = {...this.title};
     this.toggleModal()
   }
 
   addTitle(){
-    console.log(this.title);
-    this.titleToEdit = {title:''};
     this.toggleModal()
   }
 

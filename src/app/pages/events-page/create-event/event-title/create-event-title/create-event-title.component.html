@@ -3,7 +3,7 @@
     <div class="ui-br-ext-width-full">
         <div class="ui-br-ext-form-container ui-br-ext-textarea">
             <label for="label">Title</label>
-            <input type="text" name="label" [(ngModel)]="title.title" />
+            <input type="text" name="label" [(ngModel)]="eventInput.title" />
             <span class="ui-br-ext-message">
                 <span *ngFor="let error of formError.title; index as i">{{error}}</span>
             </span>

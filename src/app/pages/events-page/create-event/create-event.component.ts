@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { take } from 'rxjs';
-import { Title } from 'src/app/interfaces/title.interface';
-import { EventTitleService } from 'src/app/services/event-title.service';
+import { Event } from 'src/app/interfaces/event.interface';
+import { EventService } from 'src/app/services/event.service';
 
 @Component({
   selector: 'app-create-event',
@@ -11,13 +11,13 @@ import { EventTitleService } from 'src/app/services/event-title.service';
 export class CreateEventComponent implements OnInit {
 
   showHide: boolean = true;
-  title: Title = {};
+  event: Event;
 
-  constructor(private titleService: EventTitleService) { }
+  constructor(private eventService: EventService) { }
 
   ngOnInit(): void {
-    this.titleService.titleSource.pipe(take(2)).subscribe((title: Title) => {
-      this.title = title;
+    this.eventService.eventSource.pipe(take(2)).subscribe((event: Event) => {
+      this.event = event;
     })
   }
 

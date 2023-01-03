@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Event } from 'src/app/interfaces/event.interface';
 import { Title } from 'src/app/interfaces/title.interface';
 import { EventTitleService } from 'src/app/services/event-title.service';
+import { EventService } from 'src/app/services/event.service';
 
 @Component({
   selector: 'app-create-event-title',
@@ -9,33 +11,33 @@ import { EventTitleService } from 'src/app/services/event-title.service';
 })
 export class CreateEventTitleComponent implements OnInit {
 
-  error: string[] = [];
   formError: FormError = {};
   submitInProgress: boolean = false; 
+  eventInput: Event;
 
-  constructor(private titleService: EventTitleService) { }
+  constructor(private titleService: EventTitleService, private eventService: EventService) { }
 
   ngOnInit(): void {
-    this.titleService.titleSource.subscribe(()=>{
+    this.eventInput = {...this.event};
+    this.eventService.eventSource.subscribe(()=>{
       this.onCancel()
     })
   }
 
-  @Input() title: Title;
+  @Input() event: Event;
 
   @Output() cancel = new EventEmitter<null>();
-  @Output() saveTitle = new EventEmitter<Title>();
 
   onSaveTitle(){
-    console.log(this.title);
+    console.log(this.eventInput);
     this.formError.title = [];
     this.submitInProgress = true;
-    if(this.title && this.title.title) {
-      console.log(this.title);
-      if(this.title.id) {
-        this.titleService.updateTitle(this.title)
+    if(this.eventInput && this.eventInput.title) {
+      console.log(this.eventInput);
+      if(this.eventInput.id) {
+        this.titleService.updateTitle(this.eventInput)
       } else {
-        this.titleService.postTitle(this.title)
+        this.titleService.postTitle(this.eventInput)
       }
       this.submitInProgress = false;
     } else {

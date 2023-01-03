@@ -1,39 +1,37 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { Event } from '../interfaces/event.interface';
 import { Title } from '../interfaces/title.interface';
+import { EventService } from './event.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventTitleService {
 
-  constructor() { }
+  constructor(private eventService: EventService) { }
 
-  title: Title = {};
+  event: Event;
 
-  titleSource = new Subject<Title>()
-
-  pushTitle(title: Title){
-    console.log(this.title);
-    this.titleSource.next(title);
-    this.title = title;
+  pushTitle(event: Event){
+    this.eventService.eventSource.next(event);
+    this.event = event;
   }
 
-  postTitle(title: Title) {
-    console.log(this.title);
+  postTitle(event: Event) {
     setTimeout(() => {
-      this.pushTitle({title: title.title, id: 2})
+      this.pushTitle({title: event.title, id: 2})
     }, 1000);
   }
 
-  updateTitle(title: Title){
-    console.log(this.title);
+  updateTitle(event: Event){
+    console.log(this.event);
     setTimeout(() => {
-      this.pushTitle({title: title.title, id: 2})
+      this.pushTitle({title: event.title, id: 2})
     }, 1000);
   }
 
   getTitle(){
-    return this.title;
+    return this.event;
   }
 }
