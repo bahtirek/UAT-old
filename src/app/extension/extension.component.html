@@ -4,7 +4,7 @@
     <div class="ui-br-ext-container ui-br-ext-dropdown"
     [ngSwitch]="activeBtn"
     >
-        <!-- <app-events-page></app-events-page> -->
+        <app-events-page></app-events-page>
         <app-events-page *ngSwitchCase="'ui-br-ext-event-button'"></app-events-page>
         <app-create-page *ngSwitchCase="'ui-br-ext-create-button'"></app-create-page>
         <app-execute-page *ngSwitchCase="'ui-br-ext-execute-button'"></app-execute-page>

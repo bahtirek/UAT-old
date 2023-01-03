@@ -1,15 +1,15 @@
 <div class="ui-br-ext-form-container">
-    <h3>Events title</h3>
+    <h3>Event description</h3>
     <div class="ui-br-ext-width-full">
         <div class="ui-br-ext-form-container ui-br-ext-textarea">
-            <label for="label">Title</label>
-            <input type="text" name="label" [(ngModel)]="title" />
+            <label for="label">Description</label>
+            <input type="text" name="label" [(ngModel)]="description" />
             <span class="ui-br-ext-message">
-                <span *ngFor="let error of formError.title; index as i">{{error}}</span>
+                <span></span>
             </span>
         </div>
         <div class="ui-br-ext-btn-group">
-            <button class="ui-br-ext-btn"  data-listener="off" (click)="onSaveTitle()">
+            <button class="ui-br-ext-btn"  data-listener="off" (click)="onSaveDescription()">
                 <span class="ui-br-ext-spinner"></span>
                 <span>Save</span> 
             </button>

@@ -1,8 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Event } from 'src/app/interfaces/event.interface';
-import { Title } from 'src/app/interfaces/title.interface';
-import { EventTitleService } from 'src/app/services/event-title.service';
-import { EventService } from 'src/app/services/event.service';
 
 @Component({
   selector: 'app-create-event-title',
@@ -12,37 +9,23 @@ import { EventService } from 'src/app/services/event.service';
 export class CreateEventTitleComponent implements OnInit {
 
   formError: FormError = {};
-  submitInProgress: boolean = false; 
-  eventInput: Event;
+  titleInput: string = '';
 
-  constructor(private titleService: EventTitleService, private eventService: EventService) { }
+  constructor() { }
 
-  ngOnInit(): void {
-    this.eventInput = {...this.event};
-    this.eventService.eventSource.subscribe(()=>{
-      this.onCancel()
-    })
-  }
+  ngOnInit(): void {}
 
-  @Input() event: Event;
+  @Input() title: string;
 
   @Output() cancel = new EventEmitter<null>();
+  @Output() titleEmit = new EventEmitter<string>();
 
   onSaveTitle(){
-    console.log(this.eventInput);
     this.formError.title = [];
-    this.submitInProgress = true;
-    if(this.eventInput && this.eventInput.title) {
-      console.log(this.eventInput);
-      if(this.eventInput.id) {
-        this.titleService.updateTitle(this.eventInput)
-      } else {
-        this.titleService.postTitle(this.eventInput)
-      }
-      this.submitInProgress = false;
+    if(this.title) {
+      this.titleEmit.emit(this.title)
     } else {
       this.formError.title.push('Field is required');
-      this.submitInProgress = false;
     }
   }
 

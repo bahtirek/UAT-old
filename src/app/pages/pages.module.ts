@@ -26,6 +26,8 @@ import { CreateEventComponent } from './events-page/create-event/create-event.co
 import { SearchEventComponent } from './events-page/search-event/search-event.component';
 import { EventTitleComponent } from './events-page/create-event/event-title/event-title.component';
 import { CreateEventTitleComponent } from './events-page/create-event/event-title/create-event-title/create-event-title.component';
+import { EventDescriptionComponent } from './events-page/create-event/event-description/event-description.component';
+import { CreateEventDescriptionComponent } from './events-page/create-event/event-description/create-event-description/create-event-description.component';
 
 
 
@@ -55,7 +57,9 @@ import { CreateEventTitleComponent } from './events-page/create-event/event-titl
     EventTitleComponent,
     CreateEventComponent,
     SearchEventComponent,
-    CreateEventTitleComponent
+    CreateEventTitleComponent,
+    EventDescriptionComponent,
+    CreateEventDescriptionComponent
   ],
   imports: [
     CommonModule,

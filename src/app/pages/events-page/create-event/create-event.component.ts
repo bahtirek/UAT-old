@@ -11,7 +11,7 @@ import { EventService } from 'src/app/services/event.service';
 export class CreateEventComponent implements OnInit {
 
   showHide: boolean = true;
-  event: Event;
+  event: Event = {};
 
   constructor(private eventService: EventService) { }
 
