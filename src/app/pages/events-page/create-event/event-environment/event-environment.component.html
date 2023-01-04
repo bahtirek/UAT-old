@@ -1,12 +1,12 @@
-<ng-container *ngIf="!title">
+<ng-container *ngIf="!environment.environmentId">
     <div class="ui-br-ext-flex ui-br-ext-justify-end">
-        <button (click)="addTitle()" class="ui-br-ext-btn-link">Add event title</button>
+        <button (click)="addEnvironment()" class="ui-br-ext-btn-link">Choose test environment</button>
     </div>
 </ng-container>
-<ng-container *ngIf="title">
+<ng-container *ngIf="environment.environmentId">
     <div class="ui-uat-ext-case-title">
-        <span class="ui-uat-ext-title ">Title: </span>
-        <span >{{title}}</span>
+        <span class="ui-uat-ext-title ">Environment: </span>
+        <span >{{environment.name}}</span>
         <div class="ui-uat-ext-drop-menu">
             <span class="ui-uat-svg-icon ui-uat-ext-more-btn">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
@@ -14,14 +14,13 @@
             <div class="ui-uat-ext-drop-menu-body">
                 <ul>
                     <li>
-                        <button (click)="onEventTitleEdit()" class="ui-br-ext-btn-link">Edit</button>
+                        <button (click)="onEventEnvironmentEdit()" class="ui-br-ext-btn-link">Edit</button>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
 </ng-container>
-
-<app-modal *ngIf="isEventTitleModalOn" (closeModal)="toggleModal()">
-    <app-create-event-title (cancel)="toggleModal()" [title]="titleToEdit" (titleEmit)="saveTitle($event)"></app-create-event-title>
+<app-modal *ngIf="isEventEnvironmentModalOn" (closeModal)="toggleModal()">
+    <app-environment-choice (cancel)="toggleModal()" [environment]="environmentToEdit" [environments]="environments" (environmentEmit)="saveEnvironment($event)"></app-environment-choice>
 </app-modal>

@@ -28,6 +28,8 @@ import { EventTitleComponent } from './events-page/create-event/event-title/even
 import { CreateEventTitleComponent } from './events-page/create-event/event-title/create-event-title/create-event-title.component';
 import { EventDescriptionComponent } from './events-page/create-event/event-description/event-description.component';
 import { CreateEventDescriptionComponent } from './events-page/create-event/event-description/create-event-description/create-event-description.component';
+import { EventEnvironmentComponent } from './events-page/create-event/event-environment/event-environment.component';
+import { EnvironmentChoiceComponent } from '../shared/environment-choice/environment-choice.component';
 
 
 
@@ -59,7 +61,9 @@ import { CreateEventDescriptionComponent } from './events-page/create-event/even
     SearchEventComponent,
     CreateEventTitleComponent,
     EventDescriptionComponent,
-    CreateEventDescriptionComponent
+    CreateEventDescriptionComponent,
+    EventEnvironmentComponent,
+    EnvironmentChoiceComponent
   ],
   imports: [
     CommonModule,

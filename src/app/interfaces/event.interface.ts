@@ -1,4 +1,5 @@
 import { Browser } from "./device.interface";
+import { Environment } from "./environment.interface";
 import { Tester } from "./tester.interface";
 
 export interface Event {
@@ -6,7 +7,7 @@ export interface Event {
     title?: string,
     description?: string,
     caseId?: number,
-    environment?: string,
+    environment?: Environment,
     testers?: Tester[],
     browsers?: Browser[],
 }

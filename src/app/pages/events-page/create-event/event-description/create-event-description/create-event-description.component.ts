@@ -19,10 +19,7 @@ export class CreateEventDescriptionComponent implements OnInit {
   @Output() descriptionEmit = new EventEmitter<string>();
 
   onSaveDescription(){
-    console.log(this.description);
-    if(this.description) {
-      this.descriptionEmit.emit(this.description)
-    } 
+    this.descriptionEmit.emit(this.description)
   }
 
   onCancel(){

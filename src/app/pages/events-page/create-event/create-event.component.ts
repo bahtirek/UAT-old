@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { take } from 'rxjs';
+import { Environment } from 'src/app/interfaces/environment.interface';
 import { Event } from 'src/app/interfaces/event.interface';
 import { EventService } from 'src/app/services/event.service';
 
@@ -23,6 +24,16 @@ export class CreateEventComponent implements OnInit {
 
   minimizePage(state: boolean){
     this.showHide = state  
+  }
+
+  saveTitle(title: string){
+    this.event.title = title;
+  }
+  saveDescription(description: string){
+    this.event.description = description;
+  }
+  saveEnvironment(environment: Environment){
+    this.event.environment = environment;
   }
 
 }

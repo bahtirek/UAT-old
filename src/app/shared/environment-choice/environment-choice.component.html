@@ -1,0 +1,24 @@
+<div class="ui-br-ext-form-container">
+    <h3>Environment choice</h3>
+    <div class="ui-br-ext-width-full">
+        <div class="ui-br-ext-form-container ui-br-ext-textarea">
+            <label for="ui-br-ext-status">Environment</label>
+            <select id="ui-br-ext-status" name="status" [(ngModel)]="environmentId">
+                <option *ngFor="let env of environments; index as i" [ngValue]="env.environmentId">{{env.name}}</option>
+            </select>
+            <span class="ui-br-ext-message">
+                <span *ngFor="let error of formError.environment; index as i">{{error}}</span>
+            </span>
+        </div>
+        <div class="ui-br-ext-btn-group">
+            <button class="ui-br-ext-btn"  data-listener="off" (click)="onSaveEnvironment()">
+                <span class="ui-br-ext-spinner"></span>
+                <span>Save</span> 
+            </button>
+            <button class="ui-br-ext-btn-danger"  data-listener="off" (click)="onCancel()">
+                <span class="ui-br-ext-spinner"></span>
+                <span>Cancel</span> 
+            </button>
+        </div>
+    </div>
+</div>

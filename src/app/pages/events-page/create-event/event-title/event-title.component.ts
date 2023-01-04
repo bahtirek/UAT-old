@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Event } from 'src/app/interfaces/event.interface';
 
 @Component({
@@ -16,6 +16,8 @@ export class EventTitleComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  @Output() titleEmit = new EventEmitter<string>();
+
   onEventTitleEdit(){
     this.titleToEdit = this.title;
     this.toggleModal()
@@ -28,6 +30,7 @@ export class EventTitleComponent implements OnInit {
 
   saveTitle(title: string){
     this.title = title;
+    this.titleEmit.emit(this.title)
     this.toggleModal();
   }
 

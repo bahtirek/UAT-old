@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Event } from 'src/app/interfaces/event.interface';
 
 @Component({
@@ -18,6 +18,8 @@ export class EventDescriptionComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  @Output() descriptionEmit = new EventEmitter<string>();
+
   onEventDescriptionEdit(){
     this.descriptionToEdit = this.description
     this.toggleModal()
@@ -29,6 +31,7 @@ export class EventDescriptionComponent implements OnInit {
 
   saveDescription(decription: string){
     this.description = decription;
+    this.descriptionEmit.emit(this.description)
     this.toggleModal()
   }
 
