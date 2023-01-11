@@ -29,7 +29,9 @@
               "src/assets",
               "src/manifest.json",
               "src/background.js",
-              "src/content.js"
+              "src/content.js",
+              "src/popup.html",
+              "src/popup.js"
             ],
             "styles": [
               "src/styles.less"

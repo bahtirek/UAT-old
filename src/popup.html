@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .ui-uat-ext-popup .ui-uat-ext-popup-menu {
+            width: max-content;
+        }
+        .ui-uat-ext-popup .ui-uat-ext-popup-menu ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .ui-uat-ext-popup .ui-uat-ext-popup-menu ul li {
+            padding: 8px 16px;
+            cursor: pointer;
+        }
+        .ui-uat-ext-popup .ui-uat-ext-popup-menu ul li:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body class="ui-uat-ext-popup">
+    <div class="ui-uat-ext-popup-menu">
+        <ul>
+            <li id="openInWindow">Open in new window</li>
+            <li id="openInTab">Open in new tab</li>
+            <li id="openInPage">Open in same page</li>
+        </ul>
+    </div>
+    <script src="./popup.js"></script>
+</body>
+</html>
