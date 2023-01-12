@@ -34,7 +34,7 @@ async function gotMessage(message, sender, sendResponse) {
 
     /**
      * message: triger_select
-     * Key combo: Cntr-Shift-S
+     * Key combo: Ctrl-Shift-S
      * Triggers the onSelect() function, which enables element hover and selection (red outline).
      * Used for dynamic elements such as drop downs.
      */
@@ -45,7 +45,7 @@ async function gotMessage(message, sender, sendResponse) {
 
     /**
      * message: get_screenshot
-     * Key combo: Cntr-Shift-U
+     * Key combo: Ctrl-Shift-U
      * Used to take screenshot of dynamic elements.
      */
     if (message == "get_screenshot") {
@@ -53,9 +53,6 @@ async function gotMessage(message, sender, sendResponse) {
         // turn on report bug
     }
 
-    if (message == "stop-video-recording") {
-        console.log('turn video off');
-        window.stopRecordButton.stopRecord();
-    }
+
     sendResponse('success');
 }

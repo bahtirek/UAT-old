@@ -5,7 +5,8 @@ if (typeof browser === "undefined") {
 }
 
 let lastWindowId;
-let activeTab;
+let activeTab = {};
+let previousTab = {};
 let extensionStatus = {
   open: false,
   location: '',
@@ -15,16 +16,21 @@ let extensionStatus = {
 //save last focused window to get the screenshots
 browser.windows.getLastFocused(
   null, (window)=>{
-    console.log('lastfoc', window);
+    console.log('last focused window', window);
     lastWindowId = window.id
   }
 )
 
+// When new window opened cative tab is change, for that reason on new window open we need to save current activeTab as previous, will update activeTab back on window close
+browser.windows.onCreated.addListener((window) => {
+  previousTab = {...activeTab};
+  console.log(activeTab);
+});
+
 // save active tab, needed to inject the extension to active tab
-browser.tabs.onActivated.addListener((activeInfo) => {
-  browser.tabs.get(activeInfo.tabId, function (tab) {
-      activeTab = tab;
-  });
+browser.tabs.onActivated.addListener((tab) => {
+  activeTab = tab;
+  console.log(activeTab);
 });
 
 // Cleanup when extension window is closed
@@ -37,6 +43,7 @@ function onWindowRemoved(windowId){
       location: '',
       obj: {}
     };
+    activeTab = {...previousTab}
   }
 }
 
@@ -50,14 +57,20 @@ function onTabRemoved(tabId){
       location: '',
       obj: {}
     };
-    //browser.tabs.onRemoved.removeListener(onWindowRemoved);
   }
 }
 
 browser.runtime.onMessage.addListener(async function (request, sender, sendResponse) {
 
+  // Request if extension is opened
+  if (request.todo == 'openInNewWindow') {
+    if(!extensionStatus.open) {
+      sendResponse(true);
+    }
+  }
+
+  // Change extensionSttaus after opening extension in new window
   if (request.todo == 'openedInNewWindow') {
-    console.log(request);
     extensionStatus = {
       open: true,
       location: 'openedInNewWindow',
@@ -65,6 +78,7 @@ browser.runtime.onMessage.addListener(async function (request, sender, sendRespo
     }
   }
 
+  // Open extension in new tab and change extensionStatus
   if (request.todo == 'openInTab') {
     const newURL = "./index.html";
     if(!extensionStatus.open) {
@@ -80,15 +94,33 @@ browser.runtime.onMessage.addListener(async function (request, sender, sendRespo
     }
   }
 
+  // Open extension in active tab and change extensionStatus
   if (request.todo == 'openInPage') {
-    console.log(extensionStatus.open);
-    //change to promise
-    if(activeTab && !extensionStatus.open) {
+    if(activeTab.tabId && !extensionStatus.open) {
       buttonClicked(activeTab);
       sendResponse(true);
+      extensionStatus = {
+        open: true,
+        location: 'openedInPage',
+        obj: {...activeTab}
+      };
     }
   }
 
+  // Close extension in active tab and change extensionStatus
+  if (request.todo == 'closeExtensionInPage') {
+    if(activeTab.tabId && extensionStatus.open) {
+      sendResponse(true);
+      extensionStatus = {
+        open: false,
+        location: '',
+        obj: {}
+      };
+    }
+  }
+
+
+  // Capture screenshot
   if (request.todo == 'getImage') {
     console.log(request.todo);
     browser.tabs.captureVisibleTab(null, {format: 'png'}, (dataUrl) => {
@@ -101,17 +133,17 @@ browser.runtime.onMessage.addListener(async function (request, sender, sendRespo
 
 
 async function buttonClicked(tab) { //change to promise
-  await browser.tabs.sendMessage(tab.id, "inject");
-  await browser.scripting.executeScript({
-    target: {tabId: tab.id},
+  browser.tabs.sendMessage(tab.tabId, "inject");
+  browser.scripting.executeScript({
+    target: {tabId: tab.tabId},
     files: ['runtime.js']
   });
-  await browser.scripting.executeScript({
-    target: {tabId: tab.id},
+  browser.scripting.executeScript({
+    target: {tabId: tab.tabId},
     files: ['polyfills.js']
   });
-  await browser.scripting.executeScript({
-    target: {tabId: tab.id},
+  browser.scripting.executeScript({
+    target: {tabId: tab.tabId},
     files: ['main.js']
   });
   console.log('inject background');
@@ -119,15 +151,14 @@ async function buttonClicked(tab) { //change to promise
 
 browser.commands.onCommand.addListener((command) => {
 
-  //Cntr-Shift-S
+  //Ctrl-Shift-S
   if (command === 'trigger_select') {
-    //browser.tabs.executeScript(null, {file: 'component.js'});
     browser.tabs.query({active: true, currentWindow: true}, function(tabs){
       browser.tabs.sendMessage(tabs[0].id, "trigger_select");  
     });
   }
   
-  //Cntr-Shift-U
+  //Ctrl-Shift-U
   if (command === 'get_screenshot') {
     browser.tabs.query({active: true, currentWindow: true}, function(tabs){
       browser.tabs.sendMessage(tabs[0].id, "get_screenshot");  

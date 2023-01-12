@@ -1,3 +1,4 @@
+///<reference types="chrome"/>
 import { Component, OnInit } from '@angular/core';
 import { SelectService } from 'src/app/services/select.service';
 
@@ -13,10 +14,11 @@ export class CloseBtnComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onMenuBtnClick(){
+  async onMenuBtnClick(){
     this.onClick.onDeselect(true);
     const extension = document.getElementsByTagName("ez-bug-ext")[0] as HTMLElement;
-    extension.style.display = 'none';
+    const response = await chrome.runtime.sendMessage({todo: "closeExtensionInPage"})
+    if (response) extension.style.display = 'none';
   }
 
 }
