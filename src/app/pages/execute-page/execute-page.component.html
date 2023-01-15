@@ -1,10 +1,12 @@
 
 <div class="ui-br-ext-dropdown-item ui-br-ext-create">
-    <div class="ui-br-ext-drop-title-wrap">
-        <div class="ui-br-ext-drop-title">Execute</div>
-        <app-minimize-drop-body (minimizePage)="minimizePage($event)" class="ui-br-ext-minimizedropbody2"></app-minimize-drop-body>
-    </div>
-    <div class="ui-br-ext-drop-body"  id="uiBrExtExecute" [ngClass]="{'ui-br-ext-hide': !showHide}">
-        <app-resize [pageId]="'uiBrExtExecute'"></app-resize>
+    <div class="ui-br-ext-page-content">
+        <div class="ui-br-ext-drop-title-wrap">
+            <div class="ui-br-ext-drop-title">Execute</div>
+            <app-minimize-drop-body (minimizePage)="minimizePage($event)" class="ui-br-ext-minimizedropbody2"></app-minimize-drop-body>
+        </div>
+        <div class="ui-br-ext-drop-body"  id="uiBrExtExecute" [ngClass]="{'ui-br-ext-hide': !showHide}">
+            <app-resize [pageId]="'uiBrExtExecute'"></app-resize>
+        </div>
     </div>
 </div>

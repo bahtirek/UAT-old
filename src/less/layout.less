@@ -1,0 +1,97 @@
+.ui-uat-ext-tab-wrap {
+    .ui-br-ext-extension {
+        width: calc(100% - 20px);
+        box-shadow: none;
+        .ui-br-ext-dropdown {
+            .ui-br-ext-dropdown-item {
+                .ui-br-ext-drop-title-wrap {
+                    .ui-br-ext-minimizedropbody2 {
+                        display: none;
+                    }
+                }
+            }
+            max-width: 1000px;
+            margin: auto;
+        }
+    }
+    .ui-br-ext-dropdown-item {
+        .ui-br-ext-page-content {
+            .ui-br-ext-drop-body {
+                width: 100%;
+                height: calc(100vh - 140px);
+
+                .ui-br-ext-drop-body {
+                    height: initial;
+                }
+
+                app-resize {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+div:not(.ui-uat-ext-tab-wrap) > .ui-br-ext-extension {
+    .ui-br-ext-create-page {
+        .ui-br-ext-page-content {
+            .ui-br-ext-drop-body {
+                width: 80vw;
+                height: calc(100vh - 140px);
+                .ui-br-ext-btn-link-group {
+                    padding-bottom: 50px;
+                }
+            }
+        }
+    }
+}
+
+/* div:not(.ui-uat-ext-tab-wrap) > .ui-br-ext-extension {
+    position: fixed;
+    left: 30px;
+    top: 30px;
+    border-radius: 3px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    display: block;
+    font-family: Roboto, Arial!important;
+    flex-direction: column;
+    pointer-events: initial !important;
+    min-width: 300px;
+    background-color: #ffffff;
+    z-index: 99999999;
+    line-height: normal !important;
+    color: #1e1e1e;
+
+
+    @media (max-width: 767px) {
+        left: 10px;
+        min-width: 250px;
+        max-width: 350px;
+    }
+
+    &.ui-br-ext-moving {
+        opacity: 0.8;
+    }
+
+    &.ui-br-ext-hovered {
+        outline: none!important;
+    }
+
+    * {
+        pointer-events: initial !important;
+        .ui-br-ext-hovered {
+            outline: none!important;
+        }
+    }
+
+    .ui-br-ext-header {
+        padding: 10px 10px 10px;
+        margin-bottom: -5px;
+    }
+
+    .ui-br-ext-header:hover {
+        cursor: move;
+    }
+}  */
