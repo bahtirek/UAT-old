@@ -23,6 +23,14 @@ document.addEventListener('DOMContentLoaded', function(){
         const response = await browser.runtime.sendMessage({todo: "openInPage"});
         if(response) window.close();
     })
+
+    browser.tabs.query({active:true,currentWindow:true},function(tabs){
+        //If browser tab is empty or it's a browser service page - hide openInPage
+        if(tabs.length == 0 || !tabs[0].url || tabs[0].url.includes('chrome://')){
+            openInPage.style.display = 'none';
+        }
+    });
+
 })
 
 async function windowCreatedListener(window) {
@@ -31,3 +39,4 @@ async function windowCreatedListener(window) {
         browser.windows.onCreated.removeListener(windowCreatedListener);
     }
 }
+

@@ -21,7 +21,7 @@ browser.windows.getLastFocused(
   }
 )
 
-// When new window opened cative tab is change, for that reason on new window open we need to save current activeTab as previous, will update activeTab back on window close
+// When new window opened active tab is change, for that reason on new window open we need to save current activeTab as previous, will update activeTab back on window close
 browser.windows.onCreated.addListener((window) => {
   previousTab = {...activeTab};
   console.log(activeTab);
@@ -96,6 +96,8 @@ browser.runtime.onMessage.addListener(async function (request, sender, sendRespo
 
   // Open extension in active tab and change extensionStatus
   if (request.todo == 'openInPage') {
+    const tabs = await browser.tabs.query({active: true, lastFocusedWindow: true});
+    if(tabs.length == 0 || tabs[0].url.includes('chrome://')) return false; // If browser tab is empty or it's a browser service page then return false
     if(activeTab.tabId && !extensionStatus.open) {
       buttonClicked(activeTab);
       sendResponse(true);
