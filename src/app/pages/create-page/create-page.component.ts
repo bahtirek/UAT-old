@@ -13,6 +13,7 @@ export class CreatePageComponent implements OnInit {
 
   showHide: boolean = true;
   title: Title = {};
+  scrollTop: any;
 
   constructor(private titleService: TitleService) { }
 
@@ -24,6 +25,11 @@ export class CreatePageComponent implements OnInit {
 
   minimizePage(state: boolean){
     this.showHide = state  
+  }
+
+  onScroll(event: any){
+    console.log(event.target.scrollTop);
+    this.scrollTop = event.target.scrollTop;
   }
 
 }
