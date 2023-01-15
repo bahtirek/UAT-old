@@ -6,14 +6,14 @@
             <div class="ui-br-ext-drop-title">Create new test case</div>
             <app-minimize-drop-body (minimizePage)="minimizePage($event)" class="ui-br-ext-minimizedropbody2"></app-minimize-drop-body>
         </div>
-        <div class="ui-br-ext-drop-body"  id="uiBrExtCreate"  [ngClass]="{'ui-br-ext-hide': !showHide}">
+        <div class="ui-br-ext-drop-body"  id="uiBrExtCreatePage"  [ngClass]="{'ui-br-ext-hide': !showHide}">
             <app-case-title></app-case-title>
             <ng-container *ngIf="title.title">
                 <br>
                 <app-case-steps></app-case-steps>
             </ng-container>
             
-            <app-resize [pageId]="'uiBrExtCreate'"></app-resize>
+            <app-resize [pageId]="'uiBrExtCreatePage'"></app-resize>
         </div>
     </div>
 </div>

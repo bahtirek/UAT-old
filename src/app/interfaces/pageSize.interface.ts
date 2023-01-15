@@ -1,6 +1,7 @@
 export interface Pages {
     uiBrExtSearch?: PageSize,
-    uiBrExtCreate?: PageSize,
+    uiBrExtCreatePage?: PageSize,
+    uiBrExtCreateEvent?: PageSize,
     uiBrExtSettings?: PageSize,
     uiBrExtExecute?: PageSize,
 }

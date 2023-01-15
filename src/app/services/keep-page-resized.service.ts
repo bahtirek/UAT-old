@@ -10,7 +10,8 @@ export class KeepPageResizedService {
 
   pages: Pages = {
     uiBrExtSearch: {},
-    uiBrExtCreate: {},
+    uiBrExtCreatePage: {},
+    uiBrExtCreateEvent: {},
     uiBrExtSettings: {},
     uiBrExtExecute: {},
   }

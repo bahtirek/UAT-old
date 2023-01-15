@@ -1,12 +1,12 @@
 <div class="ui-br-ext-dropdown-item ui-br-ext-create-page">
     <div class="ui-br-ext-page-content">
-        <div class="ui-br-ext-drop-body"  id="uiBrExtCreate"  [ngClass]="{'ui-br-ext-hide': !showHide}">
+        <div class="ui-br-ext-drop-body"  id="uiBrExtCreateEvent"  [ngClass]="{'ui-br-ext-hide': !showHide}">
             <app-event-title (titleEmit)="saveTitle($event)"></app-event-title>
             <ng-container *ngIf="event.title">
                 <app-event-description (descriptionEmit)="saveDescription($event)"></app-event-description>
                 <app-event-environment (environmentEmit)="saveEnvironment($event)"></app-event-environment>
             </ng-container>
-            <app-resize [pageId]="'uiBrExtCreate'"></app-resize>
+            <app-resize [pageId]="'uiBrExtCreateEvent'"></app-resize>
         </div>
     </div>
 </div>
