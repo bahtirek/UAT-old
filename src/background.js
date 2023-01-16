@@ -50,13 +50,17 @@ function onWindowRemoved(windowId){
 // Cleanup when extension tab is closed
 browser.tabs.onRemoved.addListener(onTabRemoved);
 function onTabRemoved(tabId){
-  if(!extensionStatus.open && !extensionStatus.location =='openedInNewTab') return false;
-  if(tabId == extensionStatus.obj.id) {
-    extensionStatus = {
-      open: false,
-      location: '',
-      obj: {}
-    };
+  if(extensionStatus.open) {
+    if (extensionStatus.location =='openedInPage' || extensionStatus.location =='openedInNewTab') {
+      if(tabId == extensionStatus.obj.id) {
+        console.log(extensionStatus);
+        extensionStatus = {
+          open: false,
+          location: '',
+          obj: {}
+        };
+      }
+    }
   }
 }
 
@@ -80,6 +84,7 @@ browser.runtime.onMessage.addListener(async function (request, sender, sendRespo
 
   // Open extension in new tab and change extensionStatus
   if (request.todo == 'openInTab') {
+    //TO DO ---->save injected tab when tab is closed change extensionStatus
     const newURL = "./index.html";
     if(!extensionStatus.open) {
       const response = await browser.tabs.create({ url: newURL });
@@ -104,7 +109,7 @@ browser.runtime.onMessage.addListener(async function (request, sender, sendRespo
       extensionStatus = {
         open: true,
         location: 'openedInPage',
-        obj: {...activeTab}
+        obj: {...tabs[0]}
       };
     }
   }
