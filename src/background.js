@@ -27,12 +27,6 @@ browser.windows.onCreated.addListener((window) => {
   console.log(activeTab);
 });
 
-// save active tab, needed to inject the extension to active tab
-browser.tabs.onActivated.addListener((tab) => {
-  activeTab = tab;
-  console.log(activeTab);
-});
-
 // Cleanup when extension window is closed
 browser.windows.onRemoved.addListener(onWindowRemoved);
 function onWindowRemoved(windowId){
@@ -46,6 +40,28 @@ function onWindowRemoved(windowId){
     activeTab = {...previousTab}
   }
 }
+
+
+// save active tab, needed to inject the extension to active tab
+browser.tabs.onActivated.addListener((tab) => {
+  activeTab = tab;
+  console.log(activeTab);
+});
+
+// Cleanup when page with extension tab is reloaded 
+browser.tabs.onUpdated.addListener(onTabReload);
+function onTabReload(tabId){
+  if(extensionStatus.open && extensionStatus.location =='openedInPage') {
+    if(tabId == extensionStatus.obj.id) {
+      extensionStatus = {
+        open: false,
+        location: '',
+        obj: {}
+      };
+    }
+  }
+}
+
 
 // Cleanup when extension tab is closed
 browser.tabs.onRemoved.addListener(onTabRemoved);
@@ -133,9 +149,8 @@ browser.runtime.onMessage.addListener(async function (request, sender, sendRespo
     browser.tabs.captureVisibleTab(null, {format: 'png'}, (dataUrl) => {
       sendResponse({imgSrc:dataUrl});
     });
- 
-    return true;
   }
+  return true;
 })
 
 
