@@ -20,8 +20,8 @@ document.addEventListener('DOMContentLoaded', function(){
         if(response) window.close();
     })
     openInPage.addEventListener('click', async ()=>{
-        const response = await browser.runtime.sendMessage({todo: "openInPage"});
-        if(response) window.close();
+        browser.runtime.sendMessage({todo: "openInPage"});
+        window.close();
     })
 
     browser.tabs.query({active:true,currentWindow:true},function(tabs){
