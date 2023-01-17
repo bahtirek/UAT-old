@@ -1,18 +1,19 @@
 <div>
     <span class="ui-uat-ext-title">Steps: </span>
 </div>
-<table>
-    <tr class="ui-br-uat-th">
-        <th>#</th>
-        <th class="ui-br-ext-width-half">Description</th>
-        <th class="ui-br-ext-width-half">Expected results</th>
-        <th></th>
-    </tr>
-    <tr *ngFor="let step of steps; index as i" class="ui-br-ext-width-full ui-uat-ext-staep-details-row">
-        <td>{{step.order + 1}}</td>
-        <td class="ui-br-ext-width-half">{{step.description}}</td>
-        <td class="ui-br-ext-width-half">{{step.expectedResults}}</td>
-        <td>
+
+<div class="ui-uat-ext-steps">
+    <div class="ui-uat-ext-step ui-uat-ext-table-header">
+        <div class="ui-uat-ext-step-number">#</div>
+        <div class="ui-uat-ext-step-description">Description</div>
+        <div class="ui-uat-ext-step-expectedResults">Expected Results</div>
+        <div class="ui-uat-ext-step-more"></div>
+    </div>
+    <div class="ui-uat-ext-step" *ngFor="let step of steps; index as i">
+        <div class="ui-uat-ext-step-number">{{step.order + 1}}</div>
+        <div class="ui-uat-ext-step-description">{{step.description}}</div>
+        <div class="ui-uat-ext-step-expectedResults">{{step.expectedResults}}</div>
+        <div class="ui-uat-ext-step-more">
             <div class="ui-uat-ext-drop-menu">
                 <span class="ui-uat-svg-icon ui-uat-ext-more-btn">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
@@ -28,9 +29,10 @@
                     </ul>
                 </div>
             </div>
-        </td>
-    </tr>
-</table>
+        </div>
+    </div>
+
+</div>
 <div class="ui-br-ext-flex ui-br-ext-justify-end ui-br-ext-btn-link-group">
     <button (click)="onImportSteps()" class="ui-br-ext-btn-link">Import steps</button>
     <button (click)="onStepAdd()" class="ui-br-ext-btn-link">Add new step</button>
