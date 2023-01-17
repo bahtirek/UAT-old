@@ -9,17 +9,17 @@ import { TabsComponent } from '../shared/tabs/tabs.component';
 import { BugDetailsComponent } from '../shared/bug-details/bug-details.component';
 import { SubmitBugComponent } from '../shared/submit-bug/submit-bug.component';
 import { EnvironmentSearchComponent } from '../shared/environment-search/environment-search.component';
-import { CreatePageComponent } from './create-page/create-page.component';
+import { CreateCaseComponent } from './create-case/create-case.component';
 import { ExecutePageComponent } from './execute-page/execute-page.component';
 import { SearchPageComponent } from './search-page/search-page.component';
 import { MinimizeDropBodyComponent } from '../shared/minimize-drop-body/minimize-drop-body.component';
-import { CreateStepComponent } from './create-page/case-steps/create-step/create-step.component';
+import { CreateStepComponent } from './create-case/case-steps/create-step/create-step.component';
 import { ModalComponent } from '../shared/modal/modal.component';
-import { CreateCaseTitleComponent } from './create-page/case-title/create-case-title/create-case-title.component';
-import { DeleteStepComponent } from './create-page/case-steps/delete-step/delete-step.component';
-import { CaseTitleComponent } from './create-page/case-title/case-title.component';
-import { CaseStepsComponent } from './create-page/case-steps/case-steps.component';
-import { ImportStepsComponent } from './create-page/case-steps/import-steps/import-steps.component';
+import { CreateCaseTitleComponent } from './create-case/case-title/create-case-title/create-case-title.component';
+import { DeleteStepComponent } from './create-case/case-steps/delete-step/delete-step.component';
+import { CaseTitleComponent } from './create-case/case-title/case-title.component';
+import { CaseStepsComponent } from './create-case/case-steps/case-steps.component';
+import { ImportStepsComponent } from './create-case/case-steps/import-steps/import-steps.component';
 import { SearchTestCaseComponent } from '../shared/search-test-case/search-test-case.component';
 import { EventsPageComponent } from './events-page/events-page.component';
 import { CreateEventComponent } from './events-page/create-event/create-event.component';
@@ -43,7 +43,7 @@ import { EnvironmentChoiceComponent } from '../shared/environment-choice/environ
     BugDetailsComponent,
     SubmitBugComponent,
     EnvironmentSearchComponent,
-    CreatePageComponent,
+    CreateCaseComponent,
     ExecutePageComponent,
     SearchPageComponent,
     MinimizeDropBodyComponent,
@@ -72,7 +72,7 @@ import { EnvironmentChoiceComponent } from '../shared/environment-choice/environ
   ],
   exports: [
     SettingsPageComponent,
-    CreatePageComponent,
+    CreateCaseComponent,
     ExecutePageComponent,
     SearchPageComponent,
     ModalComponent,

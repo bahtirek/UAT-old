@@ -1,15 +1,14 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { take } from 'rxjs/operators';
-import { Step } from 'src/app/interfaces/step.interface';
 import { Title } from 'src/app/interfaces/title.interface';
 import { TitleService } from 'src/app/services/title.service';
 
 @Component({
-  selector: 'app-create-page',
-  templateUrl: './create-page.component.html',
-  styleUrls: ['./create-page.component.less']
+  selector: 'app-create-case',
+  templateUrl: './create-case.component.html',
+  styleUrls: ['./create-case.component.less']
 })
-export class CreatePageComponent implements OnInit {
+export class CreateCaseComponent implements OnInit {
 
   showHide: boolean = true;
   title: Title = {};
