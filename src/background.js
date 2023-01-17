@@ -100,7 +100,6 @@ browser.runtime.onMessage.addListener(async function (request, sender, sendRespo
 
   // Open extension in new tab and change extensionStatus
   if (request.todo == 'openInTab') {
-    //TO DO ---->save injected tab when tab is closed change extensionStatus
     const newURL = "./index.html";
     if(!extensionStatus.open) {
       const response = await browser.tabs.create({ url: newURL });
@@ -150,7 +149,7 @@ browser.runtime.onMessage.addListener(async function (request, sender, sendRespo
       sendResponse({imgSrc:dataUrl});
     });
   }
-  return true;
+  //return true;
 })
 
 
