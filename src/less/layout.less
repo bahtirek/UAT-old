@@ -1,8 +1,24 @@
 .ui-uat-ext-tab-wrap {
+    margin: 0;
     .ui-br-ext-extension {
-        width: calc(100% - 20px);
+        width: 100%;
+        position: initial;
+        top: initial;
+        left: initial;
+        right: initial;
         box-shadow: none;
+
+        .ui-br-ext-header {
+            padding: 20px 10px 10px;
+            margin-bottom: -5px;
+            position: fixed;
+            width: 100%;
+            background-color: #ffffff;
+            z-index: 100;
+            box-shadow: 0 4px 5px -5px rgb(0 0 0 / 0.4);
+        }
         .ui-br-ext-dropdown {
+            padding-top: 66px;
             .ui-br-ext-dropdown-item {
                 &.ui-br-ext-dropdown-item-scroll-shadow {
                     box-shadow: inset 0 4px 5px -5px rgb(0 0 0 / 0.4);
@@ -17,11 +33,15 @@
             margin: auto;
         }
     }
+    .ui-br-ext-dropdown .ui-br-ext-dropdown-item,
     .ui-br-ext-dropdown-item {
+        overflow: initial;
+        overflow-x: initial;
+
         .ui-br-ext-page-content {
             .ui-br-ext-drop-body {
                 width: 100%;
-                height: calc(100vh - 140px);
+                height: initial;
 
                 .ui-br-ext-drop-body {
                     height: initial;
