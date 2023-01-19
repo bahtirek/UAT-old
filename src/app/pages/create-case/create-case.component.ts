@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { take } from 'rxjs/operators';
+import { MoreButtonAction } from 'src/app/interfaces/more-button-action.interface';
 import { Title } from 'src/app/interfaces/title.interface';
 import { TitleService } from 'src/app/services/title.service';
 
@@ -24,11 +25,6 @@ export class CreateCaseComponent implements OnInit {
 
   minimizePage(state: boolean){
     this.showHide = state  
-  }
-
-  onScroll(event: any){
-    console.log(event.target.scrollTop);
-    this.scrollTop = event.target.scrollTop;
   }
 
 }
