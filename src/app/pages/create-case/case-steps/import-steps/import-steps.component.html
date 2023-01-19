@@ -1,6 +1,6 @@
 <app-modal *ngIf="isSearchTestCaseModalOn" (closeModal)="toggleModal()" [propClass]="'ui-br-ext-width-full'">
     <div>
         <h3>Import steps</h3>
-        <app-search-test-case (titleEmit)="titleEmit($event)" [stepIndex]="stepIndex"></app-search-test-case>
+        <app-search-test-case (titleEmit)="titleEmit($event)" [stepIndex]="stepIndex" (cancel)="toggleModal()"></app-search-test-case>
     </div>
 </app-modal>
