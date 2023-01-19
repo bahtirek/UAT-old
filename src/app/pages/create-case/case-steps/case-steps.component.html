@@ -14,21 +14,7 @@
         <div class="ui-uat-ext-step-description">{{step.description}}</div>
         <div class="ui-uat-ext-step-expectedResults">{{step.expectedResults}}</div>
         <div class="ui-uat-ext-step-more">
-            <div class="ui-uat-ext-drop-menu">
-                <span class="ui-uat-svg-icon ui-uat-ext-more-btn">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
-                </span>
-                <div class="ui-uat-ext-drop-menu-body">
-                    <ul>
-                        <li (click)="onStepEdit(step)">Edit</li>
-                        <li (click)="onStepAdd(i)">Add</li>
-                        <li (click)="onImportSteps(i)">Import</li>
-                        <li (click)="moveStep(i)" class="ui-br-uat-move-up">Move Up</li>
-                        <li (click)="moveStep(i+1)" class="ui-br-uat-move-down">Move Down</li>
-                        <li (click)="onDeleteStep(i)">Delete</li>
-                    </ul>
-                </div>
-            </div>
+            <app-more-button-menu [actions]="actions" (onAction)="onAction($event, i)"></app-more-button-menu>
         </div>
     </div>
 

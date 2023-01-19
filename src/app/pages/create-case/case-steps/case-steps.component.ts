@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MoreButtonAction } from 'src/app/interfaces/more-button-action.interface';
 import { Step } from 'src/app/interfaces/step.interface';
 import { StepService } from 'src/app/services/step.service';
 import { ImportStepsComponent } from './import-steps/import-steps.component';
@@ -16,6 +17,38 @@ export class CaseStepsComponent implements OnInit {
   isDeleteModalOn: boolean = false;
   stepToDelete: Step;
   stepIndex: number;
+  actions: MoreButtonAction[] = [
+    {
+      name: 'Edit',
+      action: 'edit',
+      display: true
+    },
+    {
+      name: 'Add',
+      action: 'add',
+      display: true
+    },
+    {
+      name: 'Import',
+      action: 'import',
+      display: true
+    },
+    {
+      name: 'Move up',
+      action: 'up',
+      display: true
+    },
+    {
+      name: 'Move down',
+      action: 'down',
+      display: true
+    },
+    {
+      name: 'Delete',
+      action: 'delete',
+      display: true
+    },
+  ]
 
   constructor(private stepService: StepService) { }
 
@@ -76,6 +109,17 @@ export class CaseStepsComponent implements OnInit {
   onImportSteps(index?: number){
     if(index) this.stepIndex = index;
     this.importSteps.toggleModal()
+  }
+  
+  onAction(event: string, index: number){
+    switch (event) {
+      case 'edit': this.onStepEdit(this.steps[index]); break;
+      case 'add': this.onStepAdd(index); break;
+      case 'import': this.onImportSteps(index); break;
+      case 'up': this.moveStep(index); break;
+      case 'down': this.moveStep(index+1); break;
+      case 'delete': this.onDeleteStep(index); break;
+    }
   }
 
   steps2: Step[] = [
