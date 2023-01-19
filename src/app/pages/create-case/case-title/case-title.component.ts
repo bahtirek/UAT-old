@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MoreButtonAction } from 'src/app/interfaces/more-button-action.interface';
 import { Title } from 'src/app/interfaces/title.interface';
 import { TitleService } from 'src/app/services/title.service';
 
@@ -12,6 +13,13 @@ export class CaseTitleComponent implements OnInit {
   title: Title;
   titleToEdit: Title;
   isCaseTitleModalOn: boolean = false;
+  actions: MoreButtonAction[] = [
+    {
+      name: 'Edit',
+      action: 'edit',
+      display: true
+    },
+  ]
 
   constructor(private titleService: TitleService) { }
 
@@ -19,7 +27,7 @@ export class CaseTitleComponent implements OnInit {
     this.titleService.titleSource.subscribe((title: Title) => {
       this.title = title;
     })
-    this.titleService.pushTitle({})
+    this.titleService.pushTitle({title: 'title'})
   }
 
   onCaseTitleEdit(){
@@ -34,6 +42,12 @@ export class CaseTitleComponent implements OnInit {
 
   toggleModal(){
     this.isCaseTitleModalOn = !this.isCaseTitleModalOn;
+  }
+
+  onAction(event: string){
+    switch (event) {
+      case 'edit': this.onCaseTitleEdit(); break;
+    }
   }
 
 }
