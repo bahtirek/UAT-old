@@ -1,15 +1,11 @@
-.ui-br-ext-extension {    
+.ui-br-ext-extension {   
     .ui-uat-ext-drop-menu {
+        width: 29px; 
         position: relative;
-        &:hover {
-            .ui-uat-ext-drop-menu-body {
-                display: block; 
-            }
-            .ui-uat-svg-icon {
-                svg {
-                    color: #00ad55;
-                    transform: scale(1.2);
-                }
+        .ui-uat-svg-icon.active {
+            svg {
+                color: #00ad55;
+                transform: scale(1.2);
             }
         }
         .ui-uat-ext-drop-menu-body {
@@ -20,9 +16,16 @@
             right: 0;
             border-radius: 3px;
             width: max-content;
-            z-index: 10;
-            display: none;
+            z-index: 100;
+            &.left {
+                left: 0;
+                right: initial;
+            }
 
+            &.top {
+                bottom: 25px;
+                top: initial;
+            }
             ul {
                 list-style: none;
                 margin: 0;

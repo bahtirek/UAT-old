@@ -30,6 +30,7 @@ import { EventDescriptionComponent } from './events-page/create-event/event-desc
 import { CreateEventDescriptionComponent } from './events-page/create-event/event-description/create-event-description/create-event-description.component';
 import { EventEnvironmentComponent } from './events-page/create-event/event-environment/event-environment.component';
 import { EnvironmentChoiceComponent } from '../shared/environment-choice/environment-choice.component';
+import { MoreButtonMenuComponent } from '../shared/more-button-menu/more-button-menu.component';
 
 
 
@@ -63,7 +64,8 @@ import { EnvironmentChoiceComponent } from '../shared/environment-choice/environ
     EventDescriptionComponent,
     CreateEventDescriptionComponent,
     EventEnvironmentComponent,
-    EnvironmentChoiceComponent
+    EnvironmentChoiceComponent,
+    MoreButtonMenuComponent,
   ],
   imports: [
     CommonModule,
