@@ -31,6 +31,9 @@ import { CreateEventDescriptionComponent } from './events-page/create-event/even
 import { EventEnvironmentComponent } from './events-page/create-event/event-environment/event-environment.component';
 import { EnvironmentChoiceComponent } from '../shared/environment-choice/environment-choice.component';
 import { MoreButtonMenuComponent } from '../shared/more-button-menu/more-button-menu.component';
+import { TestersComponent } from './events-page/create-event/testers/testers.component';
+import { TesterDetailsComponent } from './events-page/create-event/testers/tester-details/tester-details.component';
+import { AddTesterComponent } from './events-page/create-event/testers/add-tester/add-tester.component';
 
 
 
@@ -66,6 +69,9 @@ import { MoreButtonMenuComponent } from '../shared/more-button-menu/more-button-
     EventEnvironmentComponent,
     EnvironmentChoiceComponent,
     MoreButtonMenuComponent,
+    TestersComponent,
+    TesterDetailsComponent,
+    AddTesterComponent,
   ],
   imports: [
     CommonModule,
