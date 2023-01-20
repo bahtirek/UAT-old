@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Event } from 'src/app/interfaces/event.interface';
+import { MoreButtonAction } from 'src/app/interfaces/more-button-action.interface';
 
 @Component({
   selector: 'app-event-title',
@@ -11,6 +12,13 @@ export class EventTitleComponent implements OnInit {
   isEventTitleModalOn: boolean = false;
   title: string;
   titleToEdit: string;
+  actions: MoreButtonAction[] = [
+    {
+      name: 'Edit',
+      action: 'edit',
+      display: true
+    },
+  ]
 
   constructor() { }
 
@@ -40,6 +48,12 @@ export class EventTitleComponent implements OnInit {
 
   toggleModal(){
     this.isEventTitleModalOn = !this.isEventTitleModalOn;
+  }
+  
+  onAction(event: string){
+    switch (event) {
+      case 'edit': this.onEventTitleEdit(); break;
+    }
   }
 
 }
