@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Title } from 'src/app/interfaces/title.interface';
-import { TitleService } from 'src/app/services/title.service';
+import { TestCase } from 'src/app/interfaces/test-case.interface';
+import { TestCaseService } from 'src/app/services/test-case.service';
 
 @Component({
   selector: 'app-create-case-title',
@@ -13,27 +13,27 @@ export class CreateCaseTitleComponent implements OnInit {
   formError: FormError = {};
   submitInProgress: boolean = false; 
 
-  constructor(private titleService: TitleService) { }
+  constructor(private testCaseService: TestCaseService) { }
 
   ngOnInit(): void {
-    this.titleService.titleSource.subscribe(()=>{
+    this.testCaseService.testCaseSource.subscribe(()=>{
       this.onCancel()
     })
   }
 
-  @Input() title: Title;
+  @Input() testCase: TestCase;
 
   @Output() cancel = new EventEmitter<null>();
-  @Output() saveTitle = new EventEmitter<Title>();
+  @Output() savetestCase = new EventEmitter<TestCase>();
 
-  onSaveTitle(){
+  onSaveTestCase(){
     this.formError.title = [];
     this.submitInProgress = true;
-    if(this.title && this.title.title) {
-      if(this.title.id) {
-        this.titleService.updateTitle(this.title)
+    if(this.testCase && this.testCase.title) {
+      if(this.testCase.testCaseId) {
+        this.testCaseService.updateTestCase(this.testCase)
       } else {
-        this.titleService.postTitle(this.title)
+        this.testCaseService.postTestCase(this.testCase)
       }
       this.submitInProgress = false;
     } else {

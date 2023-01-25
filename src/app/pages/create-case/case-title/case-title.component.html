@@ -1,16 +1,16 @@
-<ng-container *ngIf="!title.title">
+<ng-container *ngIf="!testCase.title">
     <div class="ui-br-ext-flex ui-br-ext-justify-end">
-        <button (click)="addTitle()" class="ui-br-ext-btn-link">Add case title</button>
+        <button (click)="addtestCase()" class="ui-br-ext-btn-link">Add case title</button>
     </div>
 </ng-container>
-<ng-container *ngIf="title.title">
+<ng-container *ngIf="testCase.title">
     <div class="ui-uat-ext-case-title">
         <span class="ui-uat-ext-title ">Case title: </span>
-        <span >{{title.title}}</span>
+        <span >{{testCase.title}}</span>
         <app-more-button-menu [actions]="actions" (onAction)="onAction($event)"></app-more-button-menu>
     </div>
 </ng-container>
 
 <app-modal *ngIf="isCaseTitleModalOn" (closeModal)="toggleModal()">
-    <app-create-case-title (cancel)="toggleModal()" [title]="titleToEdit"></app-create-case-title>
+    <app-create-case-title (cancel)="toggleModal()" [testCase]="testCaseToEdit"></app-create-case-title>
 </app-modal>

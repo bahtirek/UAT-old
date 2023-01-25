@@ -1,8 +1,7 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { take } from 'rxjs/operators';
-import { MoreButtonAction } from 'src/app/interfaces/more-button-action.interface';
-import { Title } from 'src/app/interfaces/title.interface';
-import { TitleService } from 'src/app/services/title.service';
+import { TestCase } from 'src/app/interfaces/test-case.interface';
+import { TestCaseService } from 'src/app/services/test-case.service';
 
 @Component({
   selector: 'app-create-case',
@@ -12,14 +11,14 @@ import { TitleService } from 'src/app/services/title.service';
 export class CreateCaseComponent implements OnInit {
 
   showHide: boolean = true;
-  title: Title = {};
+  testCase: TestCase = {};
   scrollTop: any;
 
-  constructor(private titleService: TitleService) { }
+  constructor(private testCaseService: TestCaseService) { }
 
   ngOnInit(): void {
-    this.titleService.titleSource.pipe(take(2)).subscribe((title: Title) => {
-      this.title = title;
+    this.testCaseService.testCaseSource.pipe(take(2)).subscribe((testCase: TestCase) => {
+      this.testCase = testCase;
     })
   }
 

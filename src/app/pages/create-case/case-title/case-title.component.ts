@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MoreButtonAction } from 'src/app/interfaces/more-button-action.interface';
-import { Title } from 'src/app/interfaces/title.interface';
-import { TitleService } from 'src/app/services/title.service';
+import { TestCase } from 'src/app/interfaces/test-case.interface';
+import { TestCaseService } from 'src/app/services/test-case.service';
 
 @Component({
   selector: 'app-case-title',
@@ -10,8 +10,8 @@ import { TitleService } from 'src/app/services/title.service';
 })
 export class CaseTitleComponent implements OnInit {
   
-  title: Title;
-  titleToEdit: Title;
+  testCase: TestCase;
+  testCaseToEdit: TestCase;
   isCaseTitleModalOn: boolean = false;
   actions: MoreButtonAction[] = [
     {
@@ -21,22 +21,22 @@ export class CaseTitleComponent implements OnInit {
     },
   ]
 
-  constructor(private titleService: TitleService) { }
+  constructor(private testCaseService: TestCaseService) { }
 
   ngOnInit(): void {
-    this.titleService.titleSource.subscribe((title: Title) => {
-      this.title = title;
+    this.testCaseService.testCaseSource.subscribe((testCase: TestCase) => {
+      this.testCase = testCase;
     })
-    this.titleService.pushTitle({title: 'title'})
+    this.testCaseService.pushTestCase({title: 'title'})
   }
 
-  onCaseTitleEdit(){
-    this.titleToEdit = {...this.title};
+  onCasetestCaseEdit(){
+    this.testCaseToEdit = {...this.testCase};
     this.toggleModal()
   }
 
-  addTitle(){
-    this.titleToEdit = {title:''};
+  addtestCase(){
+    this.testCaseToEdit = {title:''};
     this.toggleModal()
   }
 
@@ -46,7 +46,7 @@ export class CaseTitleComponent implements OnInit {
 
   onAction(event: string){
     switch (event) {
-      case 'edit': this.onCaseTitleEdit(); break;
+      case 'edit': this.onCasetestCaseEdit(); break;
     }
   }
 
