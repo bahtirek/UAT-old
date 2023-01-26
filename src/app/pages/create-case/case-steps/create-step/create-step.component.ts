@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Step } from 'src/app/interfaces/step.interface';
-import { StepService } from 'src/app/services/step.service';
+import { TestStep } from 'src/app/interfaces/test-step.interface';
+import { StepService } from 'src/app/services/test-step.service';
 
 @Component({
   selector: 'app-create-step',
@@ -33,7 +34,7 @@ export class CreateStepComponent implements OnInit {
     this.setStepFormValue();
   }
 
-  @Input() stepToEdit: Step = {};
+  @Input() stepToEdit: TestStep = {};
   @Input() stepIndex: number;
 
   @Output() cancel = new EventEmitter<null>();
@@ -42,7 +43,7 @@ export class CreateStepComponent implements OnInit {
     this.submitClicked = true;
     this.submitInProgress = true;
     if(this.stepForm.valid) {
-      const step: Step = Object.assign(this.stepToEdit, this.stepForm.value);
+      const step: TestStep = Object.assign(this.stepToEdit, this.stepForm.value);
       //will use it as observable
       setTimeout(() => {
         this.stepService.saveStep({...step}, this.stepIndex);
@@ -57,9 +58,9 @@ export class CreateStepComponent implements OnInit {
   }
     
   setStepFormValue() {
-    if(this.stepToEdit && this.stepToEdit.description && this.stepToEdit.expectedResults){
+    if(this.stepToEdit && this.stepToEdit.description && this.stepToEdit.expected){
       this.stepForm.controls['description'].setValue(this.stepToEdit.description);
-      this.stepForm.controls['expectedResults'].setValue(this.stepToEdit.expectedResults);
+      this.stepForm.controls['expectedResults'].setValue(this.stepToEdit.expected);
       this.editing = true;
     }
   }

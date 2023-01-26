@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { take } from 'rxjs';
-import { StepService } from 'src/app/services/step.service';
+import { StepService } from 'src/app/services/test-step.service';
 
 @Component({
   selector: 'app-import-steps',

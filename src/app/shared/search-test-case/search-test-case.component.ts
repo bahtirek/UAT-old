@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { debounceTime, distinctUntilChanged, Subject, take } from 'rxjs';
 import { Title } from 'src/app/interfaces/title.interface';
-import { StepService } from 'src/app/services/step.service';
+import { StepService } from 'src/app/services/test-step.service';
 
 @Component({
   selector: 'app-search-test-case',

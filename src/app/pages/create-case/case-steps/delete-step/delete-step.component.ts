@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Step } from 'src/app/interfaces/step.interface';
+import { TestStep } from 'src/app/interfaces/test-step.interface';
 
 @Component({
   selector: 'app-delete-step',
@@ -15,10 +16,10 @@ export class DeleteStepComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  @Input() stepToDelete: Step = {};
+  @Input() stepToDelete: TestStep = {};
 
   @Output() cancel = new EventEmitter<null>();
-  @Output() deleteStep = new EventEmitter<Step>();
+  @Output() deleteStep = new EventEmitter<TestStep>();
 
   delete(){
     this.submitInProgress = true;

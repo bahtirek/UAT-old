@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MoreButtonAction } from 'src/app/interfaces/more-button-action.interface';
-import { Step } from 'src/app/interfaces/step.interface';
-import { StepService } from 'src/app/services/step.service';
+import { TestStep } from 'src/app/interfaces/test-step.interface';
+import { StepService } from 'src/app/services/test-step.service';
 import { ImportStepsComponent } from './import-steps/import-steps.component';
 
 @Component({
@@ -11,11 +11,11 @@ import { ImportStepsComponent } from './import-steps/import-steps.component';
 })
 export class CaseStepsComponent implements OnInit {
 
-  steps: Step[] = [];
-  stepToEdit: Step = {};
+  steps: TestStep[] = [];
+  stepToEdit: TestStep = {};
   isAddStepModalOn: boolean = false;
   isDeleteModalOn: boolean = false;
-  stepToDelete: Step;
+  stepToDelete: TestStep;
   stepIndex: number;
   actions: MoreButtonAction[] = [
     {
@@ -53,7 +53,7 @@ export class CaseStepsComponent implements OnInit {
   constructor(private stepService: StepService) { }
 
   ngOnInit(): void {
-    this.stepService.stepsSource.subscribe((steps: Step[]) => {
+    this.stepService.stepsSource.subscribe((steps: TestStep[]) => {
       this.steps = steps;
     })
 
@@ -79,7 +79,7 @@ export class CaseStepsComponent implements OnInit {
     } 
   }
 
-  onStepEdit(step: Step){
+  onStepEdit(step: TestStep){
     this.stepToEdit = {...step};
     this.toggleModal('addnewStepModal');
   }
@@ -100,7 +100,7 @@ export class CaseStepsComponent implements OnInit {
 
   deleteStep(){
     setTimeout(() => {
-      this.stepService.deleteStep(this.stepToDelete.id)
+      this.stepService.deleteStep(this.stepToDelete.testStepId)
       this.stepToDelete = {};
       this.toggleModal('deleteStepModal')
     }, 1000);
@@ -122,47 +122,47 @@ export class CaseStepsComponent implements OnInit {
     }
   }
 
-  steps2: Step[] = [
+  steps2: TestStep[] = [
     {
-      id: 3,
-      description: '333',
-      expectedResults: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis assumenda ipsam cumque! Porro esse eveniet vitae rerum odit at consequatur earum culpa, accusamus, magni voluptates, fuga autem distinctio et natus!',
+      testStepId: 13,
+      description: '11333',
+      expected: '11 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis assumenda ipsam cumque! Porro esse eveniet vitae rerum odit at consequatur earum culpa, accusamus, magni voluptates, fuga autem distinctio et natus!',
       order:2
     },
     {
-      id: 1,
-      description: '111',
-      expectedResults: '111',
+      testStepId: 11,
+      description: '11 111',
+      expected: '11 111',
       order: 0
     },
     {
-      id: 2,
-      description: '222',
-      expectedResults: '222',
+      testStepId: 12,
+      description: '11 222',
+      expected: '11 222',
       order: 1
     },
     {
-      id: 7,
-      description: '777',
-      expectedResults: '777',
+      testStepId: 17,
+      description: '11 777',
+      expected: '11 777',
       order: 6
     },
     {
-      id: 4,
-      description: '444',
-      expectedResults: '444',
+      testStepId: 14,
+      description: '11 444',
+      expected: '11 444',
       order: 3
     },
     {
-      id: 6,
-      description: '666',
-      expectedResults: '666',
+      testStepId: 16,
+      description: '11 666',
+      expected: '11 666',
       order: 5
     },
     {
-      id: 5,
-      description: '555',
-      expectedResults: '555',
+      testStepId: 15,
+      description: '11 555',
+      expected: '11 555',
       order: 4
     },
   ];
