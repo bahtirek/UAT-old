@@ -14,6 +14,7 @@ export class AddTesterComponent implements OnInit {
   testers: Tester[] = [];
   testerEmail: string = ''
   testerSearch = new Subject<string>();
+  instructions: string = '';
   browsers: Browser[] = [
     {
       id: 1,
@@ -67,6 +68,7 @@ export class AddTesterComponent implements OnInit {
 
   onSaveTester(){
     this.tester.browsers = this.browsers;
+    this.tester.instructions = this.instructions;
     this.testerEmit.emit(this.tester);
     this.onCancel();
   }

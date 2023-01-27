@@ -5,5 +5,6 @@ export interface Tester {
     email?: string,
     firstname?: string,
     lastname?: string,
+    instructions?: string,
     browsers?: Browser[]
 }

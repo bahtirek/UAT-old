@@ -15,11 +15,13 @@
                 </ul>
             </div>
         </div>
+        <div class="ui-br-ext-spacer-1"></div>
         <div>
             {{tester?.email}}
             {{tester?.firstname}}
             {{tester?.lastname}}
         </div>
+        <div class="ui-br-ext-spacer-3"></div>
         <div class="ui-br-ext-flex ui-br-ext-wrap">
             <div *ngFor="let browser of browsers; index as i" class="ui-br-ext-width-half">
                 <div class="ui-br-ext-form-container ui-br-ext-checkbox">
@@ -27,6 +29,11 @@
                     <label for="ui-br-ext-save-to-jira">{{browser.name}}</label>
                 </div>
             </div>
+        </div>     
+        <div class="ui-br-ext-spacer-2"></div>
+        <div class="ui-br-ext-form-container ui-br-ext-textarea">
+            <label for="ui-br-ext-instructions">Special instructions</label>
+            <textarea name="ui-br-ext-instructions" [(ngModel)]="instructions" rows="2" ></textarea>
         </div>
         <div class="ui-br-ext-btn-group">
             <button class="ui-br-ext-btn"  data-listener="off" (click)="onSaveTester()">
