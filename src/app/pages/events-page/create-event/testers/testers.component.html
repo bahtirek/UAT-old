@@ -1,7 +1,9 @@
-<app-tester-details></app-tester-details>
+<div *ngFor="let tester of testers; index as i">
+    <app-tester-details [tester]="tester"></app-tester-details>
+</div>
 <div class="ui-br-ext-flex ui-br-ext-justify-end">
     <button (click)="addTester()" class="ui-br-ext-btn-link">Add tester</button>
 </div>
-<app-modal *ngIf="isAddTesterModalOn" (closeModal)="toggleModal()">
-    <app-add-tester (cancel)="toggleModal()" [tester]="testerToEdit" (testerEmit)="saveTester($event)"></app-add-tester>
+<app-modal *ngIf="isAddTesterModalOn" (closeModal)="toggleModal()"  [propClass]="'ui-br-ext-width-max7'">
+    <app-add-tester (cancel)="toggleModal()" [testerToEdit]="testerToEdit" (testerEmit)="saveTester($event)"></app-add-tester>
 </app-modal>

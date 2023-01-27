@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Tester } from 'src/app/interfaces/tester.interface';
 
 @Component({
   selector: 'app-tester-details',
@@ -11,5 +12,7 @@ export class TesterDetailsComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  @Input() tester: Tester;
 
 }

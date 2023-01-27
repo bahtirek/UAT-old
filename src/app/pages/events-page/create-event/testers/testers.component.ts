@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Tester } from 'src/app/interfaces/tester.interface';
 
 @Component({
   selector: 'app-testers',
@@ -6,35 +7,28 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./testers.component.less']
 })
 export class TestersComponent implements OnInit {
-  tester: any;
-  testerToEdit: string;
-  isAddTesterModalOn: boolean = false;
+  testers: Tester[] = [];
+  testerToEdit: Tester;
+  isAddTesterModalOn: boolean = true;
 
 
   constructor() { }
 
   ngOnInit(): void {}
 
-  @Output() testerEmit = new EventEmitter<any>();
+  @Output() testerEmit = new EventEmitter<Tester>();
 
   onAddTesterEdit(){
-    this.testerToEdit = this.tester;
+    //this.testerToEdit = this.tester;
     this.toggleModal()
   }
 
   addTester(){
     this.toggleModal();
-    this.tester = {};
   }
 
   saveTester(tester: any){
-    this.tester = tester;
-    this.testerEmit.emit(this.tester)
-    this.toggleModal();
-  }
-
-  getTester(){
-    return this.tester;
+    this.testers.push(tester)
   }
 
   toggleModal(){

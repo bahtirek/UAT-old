@@ -1,4 +1,5 @@
 export interface Browser {
     id?: number,
-    name?: string
+    name?: string,
+    state?: boolean
 }

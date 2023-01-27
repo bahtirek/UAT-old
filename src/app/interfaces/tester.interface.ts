@@ -1,7 +1,7 @@
 import { Browser } from "./device.interface";
 
 export interface Tester {
-    id?: number,
+    testerId?: number,
     email?: string,
     firstname?: string,
     lastname?: string,

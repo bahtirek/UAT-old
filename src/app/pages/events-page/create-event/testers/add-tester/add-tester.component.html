@@ -1,1 +1,41 @@
-<p>add-tester works!</p>
+<div class="ui-br-ext-form-container">
+    <h3>Tester</h3>
+    <div class="ui-br-ext-width-full">
+        <div class="ui-br-ext-form-container ui-br-ext-textarea">
+            <label for="label">Email</label>
+            <input type="text" name="label" [(ngModel)]="testerEmail" (ngModelChange)="testerSearch.next($event)"/>
+            <span class="ui-br-ext-search-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00ad55" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </span >
+            <div class="ui-br-ext-search-results" *ngIf="searchResults && searchResults.length > 0">
+                <ul>
+                    <li *ngFor="let result of searchResults; index as i" >
+                        <span class="ui-br-ext-module-label" (click)="onChoose(result)">{{result.email}} {{result?.firstname}} {{result?.lastname}}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            {{tester?.email}}
+            {{tester?.firstname}}
+            {{tester?.lastname}}
+        </div>
+        <div class="ui-br-ext-flex ui-br-ext-wrap">
+            <div *ngFor="let browser of browsers; index as i" class="ui-br-ext-width-half">
+                <div class="ui-br-ext-form-container ui-br-ext-checkbox">
+                    <input type="checkbox" name="jira" [(ngModel)]="browser.state">
+                    <label for="ui-br-ext-save-to-jira">{{browser.name}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="ui-br-ext-btn-group">
+            <button class="ui-br-ext-btn"  data-listener="off" (click)="onSaveTester()">
+                <span class="ui-br-ext-spinner"></span>
+                <span>Save</span> 
+            </button>
+            <button class="ui-br-ext-btn-danger"  data-listener="off" (click)="onCancel()">
+                <span>Cancel</span> 
+            </button>
+        </div>
+    </div>
+</div>
