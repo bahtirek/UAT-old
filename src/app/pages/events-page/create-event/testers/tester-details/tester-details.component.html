@@ -1,1 +1,12 @@
-<div>{{tester.email}}</div>
+<div class="ui-br-ext-flex ui-br-ext-nowrap">
+    <div class="ui-br-ext-width-25">{{tester.email}}</div>
+    <div class="ui-br-ext-width-25">{{tester.firstname}} {{tester.lastname}}</div>
+    <div class="ui-br-ext-width-25">
+        <ul>
+            <ng-container *ngFor="let browser of tester.browsers">
+                <li *ngIf="browser.state">{{browser.name}}</li>
+            </ng-container>
+        </ul>
+    </div>
+    <div class="ui-br-ext-width-25">{{tester.instructions}}</div>
+</div>

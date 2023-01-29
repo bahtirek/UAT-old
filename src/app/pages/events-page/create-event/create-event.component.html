@@ -5,8 +5,8 @@
             <ng-container *ngIf="event.title">
                 <app-event-description (descriptionEmit)="saveDescription($event)"></app-event-description>
                 <app-event-environment (environmentEmit)="saveEnvironment($event)"></app-event-environment>
+                <app-testers></app-testers>
             </ng-container>
-            <app-testers></app-testers>
             <app-resize [pageId]="'uiBrExtCreateEvent'"></app-resize>
         </div>
     </div>

@@ -1,9 +1,16 @@
-<div *ngFor="let tester of testers; index as i">
-    <app-tester-details [tester]="tester"></app-tester-details>
-</div>
+<ng-container *ngIf="testers && testers.length > 0">
+    <div class="ui-uat-ext-title ">Testers: </div>
+    <div class="ui-br-ext-spacer-1"></div>
+    <div *ngFor="let tester of testers; index as i" class="ui-uat-ext-case-title">
+        <app-tester-details [tester]="tester"></app-tester-details>
+        <app-more-button-menu [actions]="actions" (onAction)="onAction($event, i)"></app-more-button-menu>
+    </div>
+</ng-container>
+
 <div class="ui-br-ext-flex ui-br-ext-justify-end">
     <button (click)="addTester()" class="ui-br-ext-btn-link">Add tester</button>
 </div>
+
 <app-modal *ngIf="isAddTesterModalOn" (closeModal)="toggleModal()"  [propClass]="'ui-br-ext-width-max7'">
     <app-add-tester (cancel)="toggleModal()" [testerToEdit]="testerToEdit" (testerEmit)="saveTester($event)"></app-add-tester>
 </app-modal>

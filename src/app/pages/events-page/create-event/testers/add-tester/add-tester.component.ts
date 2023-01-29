@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
 import { Browser } from 'src/app/interfaces/device.interface';
 import { Tester } from 'src/app/interfaces/tester.interface';
@@ -10,41 +11,51 @@ import { Tester } from 'src/app/interfaces/tester.interface';
 })
 export class AddTesterComponent implements OnInit {
 
-  tester: Tester;
-  testers: Tester[] = [];
-  testerEmail: string = ''
-  testerSearch = new Subject<string>();
-  instructions: string = '';
   browsers: Browser[] = [
     {
       id: 1,
       name: 'Chrome Desktop'
     },
     {
-      id: 4,
+      id: 2,
       name: 'Safari Desktop'
     },
     {
-      id: 5,
+      id: 3,
       name: 'Firefox Desktop'
     },
     {
-      id: 5,
+      id: 4,
       name: 'Edge Desktop'
     },
     {
-      id: 2,
+      id: 5,
       name: 'Chrome Mobile'
     },
     {
-      id: 3,
+      id: 6,
       name: 'Safari Mobile'
     },
-  ] 
+  ]
+  tester: Tester = {};
+  testerEmail: string = ''
+  testerSearch = new Subject<string>();
+  instructions: string = '';
 
-  constructor() { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
+  }
+
+  ngOnChanges(changes: SimpleChanges){
+    if (changes.testerToEdit && changes.testerToEdit.currentValue) {
+      this.tester = {...this.testerToEdit}
+      const browsersToEdit = [...this.tester.browsers]
+      this.tester.browsers.forEach((browserToEdit) => {
+        const index = this.browsers.findIndex(browser => browser.id == browserToEdit.id);
+        if ( browserToEdit.state ) this.browsers[index].state = true;
+      })
+    }
   }
 
   ngAfterViewInit(){
@@ -54,21 +65,21 @@ export class AddTesterComponent implements OnInit {
     });
   }
 
-  @Input() testerToEdit: Tester;
+  @Input() public testerToEdit: Tester;
   @Output() cancel = new EventEmitter<void>();
   @Output() testerEmit = new EventEmitter<Tester>();
   
   
     
   onChoose(tester: Tester){
-    console.log(tester);
-    this.tester = tester;
+    this.tester.email = tester.email;
+    this.tester.firstname = tester.firstname;
+    this.tester.lastname = tester.lastname;
     this.searchResults = [];
   }
 
   onSaveTester(){
     this.tester.browsers = this.browsers;
-    this.tester.instructions = this.instructions;
     this.testerEmit.emit(this.tester);
     this.onCancel();
   }
