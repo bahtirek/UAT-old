@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Step } from 'src/app/interfaces/step.interface';
 import { TestStep } from 'src/app/interfaces/test-step.interface';
 
 @Component({
