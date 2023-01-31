@@ -11,7 +11,7 @@ import { TestCaseService } from 'src/app/services/test-case.service';
 export class CaseTitleComponent implements OnInit {
   
   testCase: TestCase;
-  testCaseToEdit: TestCase;
+  testCaseToEdit: TestCase = {};
   isCaseTitleModalOn: boolean = false;
   actions: MoreButtonAction[] = [
     {
@@ -25,28 +25,31 @@ export class CaseTitleComponent implements OnInit {
 
   ngOnInit(): void {
     this.testCaseService.testCaseSource.subscribe((testCase: TestCase) => {
-      this.testCase = testCase;
+      this.testCase = testCase as TestCase;
+      console.log(this.testCase);
+      
+      this.testCaseToEdit = {};
+      this.isCaseTitleModalOn = false;
     })
-    this.testCaseService.pushTestCase({title: 'title'})
+    this.testCaseService.getTestCaseInHold();
   }
 
-  onCasetestCaseEdit(){
+  onCaseTestCaseEdit(){
     this.testCaseToEdit = {...this.testCase};
-    this.toggleModal()
+    this.toggleAddTestCaseModal();
   }
 
-  addtestCase(){
-    this.testCaseToEdit = {title:''};
-    this.toggleModal()
+  openTestCaseModal(){
+    this.toggleAddTestCaseModal()
   }
 
-  toggleModal(){
+  toggleAddTestCaseModal(){
     this.isCaseTitleModalOn = !this.isCaseTitleModalOn;
   }
 
   onAction(event: string){
     switch (event) {
-      case 'edit': this.onCasetestCaseEdit(); break;
+      case 'edit': this.onCaseTestCaseEdit(); break;
     }
   }
 

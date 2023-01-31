@@ -12,8 +12,8 @@
                 </div>
                 <div class="ui-br-ext-form-container ui-br-ext-textarea">
                     <label for="ui-br-ext-description">Expected results</label>
-                    <textarea name="ui-br-ext-description" rows="3" data-gramm="false" maxlength="1000" formControlName="expectedResults" id="expectedResults" required></textarea>
-                    <span class="ui-br-ext-message" *ngIf="(expectedResults.dirty || submitClicked) && expectedResults.invalid">Field is required</span>
+                    <textarea name="ui-br-ext-description" rows="3" data-gramm="false" maxlength="1000" formControlName="expected" id="expected" required></textarea>
+                    <span class="ui-br-ext-message" *ngIf="(expected.dirty || submitClicked) && expected.invalid">Field is required</span>
                 </div>
             </div>
         </form>

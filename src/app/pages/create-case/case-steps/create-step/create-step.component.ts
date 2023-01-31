@@ -1,8 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { Step } from 'src/app/interfaces/step.interface';
 import { TestStep } from 'src/app/interfaces/test-step.interface';
-import { StepService } from 'src/app/services/test-step.service';
+import { TestCaseService } from 'src/app/services/test-case.service';
 
 @Component({
   selector: 'app-create-step',
@@ -19,16 +18,16 @@ export class CreateStepComponent implements OnInit {
     return this.stepForm.get('description');
   }
 
-  get expectedResults() {
-    return this.stepForm.get('expectedResults');
+  get expected() {
+    return this.stepForm.get('expected');
   }
 
   stepForm: FormGroup = this.fb.group({
     description: ['', [Validators.required, ]],
-    expectedResults: ['', [Validators.required, ]]
+    expected: ['', [Validators.required, ]]
   });
 
-  constructor(private fb: FormBuilder, private stepService: StepService) { }
+  constructor(private fb: FormBuilder, private testCaseService: TestCaseService) { }
 
   ngOnInit(): void {
     this.setStepFormValue();
@@ -36,6 +35,7 @@ export class CreateStepComponent implements OnInit {
 
   @Input() stepToEdit: TestStep = {};
   @Input() stepIndex: number;
+  @Input() testCaseId: number;
 
   @Output() cancel = new EventEmitter<null>();
 
@@ -44,23 +44,30 @@ export class CreateStepComponent implements OnInit {
     this.submitInProgress = true;
     if(this.stepForm.valid) {
       const step: TestStep = Object.assign(this.stepToEdit, this.stepForm.value);
-      //will use it as observable
-      setTimeout(() => {
-        this.stepService.saveStep({...step}, this.stepIndex);
-        this.stepForm.reset();
+      step.testCaseId = this.testCaseId;
+      this.addTestStep(step)
+    }
+  }
+  
+  addTestStep(step: TestStep){
+    this.testCaseService.addTestStep(step).subscribe(
+      response => {
+        console.log(response);
         this.submitClicked = false;
         this.submitInProgress = false;
-        if(this.editing || this.stepIndex) {
-          this.onCancel();
-        }
-      }, 1000);
-    }
+        this.testCaseService.holdTestCase(response)
+      },
+      error => {
+        this.submitClicked = false;
+        this.submitInProgress = false;
+      }
+    )
   }
     
   setStepFormValue() {
     if(this.stepToEdit && this.stepToEdit.description && this.stepToEdit.expected){
       this.stepForm.controls['description'].setValue(this.stepToEdit.description);
-      this.stepForm.controls['expectedResults'].setValue(this.stepToEdit.expected);
+      this.stepForm.controls['expected'].setValue(this.stepToEdit.expected);
       this.editing = true;
     }
   }

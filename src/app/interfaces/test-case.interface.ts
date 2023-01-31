@@ -1,4 +1,4 @@
-import { Step } from "./step.interface";
+import { TestStep } from "./test-step.interface";
 
 export interface TestCase {
     testCaseId?: number,
@@ -6,5 +6,15 @@ export interface TestCase {
     createdBy?: number,
     created_at?: number,
     deleted?: boolean,
-    testSteps?: Step[]
+    testStepOrder?: TestStepOrder[]
+}
+
+export interface TestStepOrder {
+    order?: number,
+    testStepId?: number,
+    test_step?: TestStep
+}
+
+export interface ServerResponse <T> {
+    result: T
 }

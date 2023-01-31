@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MoreButtonAction } from 'src/app/interfaces/more-button-action.interface';
+import { TestCase } from 'src/app/interfaces/test-case.interface';
 import { TestStep } from 'src/app/interfaces/test-step.interface';
+import { TestCaseService } from 'src/app/services/test-case.service';
 import { StepService } from 'src/app/services/test-step.service';
 import { ImportStepsComponent } from './import-steps/import-steps.component';
 
@@ -49,16 +51,17 @@ export class CaseStepsComponent implements OnInit {
       display: true
     },
   ]
+  testCase: TestCase;
 
-  constructor(private stepService: StepService) { }
+  constructor(private testCaseService: TestCaseService) { }
 
   ngOnInit(): void {
-    this.stepService.stepsSource.subscribe((steps: TestStep[]) => {
-      this.steps = steps;
+    this.testCaseService.testCaseSource.subscribe((testCase: TestCase) => {
+      this.testCase = testCase;
     })
-
-    //this.stepService.pushSteps(this.steps2)
-    this.stepService.pushSteps([])
+    this.testCase = this.testCaseService.getTestCase();
+    console.log(this.testCase);
+    
   }
 
   @ViewChild(ImportStepsComponent) importSteps!: ImportStepsComponent;
@@ -90,20 +93,62 @@ export class CaseStepsComponent implements OnInit {
   }
 
   onDeleteStep(index: number){
-    this.stepToDelete = this.steps[index];
-    this.isDeleteModalOn = true;
+    /* this.stepToDelete = this.testCase.testSteps[index];
+    this.isDeleteModalOn = true; */
   }
 
-  moveStep(index: number){
-    this.stepService.moveStep(index)
+  moveStepUp(index: number){
+    if(this.testCase.testStepOrder[index].order == 1) return false;
+
+    const ordersToUpdate = {
+      testCaseId: this.testCase.testCaseId,
+      testSteps: [
+        {
+          testStepId: this.testCase.testStepOrder[index].testStepId,
+          order: this.testCase.testStepOrder[index].order - 1
+        },
+        {
+          testStepId: this.testCase.testStepOrder[index - 1].testStepId,
+          order: this.testCase.testStepOrder[index - 1].order + 1
+        },
+      ]
+    }
+
+    this.testCaseService.changeStepOrder(ordersToUpdate).subscribe(
+      response => {
+        console.log(response);
+        this.testCaseService.holdTestCase(response)
+      },
+    )
+  }
+
+  moveStepDown(index: number){
+    if(this.testCase.testStepOrder[index].order == this.testCase.testStepOrder.length) return false;
+
+    const ordersToUpdate = {
+      testCaseId: this.testCase.testCaseId,
+      testSteps: [
+        {
+          testStepId: this.testCase.testStepOrder[index].testStepId,
+          order: this.testCase.testStepOrder[index].order + 1
+        },
+        {
+          testStepId: this.testCase.testStepOrder[index + 1].testStepId,
+          order: this.testCase.testStepOrder[index + 1].order - 1
+        },
+      ]
+    }
+
+    this.testCaseService.changeStepOrder(ordersToUpdate).subscribe(
+      response => {
+        console.log(response);
+        this.testCaseService.holdTestCase(response)
+      },
+    )
   }
 
   deleteStep(){
-    setTimeout(() => {
-      this.stepService.deleteStep(this.stepToDelete.testStepId)
-      this.stepToDelete = {};
-      this.toggleModal('deleteStepModal')
-    }, 1000);
+    
   }
   
   onImportSteps(index?: number){
@@ -113,58 +158,13 @@ export class CaseStepsComponent implements OnInit {
   
   onAction(event: string, index: number){
     switch (event) {
-      case 'edit': this.onStepEdit(this.steps[index]); break;
+      case 'edit': this.onStepEdit(this.testCase.testStepOrder[index]); break;
       case 'add': this.onStepAdd(index); break;
       case 'import': this.onImportSteps(index); break;
-      case 'up': this.moveStep(index); break;
-      case 'down': this.moveStep(index+1); break;
+      case 'up': this.moveStepUp(index); break;
+      case 'down': this.moveStepDown(index); break;
       case 'delete': this.onDeleteStep(index); break;
     }
   }
-
-  steps2: TestStep[] = [
-    {
-      testStepId: 13,
-      description: '11333',
-      expected: '11 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis assumenda ipsam cumque! Porro esse eveniet vitae rerum odit at consequatur earum culpa, accusamus, magni voluptates, fuga autem distinctio et natus!',
-      order:2
-    },
-    {
-      testStepId: 11,
-      description: '11 111',
-      expected: '11 111',
-      order: 0
-    },
-    {
-      testStepId: 12,
-      description: '11 222',
-      expected: '11 222',
-      order: 1
-    },
-    {
-      testStepId: 17,
-      description: '11 777',
-      expected: '11 777',
-      order: 6
-    },
-    {
-      testStepId: 14,
-      description: '11 444',
-      expected: '11 444',
-      order: 3
-    },
-    {
-      testStepId: 16,
-      description: '11 666',
-      expected: '11 666',
-      order: 5
-    },
-    {
-      testStepId: 15,
-      description: '11 555',
-      expected: '11 555',
-      order: 4
-    },
-  ];
 
 }

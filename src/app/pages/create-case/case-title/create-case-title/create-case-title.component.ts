@@ -16,30 +16,43 @@ export class CreateCaseTitleComponent implements OnInit {
   constructor(private testCaseService: TestCaseService) { }
 
   ngOnInit(): void {
-    this.testCaseService.testCaseSource.subscribe(()=>{
-      this.onCancel()
-    })
   }
 
   @Input() testCase: TestCase;
 
   @Output() cancel = new EventEmitter<null>();
-  @Output() savetestCase = new EventEmitter<TestCase>();
+  @Output() saveTestCase = new EventEmitter<TestCase>();
 
   onSaveTestCase(){
     this.formError.title = [];
     this.submitInProgress = true;
     if(this.testCase && this.testCase.title) {
       if(this.testCase.testCaseId) {
-        this.testCaseService.updateTestCase(this.testCase)
+        this.updateTestCase();
       } else {
-        this.testCaseService.postTestCase(this.testCase)
+        this.addTestCase();
       }
-      this.submitInProgress = false;
     } else {
       this.formError.title.push('Field is required');
       this.submitInProgress = false;
     }
+  }
+
+  updateTestCase() {
+    
+  }
+
+  addTestCase(){
+    this.testCaseService.addTestCase(this.testCase).subscribe(
+      response => {
+        console.log(response);
+        this.submitInProgress = false;
+        this.testCaseService.holdTestCase(response)
+      },
+      error => {
+        this.submitInProgress = false;
+      }
+    )
   }
 
   onCancel(){

@@ -42,9 +42,9 @@ export class ExtensionComponent implements OnInit {
       }
     )
 
-    this.auth.auth(this.config).subscribe(data => {
+    /* this.auth.auth(this.config).subscribe(data => {
       this.accountService.account = data;
-    })
+    }) */
   }
 
 }

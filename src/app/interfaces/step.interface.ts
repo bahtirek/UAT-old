@@ -1,7 +1,7 @@
 export interface Step {
     id?: number,
     description?: string,
-    expectedResults?:string,
+    expected?:string,
     caseId?: number,
     order?: number
 }
