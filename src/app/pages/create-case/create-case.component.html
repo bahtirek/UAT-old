@@ -15,5 +15,21 @@
             
             <app-resize [pageId]="'uiBrExtCreatePage'"></app-resize>
         </div>
+        <app-modal *ngIf="caseChoiceModalOn">
+            <div class="ui-br-ext-form-container">
+                <h3>Case title</h3>
+                <p>Would you like to create a new test case or continue the previous one?</p>
+                <div class="ui-br-ext-width-full">
+                    <div class="ui-br-ext-btn-group">
+                        <button class="ui-br-ext-btn"  data-listener="off" (click)="toggleModal()">
+                            <span>Create</span> 
+                        </button>
+                        <button class="ui-br-ext-btn-danger"  data-listener="off" (click)="onContinue()">
+                            <span>Continue</span> 
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </app-modal>
     </div>
 </div>

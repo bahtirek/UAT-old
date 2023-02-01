@@ -40,22 +40,18 @@ export class TestCaseService {
     .pipe(map(response => response?.result))
   }
 
-  holdTestCase(testCase: TestCase){
-    window.localStorage.setItem('testCaseId', testCase.testCaseId.toString());
-    this.testCaseSource.next(testCase);
-    this.testCase = testCase;
-  }
-
-  getTestCaseInHold(){
-    let testCaseId = window.localStorage.getItem('testCaseId');
-    
-    if (!testCaseId) return false;
-    this.getTestCaseById(parseInt(testCaseId)).subscribe(
+  continueCase(){
+    this.getTestCaseById(10).subscribe(
       response => {
         this.testCaseSource.next(response);
         this.testCase = response;
       }
     )
+  }
+
+  setTestCase(testCase: TestCase){
+    this.testCase = testCase;
+    this.testCaseSource.next(testCase)
   }
 
   getTestCase(){

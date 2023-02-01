@@ -47,7 +47,7 @@ export class CreateCaseTitleComponent implements OnInit {
       response => {
         console.log(response);
         this.submitInProgress = false;
-        this.testCaseService.holdTestCase(response)
+        this.testCaseService.testCaseSource.next(response)
       },
       error => {
         this.submitInProgress = false;
@@ -56,6 +56,7 @@ export class CreateCaseTitleComponent implements OnInit {
   }
 
   onCancel(){
+    this.testCase = {};
     this.cancel.emit();
   }
 }

@@ -31,7 +31,6 @@ export class CaseTitleComponent implements OnInit {
       this.testCaseToEdit = {};
       this.isCaseTitleModalOn = false;
     })
-    this.testCaseService.getTestCaseInHold();
   }
 
   onCaseTestCaseEdit(){

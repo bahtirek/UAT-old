@@ -4,9 +4,10 @@
     <div class="ui-br-ext-container ui-br-ext-dropdown"
     [ngSwitch]="activeBtn"
     >
-        <app-events-page></app-events-page>
+       <!--  <app-events-page></app-events-page> -->
         <app-events-page *ngSwitchCase="'ui-br-ext-event-button'"></app-events-page>
         <app-create-case *ngSwitchCase="'ui-br-ext-create-button'"></app-create-case>
+        <app-create-case></app-create-case>
         <app-execute-page *ngSwitchCase="'ui-br-ext-execute-button'"></app-execute-page>
         <app-search-page *ngSwitchCase="'ui-br-ext-search-button'"></app-search-page>
         <app-settings-page  *ngSwitchCase="'ui-br-ext-settings-button'"></app-settings-page>

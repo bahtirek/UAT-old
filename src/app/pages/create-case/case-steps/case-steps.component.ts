@@ -117,7 +117,7 @@ export class CaseStepsComponent implements OnInit {
     this.testCaseService.changeStepOrder(ordersToUpdate).subscribe(
       response => {
         console.log(response);
-        this.testCaseService.holdTestCase(response)
+        this.testCaseService.testCaseSource.next(response)
       },
     )
   }
@@ -142,7 +142,7 @@ export class CaseStepsComponent implements OnInit {
     this.testCaseService.changeStepOrder(ordersToUpdate).subscribe(
       response => {
         console.log(response);
-        this.testCaseService.holdTestCase(response)
+        this.testCaseService.testCaseSource.next(response)
       },
     )
   }

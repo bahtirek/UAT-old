@@ -13,6 +13,7 @@ export class CreateCaseComponent implements OnInit {
   showHide: boolean = true;
   testCase: TestCase = {};
   scrollTop: any;
+  caseChoiceModalOn: boolean = true;
 
   constructor(private testCaseService: TestCaseService) { }
 
@@ -20,6 +21,19 @@ export class CreateCaseComponent implements OnInit {
     this.testCaseService.testCaseSource.pipe(take(2)).subscribe((testCase: TestCase) => {
       this.testCase = testCase;
     })
+  }
+
+  onContinue(){
+    this.testCaseService.getTestCaseById(8).subscribe(
+      response => {
+        this.testCaseService.setTestCase(response)
+        this.toggleModal();
+      }
+    )
+  }
+
+  toggleModal(){
+    this.caseChoiceModalOn = !this.caseChoiceModalOn;
   }
 
   minimizePage(state: boolean){
