@@ -156,7 +156,7 @@ export class CaseStepsComponent implements OnInit {
   
   onAction(event: string, index: number){
     switch (event) {
-      case 'edit': this.onStepEdit(this.testCase.testStepOrder[index]); break;
+      case 'edit': this.onStepEdit(this.testCase.testStepOrder[index].test_step); break;
       case 'add': this.onStepAdd(index); break;
       case 'import': this.onImportSteps(index); break;
       case 'up': this.moveStepUp(index); break;

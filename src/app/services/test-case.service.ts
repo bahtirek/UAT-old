@@ -40,6 +40,11 @@ export class TestCaseService {
     .pipe(map(response => response?.result))
   }
 
+  updateTestStep(testStep: TestStep){
+    return this.http.patch<ServerResponse<TestCase>>(this.url + '/test-step', testStep)
+    .pipe(map(response => response?.result))
+  }
+
   changeStepOrder(stepOrders: any){
     return this.http.post<ServerResponse<TestCase>>(this.url + '/step-order-change', stepOrders)
     .pipe(map(response => response?.result))

@@ -44,19 +44,38 @@ export class CreateStepComponent implements OnInit {
     this.submitInProgress = true;
     if(this.stepForm.valid) {
       const step: TestStep = Object.assign(this.stepToEdit, this.stepForm.value);
-      step.testCaseId = this.testCaseId;
-      this.addTestStep(step)
+      if(this.stepToEdit.testStepId) {
+        this.updateTestStep(step)
+      } else {
+        step.testCaseId = this.testCaseId;
+        this.addTestStep(step)
+      }
     }
   }
   
-  addTestStep(step: TestStep){
-    this.testCaseService.addTestStep(step).subscribe(
+  updateTestStep(step: TestStep){
+    this.testCaseService.updateTestStep(step).subscribe(
       response => {
-        console.log(response);
         this.submitClicked = false;
         this.submitInProgress = false;
         this.stepForm.reset();
-        this.testCaseService.setTestCase(response)
+        this.testCaseService.setTestCase(response);
+        this.cancel.emit();
+      },
+      error => {
+        this.submitClicked = false;
+        this.submitInProgress = false;
+      }
+    )
+  }
+
+  addTestStep(step: TestStep){
+    this.testCaseService.addTestStep(step).subscribe(
+      response => {
+        this.submitClicked = false;
+        this.submitInProgress = false;
+        this.stepForm.reset();
+        this.testCaseService.setTestCase(response);
       },
       error => {
         this.submitClicked = false;
