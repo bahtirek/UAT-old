@@ -60,7 +60,6 @@ export class CaseStepsComponent implements OnInit {
       this.testCase = testCase;
     })
     this.testCase = this.testCaseService.getTestCase();
-    console.log(this.testCase);
     
   }
 
@@ -116,7 +115,6 @@ export class CaseStepsComponent implements OnInit {
 
     this.testCaseService.changeStepOrder(ordersToUpdate).subscribe(
       response => {
-        console.log(response);
         this.testCaseService.testCaseSource.next(response)
       },
     )

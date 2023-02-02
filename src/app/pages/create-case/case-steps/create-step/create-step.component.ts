@@ -56,6 +56,7 @@ export class CreateStepComponent implements OnInit {
         this.submitClicked = false;
         this.submitInProgress = false;
         this.stepForm.reset();
+        this.testCaseService.setTestCase(response)
       },
       error => {
         this.submitClicked = false;

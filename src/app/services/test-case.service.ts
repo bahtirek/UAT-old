@@ -30,6 +30,11 @@ export class TestCaseService {
     .pipe(map(response => response?.result))
   }
 
+  updateTestCase(testCase: TestCase): Observable<TestCase> {
+    return this.http.patch<ServerResponse<TestCase>>(this.url + '/test-case', testCase)
+    .pipe(map(response => response?.result))
+  }
+
   addTestStep(testStep: TestStep){
     return this.http.post<ServerResponse<TestCase>>(this.url + '/test-step', testStep)
     .pipe(map(response => response?.result))

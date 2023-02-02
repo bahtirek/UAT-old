@@ -39,7 +39,16 @@ export class CreateCaseTitleComponent implements OnInit {
   }
 
   updateTestCase() {
-    
+    this.testCaseService.updateTestCase(this.testCase).subscribe(
+      response => {
+        console.log(response);
+        this.submitInProgress = false;
+        this.testCaseService.setTestCase(response)
+      },
+      error => {
+        this.submitInProgress = false;
+      }
+    )
   }
 
   addTestCase(){
@@ -47,7 +56,7 @@ export class CreateCaseTitleComponent implements OnInit {
       response => {
         console.log(response);
         this.submitInProgress = false;
-        this.testCaseService.testCaseSource.next(response)
+        this.testCaseService.setTestCase(response)
       },
       error => {
         this.submitInProgress = false;
