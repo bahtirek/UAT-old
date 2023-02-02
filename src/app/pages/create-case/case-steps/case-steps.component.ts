@@ -92,8 +92,8 @@ export class CaseStepsComponent implements OnInit {
   }
 
   onDeleteStep(index: number){
-    /* this.stepToDelete = this.testCase.testSteps[index];
-    this.isDeleteModalOn = true; */
+    this.stepToDelete = this.testCase.testStepOrder[index].test_step;
+    this.isDeleteModalOn = true;
   }
 
   moveStepUp(index: number){
@@ -143,10 +143,6 @@ export class CaseStepsComponent implements OnInit {
         this.testCaseService.testCaseSource.next(response)
       },
     )
-  }
-
-  deleteStep(){
-    
   }
   
   onImportSteps(index?: number){

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TestStep } from 'src/app/interfaces/test-step.interface';
+import { TestCaseService } from 'src/app/services/test-case.service';
 
 @Component({
   selector: 'app-delete-step',
@@ -10,7 +11,7 @@ export class DeleteStepComponent implements OnInit {
 
   submitInProgress: boolean = false;
 
-  constructor() { }
+  constructor(private testCaseService: TestCaseService) { }
 
   ngOnInit(): void {
   }
@@ -22,7 +23,16 @@ export class DeleteStepComponent implements OnInit {
 
   delete(){
     this.submitInProgress = true;
-    this.deleteStep.emit(this.stepToDelete)
+    this.testCaseService.deleteTestStep(this.stepToDelete).subscribe(
+      response => {
+        this.submitInProgress = false;
+        this.testCaseService.setTestCase(response);
+        this.onCancel();
+      },
+      error => {
+        this.submitInProgress = false;
+      }
+    )
   }
 
   onCancel(){

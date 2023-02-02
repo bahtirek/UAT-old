@@ -45,6 +45,14 @@ export class TestCaseService {
     .pipe(map(response => response?.result))
   }
 
+  deleteTestStep(testStep: TestStep){
+    const params = new HttpParams()
+    .set('testCaseId', testStep.testCaseId)
+    .set('testStepId', testStep.testStepId);
+    return this.http.delete<ServerResponse<TestCase>>(this.url + '/test-step', {params})
+    .pipe(map(response => response?.result))
+  }
+
   changeStepOrder(stepOrders: any){
     return this.http.post<ServerResponse<TestCase>>(this.url + '/step-order-change', stepOrders)
     .pipe(map(response => response?.result))
