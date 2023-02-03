@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { debounceTime, distinctUntilChanged, Subject, take } from 'rxjs';
+import { TestCase } from 'src/app/interfaces/test-case.interface';
 import { Title } from 'src/app/interfaces/title.interface';
+import { TestCaseService } from 'src/app/services/test-case.service';
 import { StepService } from 'src/app/services/test-step.service';
 
 @Component({
@@ -34,30 +36,39 @@ export class SearchTestCaseComponent implements OnInit {
       id: 5
     },
   ];
+  testCases: TestCase[];
   titleSearch = new Subject<string>();
 
-  constructor() {}
+  constructor(private testCaseService: TestCaseService) {}
 
   ngOnInit(): void {
+
   }
 
   ngAfterViewInit(){
     this.titleSearch.pipe(debounceTime(400), distinctUntilChanged())
     .subscribe(value => {
-      console.log(this.title);
+      this.searchTestCase();
     });
   }
 
   @Input() stepIndex: number;
 
   @Output() cancel = new EventEmitter<void>();
-  @Output() titleEmit = new EventEmitter<number>();
+  @Output() testCaseEmit = new EventEmitter<number>();
+
+  searchTestCase(){
+    this.testCaseService.searchTestCase(this.title, 0).subscribe(
+      response => {
+        this.testCases = response;
+      }
+    )
+  }
 
   onImport(id: number){
-
     if(!this.submitInProgress) {
       this.submitInProgress = id;
-      this.titleEmit.emit(id)
+      this.testCaseEmit.emit(id)
     }
   }
 
