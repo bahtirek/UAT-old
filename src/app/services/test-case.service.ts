@@ -12,6 +12,7 @@ import { TestStep } from '../interfaces/test-step.interface';
 export class TestCaseService {
 
   url = api.url;
+  stepIndexForImport: number;
 
   constructor(private http: HttpClient) { }
 
@@ -32,6 +33,14 @@ export class TestCaseService {
 
   updateTestCase(testCase: TestCase): Observable<TestCase> {
     return this.http.patch<ServerResponse<TestCase>>(this.url + '/test-case', testCase)
+    .pipe(map(response => response?.result))
+  }
+
+  searchTestCase(title: string, includeDeleted: number){
+    const params = new HttpParams()
+      .set('title', title)
+      .set('includeDeleted', includeDeleted);
+    return this.http.get<ServerResponse<TestCase[]>>(this.url + '/test-case-search', {params})
     .pipe(map(response => response?.result))
   }
 
