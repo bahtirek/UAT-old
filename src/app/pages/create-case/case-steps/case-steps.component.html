@@ -20,7 +20,6 @@
 
 </div>
 <div class="ui-br-ext-flex ui-br-ext-justify-end ui-br-ext-btn-link-group">
-    <button (click)="onImportSteps()" class="ui-br-ext-btn-link">Import steps</button>
     <button (click)="onStepAdd()" class="ui-br-ext-btn-link">Add new step</button>
 </div>
 <app-modal *ngIf="isAddStepModalOn" (closeModal)="toggleModal('addnewStepModal')" [propClass]="'ui-br-ext-width-full'">

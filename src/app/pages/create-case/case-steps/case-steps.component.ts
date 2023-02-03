@@ -60,7 +60,6 @@ export class CaseStepsComponent implements OnInit {
       this.testCase = testCase;
     })
     this.testCase = this.testCaseService.getTestCase();
-    
   }
 
   @ViewChild(ImportStepsComponent) importSteps!: ImportStepsComponent;
@@ -145,8 +144,8 @@ export class CaseStepsComponent implements OnInit {
     )
   }
   
-  onImportSteps(index?: number){
-    if(index) this.stepIndex = index;
+  onImportSteps(index: number){
+    this.testCaseService.stepIndexForImport = index;
     this.importSteps.toggleModal()
   }
   
