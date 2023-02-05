@@ -34,6 +34,7 @@ import { MoreButtonMenuComponent } from '../shared/more-button-menu/more-button-
 import { TestersComponent } from './events-page/create-event/testers/testers.component';
 import { TesterDetailsComponent } from './events-page/create-event/testers/tester-details/tester-details.component';
 import { AddTesterComponent } from './events-page/create-event/testers/add-tester/add-tester.component';
+import { ReviewStepsComponent } from '../shared/review-steps/review-steps.component';
 
 
 
@@ -72,6 +73,7 @@ import { AddTesterComponent } from './events-page/create-event/testers/add-teste
     TestersComponent,
     TesterDetailsComponent,
     AddTesterComponent,
+    ReviewStepsComponent,
   ],
   imports: [
     CommonModule,
