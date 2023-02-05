@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, Subject, throwError } from 'rxjs';
-import { TestCase, ServerResponse } from '../interfaces/test-case.interface';
+import { TestCase, ServerResponse, TestStepOrder } from '../interfaces/test-case.interface';
 import { api } from '../data/api-url';
 import { TestStep } from '../interfaces/test-step.interface';
 
@@ -82,7 +82,7 @@ export class TestCaseService {
   }
 
   createStepsArray(testCase: TestCase, importedCases: TestCase[]){
-    const importedIndex = testCase.testStepOrder.findIndex((item: TestStep) => item.imported);
+    const importedIndex = testCase.testStepOrder.findIndex((item: TestStepOrder) => item.imported);
     if(importedIndex >= 0) {
       const steps = importedCases.find((importedCase: TestCase) => importedCase.testCaseId == testCase.testStepOrder[importedIndex].importedCaseId);
       testCase.testStepOrder.splice(importedIndex, 1);
@@ -96,7 +96,7 @@ export class TestCaseService {
   createStepsArrayPromise(testCase: TestCase, importedCases: TestCase[]){
     return new Promise<void>((resolve, reject) => {
       for (let i = 0; i < importedCases.length; i++) {
-        const importedIndex = testCase.testStepOrder.findIndex((item: TestStep) => item.imported);
+        const importedIndex = testCase.testStepOrder.findIndex((item: TestStepOrder) => item.imported);
         console.log(importedIndex);
         if(importedIndex >= 0) {
           const steps = importedCases.find((importedCase: TestCase) => importedCase.testCaseId == testCase.testStepOrder[importedIndex].importedCaseId);
@@ -107,17 +107,6 @@ export class TestCaseService {
       }
     })
   }
-
-
-  /* createStepArray(){
-    const importedIndex = this.testCase.testStepOrder.findIndex((item: TestStep) => item.imported);
-    if(importedIndex >= 0) {
-      const steps = this.importedCases.find((importedCase: TestCase) => importedCase.testCaseId == this.testCase.testStepOrder[importedIndex].importedCaseId);
-      this.testCase.testStepOrder.splice(importedIndex, 1);
-      this.testCase.testStepOrder.splice(importedIndex, 0, ...steps.testStepOrder );
-      this.createStepArray();
-    }
-  } */
 
   getTestCase(){
     return this.testCase;

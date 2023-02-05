@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { take } from 'rxjs';
-import { TestCase } from 'src/app/interfaces/test-case.interface';
+import { TestCase, TestStepOrder } from 'src/app/interfaces/test-case.interface';
 import { TestStep } from 'src/app/interfaces/test-step.interface';
 import { TestCaseService } from 'src/app/services/test-case.service';
 import { StepService } from 'src/app/services/test-step.service';
@@ -16,6 +16,7 @@ export class ImportStepsComponent implements OnInit {
   submitInProgress: boolean = false;
   isSearchTestCaseModalOn: boolean = false;
   importedTestCase: TestCase;
+  importedCase: TestCase;
 
   constructor(private testCaseService: TestCaseService) { }
 
@@ -24,26 +25,22 @@ export class ImportStepsComponent implements OnInit {
 
   @Input() stepIndex: number;
 
-  testCaseImport(id: number) {
-    this.testCaseService.getTestCaseById(id).subscribe(
-      response => {
-        this.importSteps(response.testStepOrder);
-      }
-    )
-  }
-
-  async importSteps(steps: TestStep[]){
-    //const testCase = {...this.testCaseService.testCase};
-    const testCase = JSON.parse(JSON.stringify(this.testCaseService.testCase));
+  async testCaseImport(importedTestCase: TestCase) {
+    const testCase = this.testCaseService.testCase;
     const stepIndex = this.testCaseService.stepIndexForImport;
-    
+    const step: TestStepOrder = {
+      importedCaseTitle: importedTestCase.title,
+      importedCaseId: importedTestCase.testCaseId,
+      imported: true,
+      order: stepIndex
+    }
     if(stepIndex == testCase.testStepOrder.length - 1) {// import after last step
-      testCase.testStepOrder  = testCase.testStepOrder.concat(steps);
+      testCase.testStepOrder  = testCase.testStepOrder.concat(step);
       await this.assignIndexAsOrder(testCase.testStepOrder);
       this.testCaseService.setTestCase(testCase);
       this.toggleModal();
     } else {
-      testCase.testStepOrder.splice(stepIndex + 1, 0, ...steps );
+      testCase.testStepOrder.splice(stepIndex + 1, 0, step );
       await this.assignIndexAsOrder(testCase.testStepOrder);
       this.testCaseService.setTestCase(testCase);
       this.toggleModal();
@@ -54,7 +51,7 @@ export class ImportStepsComponent implements OnInit {
     return new Promise (async(resolve) => {
       for (let index = 0; index < array.length; index++) {
         array[index].order = index + 1;
-        array[index].test_step.order = index + 1;
+        if(array[index].test_step) array[index].test_step.order = index + 1;
         if(index == array.length - 1) {
           resolve(true);
         }

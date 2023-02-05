@@ -55,7 +55,7 @@ export class SearchTestCaseComponent implements OnInit {
   @Input() stepIndex: number;
 
   @Output() cancel = new EventEmitter<void>();
-  @Output() testCaseEmit = new EventEmitter<number>();
+  @Output() testCaseEmit = new EventEmitter<TestCase>();
 
   searchTestCase(){
     this.testCaseService.searchTestCase(this.title, 0).subscribe(
@@ -65,10 +65,10 @@ export class SearchTestCaseComponent implements OnInit {
     )
   }
 
-  onImport(id: number){
+  onImport(importedTestCase: TestCase){
     if(!this.submitInProgress) {
-      this.submitInProgress = id;
-      this.testCaseEmit.emit(id)
+      this.submitInProgress = importedTestCase.testCaseId;
+      this.testCaseEmit.emit(importedTestCase)
     }
   }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MoreButtonAction } from 'src/app/interfaces/more-button-action.interface';
-import { TestCase } from 'src/app/interfaces/test-case.interface';
+import { TestCase, TestStepOrder } from 'src/app/interfaces/test-case.interface';
 import { TestStep } from 'src/app/interfaces/test-step.interface';
 import { TestCaseService } from 'src/app/services/test-case.service';
 import { StepService } from 'src/app/services/test-step.service';
@@ -17,6 +17,7 @@ export class CaseStepsComponent implements OnInit {
   stepToEdit: TestStep = {};
   isAddStepModalOn: boolean = false;
   isDeleteModalOn: boolean = false;
+  importsReviewModalOn: boolean = false;
   stepToDelete: TestStep;
   stepIndex: number;
   actions: MoreButtonAction[] = [
@@ -50,8 +51,31 @@ export class CaseStepsComponent implements OnInit {
       action: 'delete',
       display: true
     },
-  ]
+  ];
+  importActions: MoreButtonAction[] = [
+    {
+      name: 'Review',
+      action: 'review',
+      display: true
+    },
+    {
+      name: 'Move up',
+      action: 'up',
+      display: true
+    },
+    {
+      name: 'Move down',
+      action: 'down',
+      display: true
+    },
+    {
+      name: 'Delete',
+      action: 'delete',
+      display: true
+    },
+  ];
   testCase: TestCase;
+  importedCaseIdToReview: number;
 
   constructor(private testCaseService: TestCaseService) { }
 
@@ -76,6 +100,11 @@ export class CaseStepsComponent implements OnInit {
       if(!this.isDeleteModalOn) {
         this.stepToEdit = {};
         this.stepIndex = null;
+      }
+    } else if(val == 'importsReviewModal'){
+      this.importsReviewModalOn = !this.importsReviewModalOn;
+      if(!this.importsReviewModalOn) {
+        
       }
     } 
   }
@@ -148,6 +177,27 @@ export class CaseStepsComponent implements OnInit {
     this.testCaseService.stepIndexForImport = index;
     this.importSteps.toggleModal()
   }
+
+  async importCase(testCase: TestCase){
+    
+  }
+
+  getImprotedSteps(id: number){
+    this.testCaseService.getTestCaseById(id).subscribe(
+      response => {
+        this.importCase(response);
+      }
+    )
+  }
+
+  onImportsReview(importedCase: TestStepOrder) {
+    this.importedCaseIdToReview = importedCase.importedCaseId;
+    this.toggleModal('importsReviewModal');
+  }
+
+  onImportDeleteStep(index: number) {
+    throw new Error('Method not implemented.');
+  }
   
   onAction(event: string, index: number){
     switch (event) {
@@ -159,5 +209,16 @@ export class CaseStepsComponent implements OnInit {
       case 'delete': this.onDeleteStep(index); break;
     }
   }
+  
+  onImportAction(event: string, step: TestStepOrder, index: number){
+    switch (event) {
+      case 'review': this.onImportsReview(step); break;
+      case 'up': this.moveStepUp(index); break;
+      case 'down': this.moveStepDown(index); break;
+      case 'delete': this.onImportDeleteStep(index); break;
+    }
+  }
+
+
 
 }
