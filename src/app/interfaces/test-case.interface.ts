@@ -13,7 +13,9 @@ export interface TestStepOrder {
     order?: number,
     testStepId?: number,
     test_step?: TestStep,
-    importedCaseId?: number
+    imported?: boolean,
+    importedCaseId?: number,
+    importedCaseTitle?: string
 }
 
 export interface ServerResponse <T> {
