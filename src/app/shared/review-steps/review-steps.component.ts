@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { TestCase } from 'src/app/interfaces/test-case.interface';
 
 @Component({
   selector: 'app-review-steps',
@@ -11,5 +12,7 @@ export class ReviewStepsComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  @Input() testCase: TestCase;
 
 }

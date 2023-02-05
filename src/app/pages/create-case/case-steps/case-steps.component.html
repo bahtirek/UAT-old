@@ -37,8 +37,8 @@
 <app-modal *ngIf="isDeleteModalOn" (closeModal)="toggleModal('deleteStepModal')">
     <app-delete-step (cancel)="toggleModal('deleteStepModal')" [stepToDelete]="stepToDelete"></app-delete-step>
 </app-modal>
-<app-modal *ngIf="importsReviewModalOn" (closeModal)="toggleModal('importsReviewModal')">
-    <app-review-steps (cancel)="toggleModal('importsReviewModal')"></app-review-steps>
+<app-modal *ngIf="importsReviewModalOn" (closeModal)="toggleModal('importsReviewModal')"  [propClass]="'ui-br-ext-width-full'">
+    <app-review-steps [testCase]="testCaseToReview"></app-review-steps>
 </app-modal>
 <app-import-steps [stepIndex]="stepIndex"></app-import-steps>
 

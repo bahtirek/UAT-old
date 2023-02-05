@@ -75,6 +75,7 @@ export class CaseStepsComponent implements OnInit {
     },
   ];
   testCase: TestCase;
+  testCaseToReview: TestCase;
   importedCaseIdToReview: number;
 
   constructor(private testCaseService: TestCaseService) { }
@@ -183,16 +184,16 @@ export class CaseStepsComponent implements OnInit {
   }
 
   getImprotedSteps(id: number){
-    this.testCaseService.getTestCaseById(id).subscribe(
-      response => {
-        this.importCase(response);
-      }
-    )
+    
   }
 
   onImportsReview(importedCase: TestStepOrder) {
-    this.importedCaseIdToReview = importedCase.importedCaseId;
-    this.toggleModal('importsReviewModal');
+    this.testCaseService.getTestCaseById(importedCase.importedCaseId).subscribe(
+      response => {
+        this.testCaseToReview = response;
+        this.toggleModal('importsReviewModal');
+      }
+    )
   }
 
   onImportDeleteStep(index: number) {
