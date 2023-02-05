@@ -81,6 +81,44 @@ export class TestCaseService {
     this.testCaseSource.next(testCase)
   }
 
+  createStepsArray(testCase: TestCase, importedCases: TestCase[]){
+    const importedIndex = testCase.testStepOrder.findIndex((item: TestStep) => item.imported);
+    if(importedIndex >= 0) {
+      const steps = importedCases.find((importedCase: TestCase) => importedCase.testCaseId == testCase.testStepOrder[importedIndex].importedCaseId);
+      testCase.testStepOrder.splice(importedIndex, 1);
+      testCase.testStepOrder.splice(importedIndex, 0, ...steps.testStepOrder );
+      console.log(importedIndex);
+      
+      this.createStepsArray(testCase, importedCases);
+    } 
+  }
+
+  createStepsArrayPromise(testCase: TestCase, importedCases: TestCase[]){
+    return new Promise<void>((resolve, reject) => {
+      for (let i = 0; i < importedCases.length; i++) {
+        const importedIndex = testCase.testStepOrder.findIndex((item: TestStep) => item.imported);
+        console.log(importedIndex);
+        if(importedIndex >= 0) {
+          const steps = importedCases.find((importedCase: TestCase) => importedCase.testCaseId == testCase.testStepOrder[importedIndex].importedCaseId);
+          testCase.testStepOrder.splice(importedIndex, 1);
+          testCase.testStepOrder.splice(importedIndex, 0, ...steps.testStepOrder );
+        }
+        if(i == importedCases.length - 1) resolve();
+      }
+    })
+  }
+
+
+  /* createStepArray(){
+    const importedIndex = this.testCase.testStepOrder.findIndex((item: TestStep) => item.imported);
+    if(importedIndex >= 0) {
+      const steps = this.importedCases.find((importedCase: TestCase) => importedCase.testCaseId == this.testCase.testStepOrder[importedIndex].importedCaseId);
+      this.testCase.testStepOrder.splice(importedIndex, 1);
+      this.testCase.testStepOrder.splice(importedIndex, 0, ...steps.testStepOrder );
+      this.createStepArray();
+    }
+  } */
+
   getTestCase(){
     return this.testCase;
   }

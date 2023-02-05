@@ -12,7 +12,8 @@ export interface TestCase {
 export interface TestStepOrder {
     order?: number,
     testStepId?: number,
-    test_step?: TestStep
+    test_step?: TestStep,
+    importedCaseId?: number
 }
 
 export interface ServerResponse <T> {
