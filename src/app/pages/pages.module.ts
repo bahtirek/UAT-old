@@ -35,6 +35,8 @@ import { TestersComponent } from './events-page/create-event/testers/testers.com
 import { TesterDetailsComponent } from './events-page/create-event/testers/tester-details/tester-details.component';
 import { AddTesterComponent } from './events-page/create-event/testers/add-tester/add-tester.component';
 import { ReviewStepsComponent } from '../shared/review-steps/review-steps.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import { LoginComponent } from './auth/login/login.component';
 
 
 
@@ -74,6 +76,8 @@ import { ReviewStepsComponent } from '../shared/review-steps/review-steps.compon
     TesterDetailsComponent,
     AddTesterComponent,
     ReviewStepsComponent,
+    SignupComponent,
+    LoginComponent,
   ],
   imports: [
     CommonModule,
@@ -86,7 +90,9 @@ import { ReviewStepsComponent } from '../shared/review-steps/review-steps.compon
     ExecutePageComponent,
     SearchPageComponent,
     ModalComponent,
-    EventsPageComponent
+    EventsPageComponent,
+    LoginComponent,
+    SignupComponent
   ]
 })
 export class PagesModule { }
