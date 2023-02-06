@@ -4,6 +4,8 @@ export interface Pages {
     uiBrExtCreateEvent?: PageSize,
     uiBrExtSettings?: PageSize,
     uiBrExtExecute?: PageSize,
+    uiBrExtLogin?: PageSize,
+    uiBrExtSignup?: PageSize,
 }
 
 

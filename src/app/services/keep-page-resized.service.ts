@@ -14,6 +14,8 @@ export class KeepPageResizedService {
     uiBrExtCreateEvent: {},
     uiBrExtSettings: {},
     uiBrExtExecute: {},
+    uiBrExtLogin: {},
+    uiBrExtSignup: {},
   }
 
 }
