@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { arr } from '../data/executionobj';
 import { testCasesForExecution } from '../data/imported';
-import { TestCase } from '../interfaces/test-case.interface';
-import { TestStep } from '../interfaces/test-step.interface';
 import { AccountService } from '../services/account.service';
 import { ActiveBtnService } from '../services/active-btn.service';
 import { AuthService } from '../services/auth.service';
@@ -21,41 +19,35 @@ export class ExtensionComponent implements OnInit {
   obj = arr;
   testCase = testCasesForExecution.testCase;
   importedCases = testCasesForExecution.importedCases;  
+  isAuthorized: any;
 
-  constructor( private testCaseService: TestCaseService , private activeBtnService: ActiveBtnService, private unsavedBugStorage: UnsavedBugStorageService, private toggleExtension: ToggleExtensionService, private auth: AuthService, private accountService: AccountService) { }
+  constructor( private activeBtnService: ActiveBtnService, private toggleExtension: ToggleExtensionService, private auth: AuthService ) { }
 
   activeBtn: string = '';
 
   ngOnInit(): void {
     this.activeBtnService.activeBtnSubject.subscribe(
       activeBtn => {
-        this.activeBtn = activeBtn;
+        this.switchPage(activeBtn);
       }
     )
-    this.unsavedBugStorage.getReportFromStorage();
+
+    this.switchPage('ui-br-ext-login');
 
     this.toggleExtension.toggle.subscribe(
       state => {
         this.hideExtension = state
       }
     )
-      console.log('stareted test');
-      //this.testCaseService.createStepsArray(this.testCase, this.importedCases);
-      this.test()
-      console.log('completed test');
   }
 
-  async test(){
-    console.log('stareted');
-    await this.testCaseService.createStepsArrayPromise(this.testCase, this.importedCases);
-    console.log(this.testCase);
-    console.log('completed');
+  switchPage(activeBtn: string) {
+    if(this.isAuthorized) {
+      this.activeBtn = activeBtn;
+    } else if(activeBtn == 'ui-br-ext-registration' || activeBtn == 'ui-br-ext-forgot-password') {
+      this.activeBtn = activeBtn;
+    } else {
+      this.activeBtn = 'ui-br-ext-login';
+    }
   }
-  /* async test(){
-    console.log('stareted');
-    await this.testCaseService.createStepArray(this.testCase, this.importedCases);
-    console.log(this.testCase);
-    console.log('completed');
-  } */
-
 }
