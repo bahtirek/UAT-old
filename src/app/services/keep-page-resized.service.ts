@@ -16,6 +16,7 @@ export class KeepPageResizedService {
     uiBrExtExecute: {},
     uiBrExtLogin: {},
     uiBrExtSignup: {},
+    uiBrExtForgotPassword: {},
   }
 
 }

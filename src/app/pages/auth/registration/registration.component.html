@@ -1,0 +1,67 @@
+
+<div class="ui-br-ext-dropdown-item ui-br-ext-create-case">
+    <div class="ui-br-ext-page-content">
+
+        <div class="ui-br-ext-drop-title-wrap">
+            <div class="ui-br-ext-drop-title">Register</div>
+            <app-minimize-drop-body (minimizePage)="minimizePage($event)" class="ui-br-ext-minimizedropbody2"></app-minimize-drop-body>
+        </div>
+        <div class="ui-br-ext-drop-body"  id="uiBrExtLogin"  [ngClass]="{'ui-br-ext-hide': !showHide}">
+            <div class="ui-br-ext-spacer-5"></div>
+            <div class="ui-br-ext-width-half ui-br-ext-margin-auto">
+                <form [formGroup]="loginForm" novalidate #form autocomplete="off">
+                    <div class="ui-br-ext-form-container ui-br-ext-textarea">
+                        <label for="label">Email</label>
+                        <input type="email" name="label" formControlName="email" id="email" />
+                        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="ui-br-ext-message">
+                            <div *ngIf="email.errors?.['required']">
+                                Email is required.
+                            </div>
+                            <div *ngIf="email.errors?.['pattern']">
+                                Wrong email format
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui-br-ext-spacer-2"></div>
+                    <div class="ui-br-ext-form-container ui-br-ext-textarea">
+                        <label for="label">Password</label>
+                        <input type="password" name="label" formControlName="password" id="password"/>
+                        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="ui-br-ext-message">
+                            <div *ngIf="password.errors?.['required']">
+                                Password is required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui-br-ext-spacer-2"></div>
+                    <div class="ui-br-ext-form-container ui-br-ext-textarea">
+                        <label for="label">Confirm password</label>
+                        <input type="password" name="label" formControlName="confirmPassword" id="confirmPassword"/>
+                        <div *ngIf="confirmPassword.dirty || confirmPassword.touched" class="ui-br-ext-message">
+                            <div *ngIf="confirmPassword.errors?.['required']">
+                               Confirm password is required.
+                            </div>
+                            <div *ngIf="confirmPassword.errors?.['passwordMatch']">
+                               Password mismatch.
+                            </div>
+                        </div>
+                        <div *ngIf="confirmPassword.errors?.['passwordMatch']">
+                           Password mismatch.
+                        </div>
+                    </div>
+                </form>
+                <div class="ui-br-ext-btn-group ui-br-ext-width-initial">
+                    <button class="ui-br-ext-btn"  data-listener="off" (click)="onSubmit()" [disabled]="submitInProgress">
+                        <span class="ui-br-ext-spinner" [ngClass]="{'active': submitInProgress}"></span>
+                        <span>Submit</span> 
+                    </button>
+                    <button class="ui-br-ext-btn-danger"  data-listener="off" (click)="onCancel()">
+                        <span class="ui-br-ext-spinner"></span>
+                        <span>Cancel</span> 
+                    </button>
+                </div>
+            </div>
+            
+            <app-resize [pageId]="'uiBrExtLogin'"></app-resize>
+        </div>
+    </div>
+</div>

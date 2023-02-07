@@ -6,6 +6,7 @@ export interface Pages {
     uiBrExtExecute?: PageSize,
     uiBrExtLogin?: PageSize,
     uiBrExtSignup?: PageSize,
+    uiBrExtForgotPassword?: PageSize,
 }
 
 

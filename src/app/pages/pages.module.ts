@@ -38,6 +38,7 @@ import { ReviewStepsComponent } from '../shared/review-steps/review-steps.compon
 import { SignupComponent } from './auth/signup/signup.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
+import { RegistrationComponent } from './auth/registration/registration.component';
 
 
 
@@ -80,6 +81,7 @@ import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.
     SignupComponent,
     LoginComponent,
     ForgotPasswordComponent,
+    RegistrationComponent,
   ],
   imports: [
     CommonModule,
@@ -95,7 +97,8 @@ import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.
     EventsPageComponent,
     LoginComponent,
     SignupComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent, 
+    RegistrationComponent
   ]
 })
 export class PagesModule { }
