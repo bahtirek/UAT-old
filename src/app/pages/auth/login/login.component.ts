@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActiveBtnService } from 'src/app/services/active-btn.service';
 
 @Component({
   selector: 'app-login',
@@ -13,8 +14,6 @@ export class LoginComponent implements OnInit {
   formError: FormError = {};
   submitInProgress: boolean = false; 
   submitClicked: boolean;
-  hidePassword: boolean = false;
-  title: string = 'Login';
 
   get email() {
     return this.loginForm.get('email');
@@ -29,7 +28,7 @@ export class LoginComponent implements OnInit {
     password: ['', [Validators.required, ]]
   }); 
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private activeBtnService: ActiveBtnService) { }
 
   ngOnInit(): void {
   }
@@ -40,18 +39,15 @@ export class LoginComponent implements OnInit {
   }
 
   forgotPassword(){
-    this.hidePassword = true;
-    this.title = 'Forgot password';
+    this.activeBtnService.activeBtnSubject.next('ui-br-ext-forgot-password');
   }
 
   register(){
-    
+    this.activeBtnService.activeBtnSubject.next('ui-br-ext-register');
   }
 
   onCancel(){
     this.loginForm.reset();
-    this.hidePassword = false;
-    this.title = 'Login';
   }
 
   minimizePage(state: boolean){
