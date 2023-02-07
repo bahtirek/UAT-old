@@ -37,6 +37,7 @@ import { AddTesterComponent } from './events-page/create-event/testers/add-teste
 import { ReviewStepsComponent } from '../shared/review-steps/review-steps.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { LoginComponent } from './auth/login/login.component';
+import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 
 
 
@@ -78,6 +79,7 @@ import { LoginComponent } from './auth/login/login.component';
     ReviewStepsComponent,
     SignupComponent,
     LoginComponent,
+    ForgotPasswordComponent,
   ],
   imports: [
     CommonModule,
@@ -92,7 +94,8 @@ import { LoginComponent } from './auth/login/login.component';
     ModalComponent,
     EventsPageComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    ForgotPasswordComponent
   ]
 })
 export class PagesModule { }
