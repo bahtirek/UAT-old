@@ -13,6 +13,9 @@ export class LoginComponent implements OnInit {
   formError: FormError = {};
   submitInProgress: boolean = false; 
   submitClicked: boolean;
+  hidePassword: boolean = false;
+  title: string = 'Login';
+
   get email() {
     return this.loginForm.get('email');
   }
@@ -36,12 +39,23 @@ export class LoginComponent implements OnInit {
     this.submitInProgress = true;
   }
 
+  forgotPassword(){
+    this.hidePassword = true;
+    this.title = 'Forgot password';
+  }
+
+  register(){
+    
+  }
+
   onCancel(){
-   
+    this.loginForm.reset();
+    this.hidePassword = false;
+    this.title = 'Login';
   }
 
   minimizePage(state: boolean){
-    this.showHide = state  
+    this.showHide = state; 
   }
 
 }

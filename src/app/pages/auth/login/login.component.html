@@ -3,12 +3,18 @@
     <div class="ui-br-ext-page-content">
 
         <div class="ui-br-ext-drop-title-wrap">
-            <div class="ui-br-ext-drop-title">Login</div>
+            <div class="ui-br-ext-drop-title">{{title}}</div>
             <app-minimize-drop-body (minimizePage)="minimizePage($event)" class="ui-br-ext-minimizedropbody2"></app-minimize-drop-body>
         </div>
         <div class="ui-br-ext-drop-body"  id="uiBrExtLogin"  [ngClass]="{'ui-br-ext-hide': !showHide}">
             <div class="ui-br-ext-spacer-5"></div>
             <div class="ui-br-ext-width-half ui-br-ext-margin-auto">
+                <div class="ui-br-ext-flex ui-br-ext-justify-end">
+                    <div class="ui-br-ext-btn-link" (click)="register()" [ngStyle]="{'visibility':hidePassword ? 'hidden' : 'visible' }">Register</div>
+                </div>
+                <!-- <div class="ui-br-ext-flex ui-br-ext-justify-end">
+                    <div class="ui-br-ext-btn-link" (click)="forgotPassword()" [ngStyle]="{'visibility':hidePassword ? 'hidden' : 'visible' }">Forgot password</div>
+                </div> -->
                 <form [formGroup]="loginForm" novalidate #form autocomplete="off">
                     <div class="ui-br-ext-form-container ui-br-ext-textarea">
                         <label for="label">Email</label>
@@ -23,7 +29,7 @@
                         </div>
                     </div>
                     <div class="ui-br-ext-spacer-2"></div>
-                    <div class="ui-br-ext-form-container ui-br-ext-textarea">
+                    <div class="ui-br-ext-form-container ui-br-ext-textarea" *ngIf="!hidePassword">
                         <label for="label">Password</label>
                         <input type="password" name="label" formControlName="password" id="password"/>
                         <div *ngIf="password.invalid && (password.dirty || password.touched)" class="ui-br-ext-message">
@@ -33,15 +39,18 @@
                         </div>
                     </div>
                 </form>
-                <div class="ui-br-ext-btn-group">
-                    <button class="ui-br-ext-btn"  data-listener="off" (click)="onSubmit()" [disabled]="submitInProgress">
-                        <span class="ui-br-ext-spinner" [ngClass]="{'active': submitInProgress}"></span>
-                        <span>Submit</span> 
-                    </button>
-                    <button class="ui-br-ext-btn-danger"  data-listener="off" (click)="onCancel()">
-                        <span class="ui-br-ext-spinner"></span>
-                        <span>Cancel</span> 
-                    </button>
+                <div class="ui-br-ext-flex ui-br-ext-justify-between ui-br-ext-align-end">
+                    <div class="ui-br-ext-btn-link" (click)="forgotPassword()" [ngStyle]="{'visibility':hidePassword ? 'hidden' : 'visible' }">Forgot password</div>
+                    <div class="ui-br-ext-btn-group ui-br-ext-width-initial">
+                        <button class="ui-br-ext-btn"  data-listener="off" (click)="onSubmit()" [disabled]="submitInProgress">
+                            <span class="ui-br-ext-spinner" [ngClass]="{'active': submitInProgress}"></span>
+                            <span>Submit</span> 
+                        </button>
+                        <button class="ui-br-ext-btn-danger"  data-listener="off" (click)="onCancel()">
+                            <span class="ui-br-ext-spinner"></span>
+                            <span>Cancel</span> 
+                        </button>
+                    </div>
                 </div>
             </div>
             
