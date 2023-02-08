@@ -7,8 +7,8 @@
         </div>
         <div class="ui-br-ext-drop-body"  id="uiBrExtCreateEvent"  [ngClass]="{'ui-br-ext-hide': !showHide}">
             <app-tabs [tabs]="tabs" (activeTab)="setActiveTab($event)"></app-tabs>
-            <div class="ui-br-ext-container" [ngSwitch]="activeTab" >
-                <app-create-event *ngSwitchCase="'create'"></app-create-event>
+            <div class="ui-br-ext-container">
+                <app-create-event class="ui-br-ext-hide" [ngClass]="{'ui-br-ext-unhide': 'create' == activeTab}"></app-create-event>
                 <!-- <app-bug-details *ngSwitchCase="'details'"></app-bug-details> -->
             </div>
             
