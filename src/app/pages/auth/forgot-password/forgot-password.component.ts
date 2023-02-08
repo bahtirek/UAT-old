@@ -37,7 +37,6 @@ export class ForgotPasswordComponent implements OnInit {
 
   onCancel(){
     this.loginForm.reset();
-    this.activeBtnService.activeBtnSubject.next("ui-br-ext-login");
   }
 
   minimizePage(state: boolean){
