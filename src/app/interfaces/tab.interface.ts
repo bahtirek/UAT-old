@@ -1,5 +1,6 @@
 export interface Tab {
     id: string,
     label: string,
-    isActive: boolean
+    isActive: boolean,
+    disabled?: boolean
 }
