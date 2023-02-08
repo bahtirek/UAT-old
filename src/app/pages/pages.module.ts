@@ -39,6 +39,8 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 import { RegistrationComponent } from './auth/registration/registration.component';
+import { UserProfileComponent } from './settings-page/user-profile/user-profile.component';
+import { ManageUsersComponent } from './settings-page/manage-users/manage-users.component';
 
 
 
@@ -82,6 +84,8 @@ import { RegistrationComponent } from './auth/registration/registration.componen
     LoginComponent,
     ForgotPasswordComponent,
     RegistrationComponent,
+    UserProfileComponent,
+    ManageUsersComponent,
   ],
   imports: [
     CommonModule,

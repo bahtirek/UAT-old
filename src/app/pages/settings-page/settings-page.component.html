@@ -5,6 +5,11 @@
             <app-minimize-drop-body (minimizePage)="minimizePage($event)" class="ui-br-ext-minimizedropbody2"></app-minimize-drop-body>
         </div>
         <div class="ui-br-ext-drop-body" id="uiBrExtSettings" [ngClass]="{'ui-br-ext-hide': !showHide}">
+            <app-tabs [tabs]="tabs" (activeTab)="setActiveTab($event)"></app-tabs>
+            <div class="ui-br-ext-container" [ngSwitch]="activeTab" >
+                <app-manage-users *ngSwitchCase="'users'"></app-manage-users>
+                <app-user-profile *ngSwitchCase="'profile'"></app-user-profile>
+            </div>
             <app-resize [pageId]="'uiBrExtSettings'"></app-resize>
         </div>
     </div>
