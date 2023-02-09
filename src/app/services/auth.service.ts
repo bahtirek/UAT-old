@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { Account } from '../interfaces/account.interface';
+import { User } from '../interfaces/user.inteface';
 import { HandleErrorService } from './handleError.service';
 
 @Injectable({
@@ -14,12 +15,23 @@ export class AuthService {
 
     constructor(private http: HttpClient, private errorService: HandleErrorService) { }
 
+    user: User = {
+        firstname: 'test',
+        lastname: 'test',
+        email: 'test@test.com',
+        userId: 1
+    }
+
     URL = 'https://extension-auth.evendor.app/api';
     httpOptions = {
         headers: new HttpHeaders({
             'Content-Type': 'application/json',
         }),
     };
+
+    getUser(){
+        return this.user;
+    }
 
     auth(account: Account): Observable<Account> {
         const data = {
@@ -41,4 +53,5 @@ export class AuthService {
         return this.http.post<Account>(this.URL + '/confirm_user', data, )
         .pipe(retry(1), catchError(this.errorService.handleError));
     }
+
 }

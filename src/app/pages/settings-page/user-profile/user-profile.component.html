@@ -1,1 +1,22 @@
-<p>user-profile works!</p>
+<div class="ui-br-ext-width-half ui-br-ext-margin-auto">
+    <div class="ui-br-ext-spacer-5"></div>
+    <div class="ui-uat-ext-steps">
+        <div class="ui-uat-ext-step">
+            <div class="ui-uat-ext-step-description">{{user.firstname}} {{user.lastname}}</div>
+            <div class="ui-uat-ext-step-more">
+                <app-more-button-menu [actions]="actions" (onAction)="onAction($event)"></app-more-button-menu>
+            </div>
+        </div>
+        <div class="ui-uat-ext-step">
+            <div class="ui-uat-ext-step-description">{{user.email}}</div>
+            <div class="ui-uat-ext-step-more">
+                <app-more-button-menu [actions]="actions" (onAction)="onAction($event)"></app-more-button-menu>
+            </div>
+        </div>
+        <div class="ui-uat-ext-step">
+            <div class="ui-uat-ext-step-description ui-br-ext-width-initial">
+                <div class="ui-br-ext-btn-link" (click)="updatePassword()">Update password</div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -9,7 +9,7 @@ import { Tab } from 'src/app/interfaces/tab.interface';
 export class SettingsPageComponent implements OnInit {
 
   showHide: boolean = true;
-  activeTab: string = 'create';
+  activeTab: string = 'profile';
   isAdmin: boolean = true
 
   constructor() { }
