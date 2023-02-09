@@ -18,15 +18,26 @@ export class RegistrationComponent implements OnInit {
     return this.loginForm.get('email');
   }
 
+  get firstname() {
+    return this.loginForm.get('firstname');
+  }
+
+  get lastname() {
+    return this.loginForm.get('lastname');
+  }
+
   get password() {
     return this.loginForm.get('password');
   }
+
   get confirmPassword() {
     return this.loginForm.get('confirmPassword');
   }
 
   loginForm: FormGroup = this.fb.group({
     email: ['', [Validators.required, Validators.pattern(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]],
+    firstname: ['', [Validators.required, ]],
+    lastname: ['', [Validators.required, ]],
     password: ['', [Validators.required, ]],
     confirmPassword: ['', [Validators.required, ]],
   }, { validators: passwordMatchValidator}); 
@@ -39,10 +50,16 @@ export class RegistrationComponent implements OnInit {
   onSubmit(){
     this.submitClicked = true;
     this.submitInProgress = true;
+    if(this.loginForm.valid) {
+      console.log(this.loginForm.value);
+      this.onCancel();
+    }
   }
 
   onCancel(){
     this.loginForm.reset();
+    this.submitClicked = false;
+    this.submitInProgress = false;
   }
 
   minimizePage(state: boolean){
