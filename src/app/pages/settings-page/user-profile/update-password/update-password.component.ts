@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-update-password',
@@ -11,5 +11,7 @@ export class UpdatePasswordComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  @Input() password: string
 
 }

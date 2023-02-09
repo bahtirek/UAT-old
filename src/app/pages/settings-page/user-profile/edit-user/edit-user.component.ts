@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { User } from 'src/app/interfaces/user.inteface';
 
 @Component({
   selector: 'app-edit-user',
@@ -11,5 +12,7 @@ export class EditUserComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  @Input() user: User;
 
 }

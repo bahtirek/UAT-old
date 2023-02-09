@@ -41,8 +41,8 @@ import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.
 import { RegistrationComponent } from './auth/registration/registration.component';
 import { UserProfileComponent } from './settings-page/user-profile/user-profile.component';
 import { ManageUsersComponent } from './settings-page/manage-users/manage-users.component';
-import { EditUserComponent } from './setting-page/user-profile/edit-user/edit-user.component';
-import { UpdatePasswordComponent } from './setting-page/user-profile/update-password/update-password.component';
+import { EditUserComponent } from './settings-page/user-profile/edit-user/edit-user.component';
+import { UpdatePasswordComponent } from './settings-page/user-profile/update-password/update-password.component';
 
 
 
