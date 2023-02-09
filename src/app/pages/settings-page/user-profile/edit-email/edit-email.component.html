@@ -1,1 +1,29 @@
-<p>edit-email works!</p>
+<div class="ui-br-ext-form-container">
+    <h3>Edit email</h3>
+    <div class="ui-br-ext-width-full">
+        <form [formGroup]="emailForm" novalidate #form autocomplete="off">
+            <div class="ui-br-ext-form-container ui-br-ext-textarea">
+                <label for="label">Email</label>
+                <input type="email" name="label" formControlName="email" id="email" />
+                <div *ngIf="email.invalid && (email.dirty || email.touched)" class="ui-br-ext-message">
+                    <div *ngIf="email.errors?.['required']">
+                        Email is required.
+                    </div>
+                    <div *ngIf="email.errors?.['pattern']">
+                        Wrong email format
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="ui-br-ext-btn-group">
+            <button class="ui-br-ext-btn"  data-listener="off" (click)="onSubmit()">
+                <span class="ui-br-ext-spinner"></span>
+                <span>Submit</span> 
+            </button>
+            <button class="ui-br-ext-btn-danger"  data-listener="off" (click)="onCancel()">
+                <span class="ui-br-ext-spinner"></span>
+                <span>Cancel</span> 
+            </button>
+        </div>
+    </div>
+</div>
