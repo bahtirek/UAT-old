@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { passwordMatchValidator } from 'src/app/directives/passwordMatchValidator';
-import { ActiveBtnService } from 'src/app/services/active-btn.service';
 
 @Component({
   selector: 'app-registration',
@@ -42,7 +41,7 @@ export class RegistrationComponent implements OnInit {
     confirmPassword: ['', [Validators.required, ]],
   }, { validators: passwordMatchValidator}); 
 
-  constructor(private fb: FormBuilder, private activeBtnService: ActiveBtnService) { }
+  constructor(private fb: FormBuilder ) { }
 
   ngOnInit(): void {
   }
