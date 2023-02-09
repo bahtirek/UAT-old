@@ -4,19 +4,28 @@
         <div class="ui-uat-ext-step">
             <div class="ui-uat-ext-step-description">{{user.firstname}} {{user.lastname}}</div>
             <div class="ui-uat-ext-step-more">
-                <app-more-button-menu [actions]="actions" (onAction)="onAction($event)"></app-more-button-menu>
+                <app-more-button-menu [actions]="actions" (onAction)="onAction($event, 'user')"></app-more-button-menu>
             </div>
         </div>
         <div class="ui-uat-ext-step">
             <div class="ui-uat-ext-step-description">{{user.email}}</div>
             <div class="ui-uat-ext-step-more">
-                <app-more-button-menu [actions]="actions" (onAction)="onAction($event)"></app-more-button-menu>
+                <app-more-button-menu [actions]="actions" (onAction)="onAction($event, 'email')"></app-more-button-menu>
             </div>
         </div>
         <div class="ui-uat-ext-step">
             <div class="ui-uat-ext-step-description ui-br-ext-width-initial">
-                <div class="ui-br-ext-btn-link" (click)="updatePassword()">Update password</div>
+                <div class="ui-br-ext-btn-link" (click)="toggleUpdatePasswordModal()">Update password</div>
             </div>
         </div>
     </div>
 </div>
+<app-modal *ngIf="isEditUserModalOn" (closeModal)="toggleEditUserModal()">
+    <app-edit-user (cancel)="toggleEditUserModal()" [user]="userToEdit"></app-edit-user>
+</app-modal>
+<app-modal *ngIf="isEditEmailModalOn" (closeModal)="toggleEditEmailModal()">
+    <app-edit-email (cancel)="toggleEditEmailModal()"  [user]="userToEdit"></app-edit-email>
+</app-modal>
+<app-modal *ngIf="isUpdatePasswordModalOn" (closeModal)="toggleUpdatePasswordModal()">
+    <app-update-password (cancel)="toggleUpdatePasswordModal()" [user]="userToEdit"></app-update-password>
+</app-modal>

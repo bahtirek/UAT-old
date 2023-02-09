@@ -10,6 +10,12 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class UserProfileComponent implements OnInit {
   user: any;
+  isEditUserModalOn: boolean = false;
+  isEditEmailModalOn: boolean = false;
+  isUpdatePasswordModalOn: boolean = false;
+  userToEdit: User;
+  emailToEdit: string;
+  passwordToEdit: string;
   actions: MoreButtonAction[] = [
     {
       name: 'Edit',
@@ -17,6 +23,7 @@ export class UserProfileComponent implements OnInit {
       display: true
     },
   ];
+
   
   constructor(private authService: AuthService) { }
 
@@ -24,17 +31,28 @@ export class UserProfileComponent implements OnInit {
     this.user = this.authService.getUser()
   }
 
-  onStepEdit() {
-    throw new Error('Method not implemented.');
+  toggleEditUserModal(){
+    this.isEditUserModalOn = !this.isEditUserModalOn;
   }
 
-  updatePassword(){
-    
+  toggleEditEmailModal(){
+    this.isEditEmailModalOn = !this.isEditEmailModalOn;
   }
 
-  onAction(event: string){
+  toggleUpdatePasswordModal(){
+    this.isUpdatePasswordModalOn = !this.isUpdatePasswordModalOn;
+  }
+
+  onAction(event: string, action: string){
     switch (event) {
-      case 'edit': this.onStepEdit(); break;
+      case 'edit': this.onEdit(action); break;
+    }
+  }
+  onEdit(action: string) {
+    if(action == 'user') {
+      this.toggleEditUserModal();
+    } else {
+      this.toggleEditEmailModal();
     }
   }
 
