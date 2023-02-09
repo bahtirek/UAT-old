@@ -1,1 +1,36 @@
-<p>edit-user works!</p>
+<div class="ui-br-ext-form-container">
+    <h3>Edit name</h3>
+    <div class="ui-br-ext-width-full">
+        <form [formGroup]="userForm" novalidate #form autocomplete="off">
+            <div class="ui-br-ext-form-container ui-br-ext-textarea">
+                <label for="label">First name</label>
+                <input type="text" name="label" formControlName="firstname" id="firstname"/>
+                <div *ngIf="firstname.invalid && (firstname.dirty || firstname.touched)" class="ui-br-ext-message">
+                    <div *ngIf="firstname.errors?.['required']">
+                        First name is required.
+                    </div>
+                </div>
+            </div>
+            <div class="ui-br-ext-spacer-2"></div>
+            <div class="ui-br-ext-form-container ui-br-ext-textarea">
+                <label for="label">Last name</label>
+                <input type="text" name="label" formControlName="lastname" id="lastname"/>
+                <div *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)" class="ui-br-ext-message">
+                    <div *ngIf="lastname.errors?.['required']">
+                        Last name is required.
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="ui-br-ext-btn-group">
+            <button class="ui-br-ext-btn"  data-listener="off" (click)="onSubmit()">
+                <span class="ui-br-ext-spinner"></span>
+                <span>Submit</span> 
+            </button>
+            <button class="ui-br-ext-btn-danger"  data-listener="off" (click)="onCancel()">
+                <span class="ui-br-ext-spinner"></span>
+                <span>Cancel</span> 
+            </button>
+        </div>
+    </div>
+</div>
