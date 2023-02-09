@@ -43,6 +43,7 @@ import { UserProfileComponent } from './settings-page/user-profile/user-profile.
 import { ManageUsersComponent } from './settings-page/manage-users/manage-users.component';
 import { EditUserComponent } from './settings-page/user-profile/edit-user/edit-user.component';
 import { UpdatePasswordComponent } from './settings-page/user-profile/update-password/update-password.component';
+import { EditEmailComponent } from './settings-page/user-profile/edit-email/edit-email.component';
 
 
 
@@ -90,6 +91,7 @@ import { UpdatePasswordComponent } from './settings-page/user-profile/update-pas
     ManageUsersComponent,
     EditUserComponent,
     UpdatePasswordComponent,
+    EditEmailComponent,
   ],
   imports: [
     CommonModule,
