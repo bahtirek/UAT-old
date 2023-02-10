@@ -1,0 +1,27 @@
+.ui-uat-ext-step {  
+    border: none;
+    padding: 0;
+    .ui-uat-ext-step-more, .ui-uat-ext-step-description {
+        border: none;
+        padding: 10px;
+    }
+    
+    .ui-uat-ext-step-description {
+        flex-grow: 1;
+        &.ui-br-ext-width-initial {
+            flex-grow: 0;
+        }
+    }
+}
+
+.ui-uat-ext-step:last-child {
+    &:hover {
+        background-color: transparent;
+    }
+}
+
+app-more-button-menu {
+    .ui-uat-ext-drop-menu {
+        margin-left: auto;
+    }
+}

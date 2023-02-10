@@ -1,0 +1,23 @@
+<div class="ui-br-ext-form-container">
+    <h3>User</h3>
+    <div class="ui-br-ext-width-full">
+        <div class="ui-uat-ext-steps">
+            <div class="ui-uat-ext-step">
+                <div class="ui-uat-ext-step-description">{{user.firstname}} {{user.lastname}}</div>
+            </div>
+            <div class="ui-uat-ext-step">
+                <div class="ui-uat-ext-step-description">{{user.email}}</div>
+            </div>
+        </div>
+        <div class="ui-br-ext-btn-group">
+            <button class="ui-br-ext-btn"  data-listener="off" (click)="onDelete()">
+                <span class="ui-br-ext-spinner"></span>
+                <span>Delete</span> 
+            </button>
+            <button class="ui-br-ext-btn-danger"  data-listener="off" (click)="onCancel()">
+                <span class="ui-br-ext-spinner"></span>
+                <span>Cancel</span> 
+            </button>
+        </div>
+    </div>
+</div>
