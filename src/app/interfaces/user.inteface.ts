@@ -4,3 +4,7 @@ export interface User {
     email?: string,
     userId?: number
 }
+
+export interface ServerResponse <T> {
+    result: T
+}

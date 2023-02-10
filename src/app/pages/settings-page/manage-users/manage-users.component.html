@@ -1,1 +1,28 @@
-<p>manage-users works!</p>
+<div class="ui-br-ext-width-half ui-br-ext-margin-auto">
+    <div class="ui-br-ext-spacer-5"></div>
+    <div class="ui-br-ext-form-container ui-br-ext-textarea">
+        <label for="label">Email</label>
+        <input type="text" name="label" [(ngModel)]="email" (ngModelChange)="emailSearch.next($event)"/>
+        <span class="ui-br-ext-search-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00ad55" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </span >
+        <div class="ui-br-ext-search-results" *ngIf="users && users.length > 0">
+            <ul>
+                <li *ngFor="let user of users; index as i">
+                    <span class="ui-br-ext-module-label" (click)="showUserDetails(user)">{{user.email}} - {{user.firstname}} {{user.lastname}}</span>
+                    <span class="ui-br-ext-spinner" [ngClass]="submitInProgress == user.userId ? 'active' : ''"></span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="ui-br-ext-spacer-3"></div>
+    <div class="ui-br-ext-flex ui-br-ext-justify-between ui-br-ext-align-end">
+        <div class="ui-br-ext-btn-link" (click)="addUser()">Add user</div>
+    </div>
+</div>
+<app-modal *ngIf="isAddUserModalOn" (closeModal)="toggleAddUserModal()">
+    <app-add-user (cancel)="toggleAddUserModal()"></app-add-user>
+</app-modal>
+<app-modal *ngIf="isUserDetailsModalOn" (closeModal)="toggleUserDetailsModal()">
+    <app-user-details (cancel)="toggleUserDetailsModal()" [user]="user"></app-user-details>
+</app-modal>
