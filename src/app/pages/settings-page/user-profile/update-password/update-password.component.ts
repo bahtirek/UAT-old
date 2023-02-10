@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/interfaces/user.inteface';
 
@@ -36,6 +36,7 @@ export class UpdatePasswordComponent implements OnInit {
   }
 
   @Input() user: User;
+  @Output() cancel = new EventEmitter<null>();
 
   onSubmit(){
     this.submitClicked = true;
@@ -50,6 +51,7 @@ export class UpdatePasswordComponent implements OnInit {
     this.passwordForm.reset();
     this.submitClicked = false;
     this.submitInProgress = false;
+    this.cancel.emit();
   }
 
 }
