@@ -10,7 +10,7 @@
         <div class="ui-uat-ext-step-more"></div>
     </div>
     <div class="ui-uat-ext-step" *ngFor="let step of testCase?.testStepOrder; index as i">
-        <ng-container *ngIf="!step.imported">
+        <ng-container *ngIf="!step.importedTestCaseId">
             <div class="ui-uat-ext-step-number">{{i + 1}}</div>
             <div class="ui-uat-ext-step-description">{{step.test_step.description}}</div>
             <div class="ui-uat-ext-step-expectedResults">{{step.test_step.expected}}</div>
@@ -18,7 +18,7 @@
                 <app-more-button-menu [actions]="actions" (onAction)="onAction($event, i)"></app-more-button-menu>
             </div>
         </ng-container>
-        <ng-container  *ngIf="step.imported">
+        <ng-container  *ngIf="step.importedTestCaseId">
             <div class="ui-uat-ext-step-number">{{i + 1}}</div>
             <div class="ui-uat-ext-step-description ui-br-ext-width-full text-bold">{{step.importedCaseTitle}} <span class="ui-uat-note-message">(Imported case)</span></div>
             <div class="ui-uat-ext-step-more">
@@ -40,5 +40,5 @@
 <app-modal *ngIf="importsReviewModalOn" (closeModal)="toggleModal('importsReviewModal')"  [propClass]="'ui-br-ext-width-full'">
     <app-review-steps [testCase]="testCaseToReview"></app-review-steps>
 </app-modal>
-<app-import-steps [stepIndex]="stepIndex"></app-import-steps>
+<app-import-steps></app-import-steps>
 

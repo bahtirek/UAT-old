@@ -76,7 +76,7 @@ export class CaseStepsComponent implements OnInit {
   ];
   testCase: TestCase;
   testCaseToReview: TestCase;
-  importedCaseIdToReview: number;
+  importedTestCaseIdToReview: number;
 
   constructor(private testCaseService: TestCaseService) { }
 
@@ -174,8 +174,8 @@ export class CaseStepsComponent implements OnInit {
     )
   }
   
-  onImportSteps(index: number){
-    this.testCaseService.stepIndexForImport = index;
+  onImportSteps(order: number){
+    this.testCaseService.stepOrderForImport = this.testCase.testStepOrder.length + 1;
     this.importSteps.toggleModal()
   }
 
@@ -188,7 +188,7 @@ export class CaseStepsComponent implements OnInit {
   }
 
   onImportsReview(importedCase: TestStepOrder) {
-    this.testCaseService.getTestCaseById(importedCase.importedCaseId).subscribe(
+    this.testCaseService.getTestCaseById(importedCase.importedTestCaseId).subscribe(
       response => {
         this.testCaseToReview = response;
         this.toggleModal('importsReviewModal');
@@ -204,7 +204,7 @@ export class CaseStepsComponent implements OnInit {
     switch (event) {
       case 'edit': this.onStepEdit(this.testCase.testStepOrder[index].test_step); break;
       case 'add': this.onStepAdd(index); break;
-      case 'import': this.onImportSteps(index); break;
+      case 'import': this.onImportSteps(this.testCase.testStepOrder[index].order); break;
       case 'up': this.moveStepUp(index); break;
       case 'down': this.moveStepDown(index); break;
       case 'delete': this.onDeleteStep(index); break;

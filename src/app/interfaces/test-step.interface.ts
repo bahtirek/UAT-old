@@ -5,5 +5,6 @@ export interface TestStep {
     testCaseId?: number,
     order?: number,
     createdBY?: number,
-    deleted?: boolean
+    deleted?: boolean,
+    importedTestCaseId?: number
 }

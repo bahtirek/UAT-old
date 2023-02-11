@@ -6,6 +6,7 @@ export interface TestCase {
     createdBy?: number,
     created_at?: number,
     deleted?: boolean,
+    importedTestCaseId?: number,
     testStepOrder?: TestStepOrder[]
 }
 
@@ -14,7 +15,7 @@ export interface TestStepOrder {
     testStepId?: number,
     test_step?: TestStep,
     imported?: boolean,
-    importedCaseId?: number,
+    importedTestCaseId?: number,
     importedCaseTitle?: string
 }
 

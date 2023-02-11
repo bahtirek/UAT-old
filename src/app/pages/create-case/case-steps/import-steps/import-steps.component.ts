@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { take } from 'rxjs';
+import { ImportedTestCase } from 'src/app/interfaces/imported-test-case.interface';
 import { TestCase, TestStepOrder } from 'src/app/interfaces/test-case.interface';
 import { TestStep } from 'src/app/interfaces/test-step.interface';
 import { TestCaseService } from 'src/app/services/test-case.service';
@@ -17,15 +18,32 @@ export class ImportStepsComponent implements OnInit {
   isSearchTestCaseModalOn: boolean = false;
   importedTestCase: TestCase;
   importedCase: TestCase;
+  isErrorModalOn: boolean = false;
+  error: string = '';
 
   constructor(private testCaseService: TestCaseService) { }
 
   ngOnInit(): void {
   }
 
-  @Input() stepIndex: number;
 
-  async testCaseImport(importedTestCase: TestCase) {
+  async onTestCaseImport(importedTestCase: TestCase) {
+    console.log(importedTestCase);
+    
+    const testCaseToImport: ImportedTestCase = {
+      testCaseId: this.testCaseService.testCase.testCaseId,
+      importedTestCaseId: importedTestCase.testCaseId,
+      order: this.testCaseService.stepOrderForImport
+    }
+    this.testCaseService.importTestCase(testCaseToImport).subscribe(
+      response => {
+        console.log(response);
+      }
+    )
+    this.toggleModal();
+  }
+
+  /* async testCaseImport(importedTestCase: TestCase) {
     const testCase = this.testCaseService.testCase;
     const stepIndex = this.testCaseService.stepIndexForImport;
     const step: TestStepOrder = {
@@ -45,7 +63,7 @@ export class ImportStepsComponent implements OnInit {
       this.testCaseService.setTestCase(testCase);
       this.toggleModal();
     }
-  }
+  } */
 
   assignIndexAsOrder(array: any){
     return new Promise (async(resolve) => {
@@ -62,8 +80,11 @@ export class ImportStepsComponent implements OnInit {
   toggleModal(){
     this.isSearchTestCaseModalOn = !this.isSearchTestCaseModalOn;
     if(!this.isSearchTestCaseModalOn) {
-      this.stepIndex = null;
+      //this.stepIndex = null;
     }
+  }
+  toggleErrorModal(){
+    this.isErrorModalOn = !this.isErrorModalOn;
   }
 
 }

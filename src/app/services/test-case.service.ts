@@ -4,6 +4,7 @@ import { catchError, map, Observable, Subject, throwError } from 'rxjs';
 import { TestCase, ServerResponse, TestStepOrder } from '../interfaces/test-case.interface';
 import { api } from '../data/api-url';
 import { TestStep } from '../interfaces/test-step.interface';
+import { ImportedTestCase } from '../interfaces/imported-test-case.interface';
 
 
 @Injectable({
@@ -12,7 +13,7 @@ import { TestStep } from '../interfaces/test-step.interface';
 export class TestCaseService {
 
   url = api.url;
-  stepIndexForImport: number;
+  stepOrderForImport: number;
 
   constructor(private http: HttpClient) { }
 
@@ -28,6 +29,18 @@ export class TestCaseService {
 
   addTestCase(testCase: TestCase): Observable<TestCase> {
     return this.http.post<ServerResponse<TestCase>>(this.url + '/test-case', testCase)
+    .pipe(map(response => response?.result))
+  }
+
+  importTestCase(importedTestCase: ImportedTestCase): Observable<TestCase> {
+    return this.http.post<ServerResponse<TestCase>>(this.url + '/import-test-case', importedTestCase)
+    .pipe(map(response => response?.result))
+  }
+
+  importableCheck(testCaseId: number){
+    const params = new HttpParams()
+      .set('testCaseId', testCaseId)
+    return this.http.get<ServerResponse<TestCase[]>>(this.url + '/test-case-search', {params})
     .pipe(map(response => response?.result))
   }
 
@@ -84,7 +97,7 @@ export class TestCaseService {
   createStepsArray(testCase: TestCase, importedCases: TestCase[]){
     const importedIndex = testCase.testStepOrder.findIndex((item: TestStepOrder) => item.imported);
     if(importedIndex >= 0) {
-      const steps = importedCases.find((importedCase: TestCase) => importedCase.testCaseId == testCase.testStepOrder[importedIndex].importedCaseId);
+      const steps = importedCases.find((importedCase: TestCase) => importedCase.testCaseId == testCase.testStepOrder[importedIndex].importedTestCaseId);
       testCase.testStepOrder.splice(importedIndex, 1);
       testCase.testStepOrder.splice(importedIndex, 0, ...steps.testStepOrder );
       console.log(importedIndex);
@@ -99,7 +112,7 @@ export class TestCaseService {
         const importedIndex = testCase.testStepOrder.findIndex((item: TestStepOrder) => item.imported);
         console.log(importedIndex);
         if(importedIndex >= 0) {
-          const steps = importedCases.find((importedCase: TestCase) => importedCase.testCaseId == testCase.testStepOrder[importedIndex].importedCaseId);
+          const steps = importedCases.find((importedCase: TestCase) => importedCase.testCaseId == testCase.testStepOrder[importedIndex].importedTestCaseId);
           testCase.testStepOrder.splice(importedIndex, 1);
           testCase.testStepOrder.splice(importedIndex, 0, ...steps.testStepOrder );
         }
