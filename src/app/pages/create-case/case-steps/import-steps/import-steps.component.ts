@@ -37,7 +37,12 @@ export class ImportStepsComponent implements OnInit {
     }
     this.testCaseService.importTestCase(testCaseToImport).subscribe(
       response => {
-        console.log(response);
+        this.testCaseService.setTestCase(response);
+      },
+      error => {
+        console.log(error);
+        this.error = error.result.message;
+        this.toggleErrorModal()
       }
     )
     this.toggleModal();
@@ -79,10 +84,8 @@ export class ImportStepsComponent implements OnInit {
 
   toggleModal(){
     this.isSearchTestCaseModalOn = !this.isSearchTestCaseModalOn;
-    if(!this.isSearchTestCaseModalOn) {
-      //this.stepIndex = null;
-    }
   }
+
   toggleErrorModal(){
     this.isErrorModalOn = !this.isErrorModalOn;
   }

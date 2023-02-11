@@ -27,16 +27,6 @@ export class CaseStepsComponent implements OnInit {
       display: true
     },
     {
-      name: 'Add',
-      action: 'add',
-      display: true
-    },
-    {
-      name: 'Import',
-      action: 'import',
-      display: true
-    },
-    {
       name: 'Move up',
       action: 'up',
       display: true
@@ -174,7 +164,7 @@ export class CaseStepsComponent implements OnInit {
     )
   }
   
-  onImportSteps(order: number){
+  onImportSteps(){
     this.testCaseService.stepOrderForImport = this.testCase.testStepOrder.length + 1;
     this.importSteps.toggleModal()
   }
@@ -204,7 +194,7 @@ export class CaseStepsComponent implements OnInit {
     switch (event) {
       case 'edit': this.onStepEdit(this.testCase.testStepOrder[index].test_step); break;
       case 'add': this.onStepAdd(index); break;
-      case 'import': this.onImportSteps(this.testCase.testStepOrder[index].order); break;
+      case 'import': this.onImportSteps(); break;
       case 'up': this.moveStepUp(index); break;
       case 'down': this.moveStepDown(index); break;
       case 'delete': this.onDeleteStep(index); break;
