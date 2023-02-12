@@ -16,22 +16,21 @@ export class ImportStepsComponent implements OnInit {
   title: string = '';
   submitInProgress: boolean = false;
   isSearchTestCaseModalOn: boolean = false;
-  importedTestCase: TestCase;
-  importedCase: TestCase;
+  testCase: TestCase;
   isErrorModalOn: boolean = false;
   error: string = '';
 
   constructor(private testCaseService: TestCaseService) { }
 
   ngOnInit(): void {
+    this.testCase = this.testCaseService.testCase;
   }
 
 
   async onTestCaseImport(importedTestCase: TestCase) {
     console.log(importedTestCase);
-    
     const testCaseToImport: ImportedTestCase = {
-      testCaseId: this.testCaseService.testCase.testCaseId,
+      testCaseId: this.testCase.testCaseId,
       importedTestCaseId: importedTestCase.testCaseId,
       order: this.testCaseService.stepOrderForImport
     }
@@ -41,7 +40,7 @@ export class ImportStepsComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.error = error.result.message;
+        this.error = error.error.result.message;
         this.toggleErrorModal()
       }
     )

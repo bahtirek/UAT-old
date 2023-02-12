@@ -13,13 +13,13 @@ export class ReviewStepsComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.testCase);
-    /* this.testCase.testStepOrder.forEach(step => {
+    this.testCase.testStepOrder.forEach(step => {
       if(step.importedTestCaseId) {
         const importedCase = this.testCase.importedTestCases.find(testCase => testCase.testCaseId == step.importedTestCaseId);
         step.importedCaseTitle = importedCase.title;
       }
-    }); */
-    this.testCaseServie.createStepsArray2(this.testCase)
+    });
+    //this.testCaseServie.createStepsArray2(this.testCase)
   }
 
   @Input() testCase: TestCase;
