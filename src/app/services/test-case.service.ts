@@ -106,6 +106,17 @@ export class TestCaseService {
     } 
   }
 
+  createStepsArray2(testCase: TestCase){
+    const importedIndex = testCase.testStepOrder.findIndex((item: TestStepOrder) => item.importedTestCaseId);
+    if(importedIndex >= 0) {
+      const steps = testCase.importedTestCases.find((importedCase: TestCase) => importedCase.testCaseId == testCase.testStepOrder[importedIndex].importedTestCaseId);
+      testCase.testStepOrder.splice(importedIndex, 1);
+      testCase.testStepOrder.splice(importedIndex, 0, ...steps.testStepOrder );
+      
+      this.createStepsArray2(testCase);
+    } 
+  }
+
   createStepsArrayPromise(testCase: TestCase, importedCases: TestCase[]){
     return new Promise<void>((resolve, reject) => {
       for (let i = 0; i < importedCases.length; i++) {

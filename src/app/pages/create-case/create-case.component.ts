@@ -24,8 +24,14 @@ export class CreateCaseComponent implements OnInit {
   }
 
   onContinue(){
-    this.testCaseService.getTestCaseById(8).subscribe(
+    this.testCaseService.getTestCaseById(6).subscribe(
       response => {
+        response.testStepOrder.forEach(step => {
+          if(step.importedTestCaseId) {
+            const importedCase = response.importedTestCases.find(testCase => testCase.testCaseId == step.importedTestCaseId);
+            step.importedCaseTitle = importedCase.title;
+          }
+        })
         this.testCaseService.setTestCase(response)
         this.toggleModal();
       }

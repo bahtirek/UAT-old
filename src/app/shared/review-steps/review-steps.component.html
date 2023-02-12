@@ -1,11 +1,11 @@
 <h3>{{testCase.title}} steps review</h3>
 <div class="ui-uat-ext-step" *ngFor="let step of testCase?.testStepOrder; index as i">
-    <ng-container *ngIf="!step.imported">
+    <ng-container *ngIf="!step.importedTestCaseId">
         <div class="ui-uat-ext-step-number">{{i + 1}}</div>
         <div class="ui-uat-ext-step-description">{{step.test_step.description}}</div>
         <div class="ui-uat-ext-step-expectedResults">{{step.test_step.expected}}</div>
     </ng-container>
-    <ng-container  *ngIf="step.imported">
+    <ng-container  *ngIf="step.importedTestCaseId">
         <div class="ui-uat-ext-step-number">{{i + 1}}</div>
         <div class="ui-uat-ext-step-description ui-br-ext-width-full text-bold">{{step.importedCaseTitle}} <span class="ui-uat-note-message">(Imported case)</span></div>
     </ng-container>
