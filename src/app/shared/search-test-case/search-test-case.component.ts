@@ -37,12 +37,13 @@ export class SearchTestCaseComponent implements OnInit {
     },
   ];
   testCases: TestCase[];
+  testCaseId: number;
   titleSearch = new Subject<string>();
 
   constructor(private testCaseService: TestCaseService) {}
 
   ngOnInit(): void {
-
+    this.testCaseId = this.testCaseService.testCase.testCaseId;
   }
 
   ngAfterViewInit(){
@@ -58,8 +59,11 @@ export class SearchTestCaseComponent implements OnInit {
   @Output() testCaseEmit = new EventEmitter<TestCase>();
 
   searchTestCase(){
+    console.log(this.testCaseId)
     this.testCaseService.searchTestCase(this.title, 0).subscribe(
       response => {
+        console.log(response);
+        
         this.testCases = response;
       }
     )

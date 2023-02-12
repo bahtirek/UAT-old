@@ -8,7 +8,7 @@
         </span >
         <div class="ui-br-ext-search-results" *ngIf="testCases && testCases.length > 0">
             <ul>
-                <li *ngFor="let testCase of testCases; index as i">
+                <li *ngFor="let testCase of testCases; index as i" [ngClass]="{'ui-br-ext-hide': testCase.testCaseId == testCaseId}">
                     <span class="ui-br-ext-module-label" (click)="onImport(testCase)">{{testCase.title}}</span>
                     <span class="ui-br-ext-spinner" [ngClass]="submitInProgress == testCase.testCaseId ? 'active' : ''"></span>
                 </li>
