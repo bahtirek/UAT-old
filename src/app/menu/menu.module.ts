@@ -7,6 +7,7 @@ import { ExecuteBtnComponent } from './execute-btn/execute-btn.component';
 import { SearchBtnComponent } from './search-btn/search-btn.component';
 import { CreateBtnComponent } from './create-btn/create-btn.component';
 import { EventBtnComponent } from './event-btn/event-btn.component';
+import { RegretionBtnComponent } from './regretion-btn/regretion-btn.component';
 ;
 
 
@@ -19,6 +20,7 @@ import { EventBtnComponent } from './event-btn/event-btn.component';
     SearchBtnComponent,
     CreateBtnComponent,
     EventBtnComponent,
+    RegretionBtnComponent,
   ],
   imports: [
     CommonModule
