@@ -90,12 +90,14 @@ export class TestCaseService {
   }
 
   setTestCase(testCase: TestCase){
-    testCase.testStepOrder.forEach(step => {
-      if(step.importedTestCaseId) {
-        const importedCase = testCase.importedTestCases.find(testCaseItem => testCaseItem.testCaseId == step.importedTestCaseId);
-        step.importedCaseTitle = importedCase.title;
-      }
-    })
+    if(testCase.testStepOrder) {
+      testCase.testStepOrder.forEach(step => {
+        if(step.importedTestCaseId) {
+          const importedCase = testCase.importedTestCases.find(testCaseItem => testCaseItem.testCaseId == step.importedTestCaseId);
+          step.importedCaseTitle = importedCase.title;
+        }
+      })
+    }
     this.testCase = testCase;
     this.testCaseSource.next(testCase)
   }
