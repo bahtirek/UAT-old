@@ -27,6 +27,16 @@ export class CaseStepsComponent implements OnInit {
       display: true
     },
     {
+      name: 'Add',
+      action: 'add',
+      display: true
+    },
+    {
+      name: 'Import',
+      action: 'import',
+      display: true
+    },
+    {
       name: 'Move up',
       action: 'up',
       display: true
