@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { arr } from '../data/executionobj';
-import { testCasesForExecution } from '../data/imported';
 import { AccountService } from '../services/account.service';
 import { ActiveBtnService } from '../services/active-btn.service';
 import { AuthService } from '../services/auth.service';
@@ -16,9 +14,6 @@ import { UnsavedBugStorageService } from '../services/unsaved-bug-storage.servic
 export class ExtensionComponent implements OnInit {
 
   hideExtension: boolean = false;
-  obj = arr;
-  testCase = testCasesForExecution.testCase;
-  importedCases = testCasesForExecution.importedCases;  
   isAuthorized: any;
 
   constructor( private activeBtnService: ActiveBtnService, private toggleExtension: ToggleExtensionService, private auth: AuthService ) { }
@@ -32,7 +27,10 @@ export class ExtensionComponent implements OnInit {
       }
     )
 
-    this.switchPage('ui-br-ext-login');
+    this.switchPage('ui-br-ext-dashboard-button');
+    //this.switchPage('ui-br-ext-search-button');
+    //this.switchPage('ui-br-ext-execute-button');
+    //this.switchPage('ui-br-ext-login');
 
     this.toggleExtension.toggle.subscribe(
       state => {
@@ -42,12 +40,13 @@ export class ExtensionComponent implements OnInit {
   }
 
   switchPage(activeBtn: string) {
-    if(this.isAuthorized) {
+    this.activeBtn = activeBtn;
+    /* if(this.isAuthorized) {
       this.activeBtn = activeBtn;
     } else if(activeBtn == 'ui-br-ext-registration' || activeBtn == 'ui-br-ext-forgot-password') {
       this.activeBtn = activeBtn;
     } else {
       this.activeBtn = 'ui-br-ext-login';
-    }
+    } */
   }
 }
