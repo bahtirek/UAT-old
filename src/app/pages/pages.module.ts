@@ -46,6 +46,8 @@ import { UpdatePasswordComponent } from './settings-page/user-profile/update-pas
 import { EditEmailComponent } from './settings-page/user-profile/edit-email/edit-email.component';
 import { AddUserComponent } from './settings-page/manage-users/add-user/add-user.component';
 import { UserDetailsComponent } from './settings-page/manage-users/user-details/user-details.component';
+import { SearchComponent } from './search-page/search/search.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 
@@ -96,6 +98,8 @@ import { UserDetailsComponent } from './settings-page/manage-users/user-details/
     EditEmailComponent,
     AddUserComponent,
     UserDetailsComponent,
+    SearchComponent,
+    DashboardComponent,
   ],
   imports: [
     CommonModule,
@@ -112,7 +116,8 @@ import { UserDetailsComponent } from './settings-page/manage-users/user-details/
     LoginComponent,
     SignupComponent,
     ForgotPasswordComponent, 
-    RegistrationComponent
+    RegistrationComponent,
+    DashboardComponent
   ]
 })
 export class PagesModule { }

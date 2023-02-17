@@ -6,6 +6,7 @@
             <app-minimize-drop-body (minimizePage)="minimizePage($event)" class="ui-br-ext-minimizedropbody2"></app-minimize-drop-body>
         </div>
         <div class="ui-br-ext-drop-body"  id="uiBrExtSearch" [ngClass]="{'ui-br-ext-hide': !showHide}">
+            <app-search></app-search>
             <app-resize [pageId]="'uiBrExtSearch'"></app-resize>
         </div>
     </div>
