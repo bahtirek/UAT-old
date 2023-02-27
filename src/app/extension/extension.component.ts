@@ -27,6 +27,7 @@ export class ExtensionComponent implements OnInit {
       }
     )
 
+    //this.switchPage('ui-br-ext-editor-button');
     this.switchPage('ui-br-ext-dashboard-button');
     //this.switchPage('ui-br-ext-search-button');
     //this.switchPage('ui-br-ext-execute-button');

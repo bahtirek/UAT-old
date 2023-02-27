@@ -5,6 +5,7 @@ import { Position } from '../interfaces/position.interface';
   providedIn: 'root'
 })
 export class DragService {
+  draggableContainerId: string;
 
   constructor() { }
 
@@ -15,7 +16,8 @@ export class DragService {
     movementY: 0
   }
 
-  onMouseDown (event: MouseEvent) {
+  onMouseDown (event: MouseEvent, id: string) {
+    this.draggableContainerId = id;
     event.preventDefault();
     // get the mouse cursor position at startup:
     this.positions.clientX = event.clientX
@@ -27,7 +29,7 @@ export class DragService {
   elementDrag = (event: MouseEvent) => {
       event.preventDefault();
       
-      const draggableContainer = document.getElementById('ui-br-ext-extension')
+      const draggableContainer = document.getElementById(this.draggableContainerId)
       this.positions.movementX = this.positions.clientX - event.clientX
       this.positions.movementY = this.positions.clientY - event.clientY
       this.positions.clientX = event.clientX

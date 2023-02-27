@@ -1,20 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { ActiveBtnService } from 'src/app/services/active-btn.service';
+import { DragService } from 'src/app/services/drag.service';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.less']
+  selector: 'app-editor',
+  templateUrl: './editor.component.html',
+  styleUrls: ['./editor.component.less']
 })
-export class DashboardComponent implements OnInit {
+export class EditorComponent implements OnInit {
 
   showHide: boolean = true;
 
   constructor(private activeBtnService: ActiveBtnService) { }
 
   ngOnInit(): void {
-    this.activeBtnService.activeBtnSubject.next('ui-br-ext-editor-button');
-    
   }
 
   minimizePage(state: boolean){
@@ -24,4 +23,5 @@ export class DashboardComponent implements OnInit {
   activeBtnUpdate(button: string){
     this.activeBtnService.activeBtnSubject.next(button);
   }
+
 }

@@ -48,6 +48,7 @@ import { AddUserComponent } from './settings-page/manage-users/add-user/add-user
 import { UserDetailsComponent } from './settings-page/manage-users/user-details/user-details.component';
 import { SearchComponent } from './search-page/search/search.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { EditorComponent } from './editor/editor.component';
 
 
 
@@ -100,6 +101,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     UserDetailsComponent,
     SearchComponent,
     DashboardComponent,
+    EditorComponent
   ],
   imports: [
     CommonModule,
@@ -117,7 +119,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     SignupComponent,
     ForgotPasswordComponent, 
     RegistrationComponent,
-    DashboardComponent
+    DashboardComponent,
+    EditorComponent
   ]
 })
 export class PagesModule { }
