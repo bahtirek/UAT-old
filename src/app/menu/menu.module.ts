@@ -8,6 +8,13 @@ import { SearchBtnComponent } from './search-btn/search-btn.component';
 import { CreateBtnComponent } from './create-btn/create-btn.component';
 import { EventBtnComponent } from './event-btn/event-btn.component';
 import { RegretionBtnComponent } from './regretion-btn/regretion-btn.component';
+import { LineBtnComponent } from './line-btn/line-btn.component';
+import { ArrowBtnComponent } from './arrow-btn/arrow-btn.component';
+import { SquareBtnComponent } from './square-btn/square-btn.component';
+import { CircleBtnComponent } from './circle-btn/circle-btn.component';
+import { PointerBtnComponent } from './pointer-btn/pointer-btn.component';
+import { HighlightBtnComponent } from './highlight-btn/highlight-btn.component';
+import { TextBtnComponent } from './text-btn/text-btn.component';
 ;
 
 
@@ -21,6 +28,13 @@ import { RegretionBtnComponent } from './regretion-btn/regretion-btn.component';
     CreateBtnComponent,
     EventBtnComponent,
     RegretionBtnComponent,
+    LineBtnComponent,
+    ArrowBtnComponent,
+    SquareBtnComponent,
+    CircleBtnComponent,
+    PointerBtnComponent,
+    HighlightBtnComponent,
+    TextBtnComponent,
   ],
   imports: [
     CommonModule
