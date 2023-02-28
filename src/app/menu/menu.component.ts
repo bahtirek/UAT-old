@@ -22,15 +22,10 @@ export class MenuComponent implements OnInit {
   }
 
   isEditing(activeBtn: string) {
-    switch (activeBtn) {
-      case 'ui-br-ext-settings-button': this.editing = false; break;
-      case 'ui-br-ext-execute-button': this.editing = false; break;
-      case 'ui-br-ext-search-button': this.editing = false; break;
-      case 'ui-br-ext-event-button': this.editing = false; break;
-      case 'ui-br-ext-create-button': this.editing = false; break;
-      case 'ui-br-ext-regretion-button': this.editing = false; break;
-      case 'ui-br-ext-close-button': this.editing = false; break;
-      case 'ui-br-ext-editor-button': this.editing = true; break;
+    if(activeBtn == 'ui-br-ext-editor-button') {
+      this.editing = true;
+    } else {
+      this.editing = false;
     }
   }
 
