@@ -2,6 +2,7 @@
 <div class="ui-br-ext-extension ui-br-ext-alwaysOn" id="ui-br-ext-extension" style="outline: none !important;" [ngStyle]="{'display': hideExtension ? 'none' : 'block'}">
     <app-menu></app-menu>
     <div class="ui-br-ext-container ui-br-ext-dropdown"
+    [ngClass]="{'ui-br-uat-editor': activeBtn == 'ui-br-ext-editor-button'}"
     [ngSwitch]="activeBtn"
     >
         <app-dashboard *ngSwitchCase="'ui-br-ext-dashboard-button'"></app-dashboard>

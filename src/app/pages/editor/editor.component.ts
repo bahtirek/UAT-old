@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActiveBtnService } from 'src/app/services/active-btn.service';
-import { DragService } from 'src/app/services/drag.service';
 
 @Component({
   selector: 'app-editor',
