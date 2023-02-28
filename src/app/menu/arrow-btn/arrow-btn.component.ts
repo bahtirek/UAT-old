@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActiveBtnService } from 'src/app/services/active-btn.service';
+import { EditorActiveBtnService } from 'src/app/services/editor-active-btn.service';
 import { SelectService } from 'src/app/services/select.service';
 import { SelectedElementsService } from 'src/app/services/selected-elements.service';
 
@@ -10,7 +10,7 @@ import { SelectedElementsService } from 'src/app/services/selected-elements.serv
 })
 export class ArrowBtnComponent implements OnInit {
 
-  constructor(private activeBtnService: ActiveBtnService, private onClick: SelectService, private selectedElemnstService: SelectedElementsService) { }
+  constructor(private activeBtnService: EditorActiveBtnService, private onClick: SelectService, private selectedElemnstService: SelectedElementsService) { }
 
   isActive: boolean = false;
   activeBtn: string = '';

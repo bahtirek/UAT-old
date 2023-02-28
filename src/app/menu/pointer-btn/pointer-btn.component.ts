@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActiveBtnService } from 'src/app/services/active-btn.service';
+import { EditorActiveBtnService } from 'src/app/services/editor-active-btn.service';
 
 @Component({
   selector: 'app-pointer-btn',
@@ -8,7 +8,7 @@ import { ActiveBtnService } from 'src/app/services/active-btn.service';
 })
 export class PointerBtnComponent implements OnInit {
 
-  constructor(private activeBtnService: ActiveBtnService) { }
+  constructor(private activeBtnService: EditorActiveBtnService) { }
 
   isActive: boolean = false;
   activeBtn: string = '';
