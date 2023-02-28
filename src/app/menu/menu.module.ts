@@ -15,6 +15,8 @@ import { CircleBtnComponent } from './circle-btn/circle-btn.component';
 import { PointerBtnComponent } from './pointer-btn/pointer-btn.component';
 import { HighlightBtnComponent } from './highlight-btn/highlight-btn.component';
 import { TextBtnComponent } from './text-btn/text-btn.component';
+import { EditorMenuModule } from './editor-menu/editor-menu.module';
+import { SaveBtnComponent } from './save-btn/save-btn.component';
 ;
 
 
@@ -35,9 +37,11 @@ import { TextBtnComponent } from './text-btn/text-btn.component';
     PointerBtnComponent,
     HighlightBtnComponent,
     TextBtnComponent,
+    SaveBtnComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    EditorMenuModule
   ],
   exports: [
     MenuComponent
