@@ -49,6 +49,7 @@ import { UserDetailsComponent } from './settings-page/manage-users/user-details/
 import { SearchComponent } from './search-page/search/search.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EditorComponent } from './editor/editor.component';
+import { EditorModule } from './editor/editor.module';
 
 
 
@@ -106,7 +107,8 @@ import { EditorComponent } from './editor/editor.component';
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule, 
+    EditorModule
   ],
   exports: [
     SettingsPageComponent,

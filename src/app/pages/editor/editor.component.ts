@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ActiveBtnService } from 'src/app/services/active-btn.service';
+import { Component, OnInit, ViewChild, ElementRef, ViewContainerRef, ComponentRef } from '@angular/core';
+import * as html2canvas from "html2canvas";
+import { EditorActiveBtnService } from 'src/app/services/editor-active-btn.service';
+import { CircleComponent } from './circle/circle.component';
+import { RectangleComponent } from './rectangle/rectangle.component';
 
 @Component({
   selector: 'app-editor',
@@ -9,18 +12,45 @@ import { ActiveBtnService } from 'src/app/services/active-btn.service';
 export class EditorComponent implements OnInit {
 
   showHide: boolean = true;
+  editorClass: string = '';
+  activeBtn: string = '';
 
-  constructor(private activeBtnService: ActiveBtnService) { }
+  constructor(private activeBtnService: EditorActiveBtnService) { }
 
   ngOnInit(): void {
+    this.activeBtnService.activeBtnSubject.subscribe(btn => this.action(btn))
   }
 
-  minimizePage(state: boolean){
-    this.showHide = state  
+  @ViewChild('canvas', {static: true}) canvasEl!: ElementRef<HTMLImageElement>;
+  @ViewChild("viewContainerRef", { read: ViewContainerRef }) vcr!: ViewContainerRef;
+  rectangles!: ComponentRef<RectangleComponent>
+  circles!: ComponentRef<CircleComponent>
+
+  action(btn: string){
+    this.activeBtn = btn;
+    switch (btn) {
+      case 'ui-br-ext-square-button': this.addRectangle(); break;
+      case 'ui-br-ext-circle-button': this.addCircle(); break;
+      case 'ui-br-ext-save-button': this.getImage(); break;
+    
+      default: return false; break;
+    }
+  }
+  addRectangle() {
+    console.log(event);
+    this.rectangles = this.vcr.createComponent(RectangleComponent)
+  }
+  addCircle() {
+    console.log(event);
+    this.circles = this.vcr.createComponent(CircleComponent)
   }
 
-  activeBtnUpdate(button: string){
-    this.activeBtnService.activeBtnSubject.next(button);
+  getImage(){
+    (html2canvas as any)(this.canvasEl.nativeElement).then((canvas: any) => {
+      var imgData = canvas.toDataURL("image/png");
+      document.body.appendChild(canvas);
+  });
+
   }
 
 }
