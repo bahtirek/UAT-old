@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { DragService } from 'src/app/services/drag.service';
 
 @Component({
   selector: 'app-rectangle',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RectangleComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dragService: DragService) { }
 
   ngOnInit(): void {
+  }
+
+  @ViewChild('rectangle', {static: true}) el!: ElementRef<HTMLDivElement>;
+
+  onMouseDown(event: MouseEvent) {
+    this.dragService.onMouseDown(event, this.el.nativeElement);
   }
 
 }

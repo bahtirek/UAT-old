@@ -13,7 +13,6 @@ export class EditorComponent implements OnInit {
 
   showHide: boolean = true;
   editorClass: string = '';
-  activeBtn: string = '';
 
   constructor(private activeBtnService: EditorActiveBtnService) { }
 
@@ -26,8 +25,7 @@ export class EditorComponent implements OnInit {
   rectangles!: ComponentRef<RectangleComponent>
   circles!: ComponentRef<CircleComponent>
 
-  action(btn: string){
-    this.activeBtn = btn;
+  action(btn: string) {
     switch (btn) {
       case 'ui-br-ext-square-button': this.addRectangle(); break;
       case 'ui-br-ext-circle-button': this.addCircle(); break;
@@ -37,11 +35,9 @@ export class EditorComponent implements OnInit {
     }
   }
   addRectangle() {
-    console.log(event);
     this.rectangles = this.vcr.createComponent(RectangleComponent)
   }
   addCircle() {
-    console.log(event);
     this.circles = this.vcr.createComponent(CircleComponent)
   }
 
