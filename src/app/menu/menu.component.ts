@@ -11,7 +11,7 @@ export class MenuComponent implements OnInit {
 
   editing: boolean = false;
 
-  constructor(private drugService: DragService, private activeBtnService: ActiveBtnService) { }
+  constructor(private activeBtnService: ActiveBtnService) { }
 
   ngOnInit(): void {
     this.activeBtnService.activeBtnSubject.subscribe(
@@ -27,14 +27,6 @@ export class MenuComponent implements OnInit {
     } else {
       this.editing = false;
     }
-  }
-
-  onTouchStart(event: any){
-    this.drugService.onTouchStart(event);
-  }
-
-  onMouseDown(event: MouseEvent) {
-    this.drugService.onMouseDown(event, 'ui-br-ext-extension');
   }
 
 }
