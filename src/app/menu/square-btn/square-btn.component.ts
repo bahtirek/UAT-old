@@ -20,13 +20,14 @@ export class SquareBtnComponent implements OnInit {
     this.activeBtnService.activeBtnSubject.subscribe(
       activeBtn => {
         this.activeBtn = activeBtn;
-        if(this.activeBtn != this.currentBtn) this.isActive = false;
+        //if(this.activeBtn != this.currentBtn) this.isActive = false;
       }
     )
   }
 
   onMenuBtnClick () {
-    this.activeBtnUpdate();
+    //this.activeBtnUpdate();
+    this.activeBtnService.activeBtnSubject.next(this.currentBtn);
   }
 
   activeBtnUpdate(){
