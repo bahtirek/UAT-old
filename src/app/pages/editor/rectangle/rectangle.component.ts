@@ -16,7 +16,10 @@ export class RectangleComponent implements OnInit {
   @ViewChild('rectangle', {static: true}) el!: ElementRef<HTMLDivElement>;
 
   onMouseDown(event: MouseEvent) {
-    this.dragService.onMouseDown(event, this.el.nativeElement);
+    const rect = this.el.nativeElement.getBoundingClientRect();
+    if(event.offsetX < rect.width - 12 && event.offsetY < rect.height - 12) {
+      this.dragService.onMouseDown(event, this.el.nativeElement);
+    }
   }
 
 }
