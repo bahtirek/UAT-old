@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { DragService } from 'src/app/services/drag.service';
+import { CircleService } from './circle.service';
 
 @Component({
   selector: 'app-circle',
@@ -8,7 +9,9 @@ import { DragService } from 'src/app/services/drag.service';
 })
 export class CircleComponent implements OnInit {
 
-  constructor(private dragService: DragService) { }
+  uuid: string;
+
+  constructor(private dragService: DragService, private circleService: CircleService) { }
 
   ngOnInit(): void {
   }
@@ -20,6 +23,10 @@ export class CircleComponent implements OnInit {
     if(event.offsetX < rect.width - 12 && event.offsetY < rect.height - 12) {
       this.dragService.onMouseDown(event, this.el.nativeElement);
     }
+  }
+
+  deleteComponent(){
+    this.circleService.deleteComponent(this.uuid);
   }
 
 }

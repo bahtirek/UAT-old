@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class EditorActiveBtnService {
+  deleteRectangle = new Subject<number>();
   
   activeBtn: string = '';
 

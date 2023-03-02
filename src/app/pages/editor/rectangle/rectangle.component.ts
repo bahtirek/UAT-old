@@ -1,5 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { DragService } from 'src/app/services/drag.service';
+import { EditorActiveBtnService } from 'src/app/services/editor-active-btn.service';
+import { RectangleService } from './rectangle.service';
 
 @Component({
   selector: 'app-rectangle',
@@ -8,7 +10,9 @@ import { DragService } from 'src/app/services/drag.service';
 })
 export class RectangleComponent implements OnInit {
 
-  constructor(private dragService: DragService) { }
+  uuid: string;
+
+  constructor(private dragService: DragService, private rectangleService: RectangleService) { }
 
   ngOnInit(): void {
   }
@@ -19,7 +23,10 @@ export class RectangleComponent implements OnInit {
     const rect = this.el.nativeElement.getBoundingClientRect();
     if(event.offsetX < rect.width - 12 && event.offsetY < rect.height - 12) {
       this.dragService.onMouseDown(event, this.el.nativeElement);
-    }
+    }  
   }
 
+  deleteComponent(){
+    this.rectangleService.deleteComponent(this.uuid);
+  }
 }

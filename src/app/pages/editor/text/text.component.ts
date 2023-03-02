@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { DragService } from 'src/app/services/drag.service';
+import { TextService } from './text.service';
 
 @Component({
   selector: 'app-text',
@@ -8,8 +9,9 @@ import { DragService } from 'src/app/services/drag.service';
 })
 export class TextComponent implements OnInit {
   timeout: any;
+  uuid: string;
 
-  constructor(private dragService: DragService) { }
+  constructor(private dragService: DragService, private textService: TextService) { }
 
   ngOnInit(): void {
   }
@@ -24,6 +26,10 @@ export class TextComponent implements OnInit {
         this.dragService.onMouseDown(event, this.el.nativeElement);
       }, 100);
     }
+  }
+
+  deleteComponent(){
+    this.textService.deleteComponent(this.uuid);
   }
 
 }
