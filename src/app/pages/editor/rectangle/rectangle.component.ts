@@ -1,6 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { DragService } from 'src/app/services/drag.service';
-import { EditorActiveBtnService } from 'src/app/services/editor-active-btn.service';
 import { RectangleService } from './rectangle.service';
 
 @Component({

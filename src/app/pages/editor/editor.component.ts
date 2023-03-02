@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, ViewContainerRef, ComponentRef, } from '@angular/core';
 import * as html2canvas from "html2canvas";
-import { EditorActiveBtnService } from 'src/app/services/editor-active-btn.service';
 import { EditorService } from 'src/app/services/editor.service';
 import { CircleComponent } from './circle/circle.component';
 import { CircleService } from './circle/circle.service';
@@ -20,7 +19,6 @@ export class EditorComponent implements OnInit {
   editorClass: string = '';
 
   constructor(
-    private activeBtnService: EditorActiveBtnService, 
     private circleService: CircleService, 
     private rectangleService: RectangleService, 
     private textService: TextService, 
@@ -28,7 +26,7 @@ export class EditorComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.activeBtnService.activeBtnSubject.subscribe(btn => this.action(btn))
+    this.editorService.activeBtnSubject.subscribe(btn => this.action(btn))
     this.editorService.deleteComponentSubject.subscribe(component => this.deleteComponent(component))
   }
 

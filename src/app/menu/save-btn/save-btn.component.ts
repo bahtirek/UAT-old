@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EditorActiveBtnService } from 'src/app/services/editor-active-btn.service';
+import { EditorService } from 'src/app/services/editor.service';
 
 @Component({
   selector: 'app-save-btn',
@@ -9,34 +9,21 @@ import { EditorActiveBtnService } from 'src/app/services/editor-active-btn.servi
 export class SaveBtnComponent implements OnInit {
 
 
-  constructor(private activeBtnService: EditorActiveBtnService) { }
+  constructor(private editorService: EditorService) { }
 
   isActive: boolean = false;
   activeBtn: string = '';
   currentBtn = "ui-br-ext-save-button";
 
   ngOnInit(): void {
-    this.activeBtnService.activeBtnSubject.subscribe(
+    this.editorService.activeBtnSubject.subscribe(
       activeBtn => {
         this.activeBtn = activeBtn;
-        //if(this.activeBtn != this.currentBtn) this.isActive = false;
       }
     )
   }
 
   onMenuBtnClick () {
-    //this.activeBtnUpdate();
-    this.activeBtnService.activeBtnSubject.next(this.currentBtn);
+    this.editorService.activeBtnSubject.next(this.currentBtn);
   }
-
-  activeBtnUpdate(){
-    if(this.isActive) {
-      this.isActive = false;
-      this.activeBtnService.activeBtnSubject.next('');
-    } else {
-      this.isActive = true;
-      this.activeBtnService.activeBtnSubject.next(this.currentBtn);
-    }
-  }
-
 }
