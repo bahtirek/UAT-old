@@ -50,6 +50,8 @@ import { SearchComponent } from './search-page/search/search.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EditorComponent } from './editor/editor.component';
 import { EditorModule } from './editor/editor.module';
+import { EditorMenuModule } from '../shared/editor-menu/editor-menu.module';
+import { EditorMenuComponent } from '../shared/editor-menu/editor-menu.component';
 
 
 

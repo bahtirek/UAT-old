@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RectangleComponent } from './rectangle/rectangle.component';
 import { CircleComponent } from './circle/circle.component';
 import { TextComponent } from './text/text.component';
+import { EditorMenuModule } from 'src/app/shared/editor-menu/editor-menu.module';
+import { EditorMenuComponent } from 'src/app/shared/editor-menu/editor-menu.component';
 
 
 
@@ -14,11 +16,13 @@ import { TextComponent } from './text/text.component';
   ],
   imports: [
     CommonModule,
+    EditorMenuModule
   ],
   exports: [
     RectangleComponent,
     CircleComponent,
-    TextComponent
+    TextComponent,
+    EditorMenuComponent
   ]
 })
 export class EditorModule { }

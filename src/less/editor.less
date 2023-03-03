@@ -4,19 +4,37 @@
     .ui-br-aut-canvas-container {
         position: relative;
 
-        .resize-element {
-            resize: both;
-            overflow: auto;
-            height: 50px;
-            width: 100px;
+        .editing-item {
             position: absolute;
             top: calc(50% - 50px);
             left: calc(50% - 50px);
-            color: red;
+            .resize-element {
+                resize: both;
+                overflow: auto;
+                height: 50px;
+                width: 100px;
+                color: red;
+            }
+            &:hover {
+                app-editor-menu {
+                    display: block;
+                }
+            }
+            app-editor-menu {
+                display: none;
+                position: absolute;
+                top: 2px;
+                left: 2px;
+                &.stick-to-bottom {
+                    top: unset ;
+                    bottom: 2px;
+                }
+            }
         }
+
         
         .border-1 {
-            border: 1px solid red;
+            border: 2px solid red;
         }
 
         .circle {
