@@ -24,11 +24,10 @@ export class TextComponent implements OnInit {
     
     if(event.target.className == "resize-element") {
       if(event.offsetX < rect.width - 12 && event.offsetY < rect.height - 12) {
-        /* if (this.timeout) clearTimeout(this.timeout)
+        if (this.timeout) clearTimeout(this.timeout)
         this.timeout = setTimeout(() => {
           this.dragService.onMouseDown(event, this.parent.nativeElement);
-        }, 100); */
-        this.dragService.onMouseDown(event, this.parent.nativeElement);
+        }, 100);
       }
     }
   }
