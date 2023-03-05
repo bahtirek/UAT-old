@@ -26,6 +26,11 @@ export class RectangleComponent implements OnInit {
     } 
   }
 
+  onMouseUp(event: any) {
+    const rect = this.parent.nativeElement.getBoundingClientRect();
+    this.dragService.onMouseUp(event, this.parent.nativeElement);
+  }
+
   deleteComponent(){
     this.rectangleService.deleteComponent(this.uuid);
   }

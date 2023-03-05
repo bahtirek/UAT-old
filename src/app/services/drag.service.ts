@@ -5,6 +5,9 @@ import { Position } from '../interfaces/position.interface';
   providedIn: 'root'
 })
 export class DragService {
+  onMouseUp(event: any, nativeElement: HTMLDivElement) {
+    document.onmouseup = this.closeDragElement
+  }
 
     element: HTMLDivElement;
 

@@ -1,4 +1,6 @@
-<div class="resize-element" contenteditable="true" (mousedown)="onMouseDown($event)" #text>
-Text
-<button (click)="deleteComponent()">delete</button>
+<div class="editing-item" (mousedown)="onMouseDown($event)" (mouseup)="onMouseUp($event)" #editingParent>
+  <app-editor-menu (onDelete)="deleteComponent()" (onColor)="colorUpdate($event)" (onStroke)="strokeUpdate($event)" class="stick-to-bottom" (mousedown)="onMouseDown($event)"></app-editor-menu>
+  <div class="resize-element" contenteditable="true" #editingItem>
+    Text
+  </div>
 </div>
