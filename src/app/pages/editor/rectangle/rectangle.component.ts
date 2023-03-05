@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { EditorMenu } from 'src/app/interfaces/editor-menu.interface';
 import { DragService } from 'src/app/services/drag.service';
 import { RectangleService } from './rectangle.service';
 
@@ -10,6 +11,12 @@ import { RectangleService } from './rectangle.service';
 export class RectangleComponent implements OnInit {
 
   uuid: string;
+  editorMenu: EditorMenu = {
+    color: true,
+    stroke: true,
+    fontSize: false,
+    invert: false
+  }
 
   constructor(private dragService: DragService, private rectangleService: RectangleService) { }
 
