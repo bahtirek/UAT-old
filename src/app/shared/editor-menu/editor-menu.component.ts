@@ -1,4 +1,5 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { EditorMenu } from 'src/app/interfaces/editor-menu.interface';
 
 @Component({
   selector: 'app-editor-menu',
@@ -49,15 +50,43 @@ export class EditorMenuComponent implements OnInit {
     },
   ]
 
+  fontSizes: any[] = [
+    {
+      size: '15'
+    },
+    {
+      size: '17'
+    },
+    {
+      size: '19'
+    },
+    {
+      size: '21'
+    },
+    {
+      size: '25'
+    },
+  ]
+
+  defaultEditorMenu: EditorMenu = {
+    color: true,
+    stroke: true,
+    fontSize: false,
+    invert: false
+  };
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
   @ViewChild('moreButton') moreButton: ElementRef;
+  @Input() editorMenu: EditorMenu = this.defaultEditorMenu;
   @Output() onDelete = new EventEmitter<boolean>();
   @Output() onColor = new EventEmitter<any>();
   @Output() onStroke = new EventEmitter<any>();
+  @Output() onFontSize = new EventEmitter<any>();
+  @Output() onInvert = new EventEmitter<any>();
 
   onDeleteClick() {
     this.onDelete.emit(true);
@@ -69,6 +98,14 @@ export class EditorMenuComponent implements OnInit {
 
   onColorClick(color: any) {
     this.onColor.emit(color);
+  }
+
+  onFontSizeClick(fontSize: any) {
+    this.onFontSize.emit(fontSize)
+  }
+
+  onInvertClick(){
+    this.onInvert.emit()
   }
 
   onButtonClick(event: Event){
@@ -96,6 +133,7 @@ export class EditorMenuComponent implements OnInit {
       this.showMenu = false
     }, 500)
   }
+  
   onMouseEnter = () => {
     clearTimeout(this.mouseLeaveTimer)
   }
