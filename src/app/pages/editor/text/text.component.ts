@@ -27,16 +27,13 @@ export class TextComponent implements OnInit {
         if (this.timeout) clearTimeout(this.timeout)
         this.timeout = setTimeout(() => {
           this.dragService.onMouseDown(event, this.parent.nativeElement);
-        }, 100);
+        }, 200);
       }
     }
   }
+  
   onMouseUp(event: any) {
-    const rect = this.parent.nativeElement.getBoundingClientRect();
-    
-    if(event.target.className == "resize-element") {
-      this.dragService.onMouseUp(event, this.parent.nativeElement);
-    }
+    if (this.timeout) clearTimeout(this.timeout)
   }
 
   deleteComponent(){
