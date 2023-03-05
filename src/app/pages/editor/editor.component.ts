@@ -51,10 +51,13 @@ export class EditorComponent implements OnInit {
   }
 
   getImage(){
-    (html2canvas as any)(this.canvasEl.nativeElement).then((canvas: any) => {
-      var imgData = canvas.toDataURL("image/png");
-      document.body.appendChild(canvas);
-    });
+    (html2canvas as any)(this.canvasEl.nativeElement, 
+      {scale: 1})
+      .then((canvas: any) => {
+        var imgData = canvas.toDataURL("image/png");
+        document.body.appendChild(canvas);
+      }
+    );
   }
 
 }
