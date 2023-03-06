@@ -5,6 +5,7 @@ import { CircleComponent } from './circle/circle.component';
 import { TextComponent } from './text/text.component';
 import { EditorMenuModule } from 'src/app/shared/editor-menu/editor-menu.module';
 import { EditorMenuComponent } from 'src/app/shared/editor-menu/editor-menu.component';
+import { LineComponent } from './line/line.component';
 
 
 
@@ -12,7 +13,8 @@ import { EditorMenuComponent } from 'src/app/shared/editor-menu/editor-menu.comp
   declarations: [
     RectangleComponent,
     CircleComponent,
-    TextComponent
+    TextComponent,
+    LineComponent
   ],
   imports: [
     CommonModule,
@@ -22,6 +24,7 @@ import { EditorMenuComponent } from 'src/app/shared/editor-menu/editor-menu.comp
     RectangleComponent,
     CircleComponent,
     TextComponent,
+    LineComponent,
     EditorMenuComponent
   ]
 })
