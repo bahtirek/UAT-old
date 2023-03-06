@@ -72,7 +72,10 @@ export class EditorMenuComponent implements OnInit {
     color: true,
     stroke: true,
     fontSize: false,
-    invert: false
+    invert: false,
+    rotate: false,
+    arrow: false,
+    borderStyle: false
   };
 
   constructor() { }
@@ -87,6 +90,7 @@ export class EditorMenuComponent implements OnInit {
   @Output() onStroke = new EventEmitter<any>();
   @Output() onFontSize = new EventEmitter<any>();
   @Output() onInvert = new EventEmitter<any>();
+  @Output() onRotate = new EventEmitter<any>();
 
   onDeleteClick() {
     this.onDelete.emit(true);
@@ -106,6 +110,26 @@ export class EditorMenuComponent implements OnInit {
 
   onInvertClick(){
     this.onInvert.emit()
+  }
+
+  onRotateClick(to: string){
+    this.onRotate.emit(to)
+  }
+
+  onBorderStyleClick(){
+
+  }
+
+  onArrowLeftClick(){
+
+  }
+
+  onArrowRightClick(){
+
+  }
+
+  onArrowClick(){
+
   }
 
   onButtonClick(event: Event){
