@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, ViewContainerRef, ComponentRef, } from '@angular/core';
-import * as html2canvas from "html2canvas";
+import * as htmlToImage from 'html-to-image';
 import { EditorService } from 'src/app/services/editor.service';
 import { CircleComponent } from './circle/circle.component';
 import { CircleService } from './circle/circle.service';
@@ -38,6 +38,7 @@ export class EditorComponent implements OnInit {
     this.vcr.remove(vcrIndex);
   }
 
+  @ViewChild('downloadImage', {static: true}) downloadImage!: ElementRef<HTMLAnchorElement>;
   @ViewChild('canvas', {static: true}) canvasEl!: ElementRef<HTMLImageElement>;
   @ViewChild("viewContainerRef", { read: ViewContainerRef }) vcr!: ViewContainerRef;
 
@@ -54,14 +55,28 @@ export class EditorComponent implements OnInit {
     }
   }
 
-  getImage(){
-    (html2canvas as any)(this.canvasEl.nativeElement, 
-      {scale: 1})
-      .then((canvas: any) => {
-        var imgData = canvas.toDataURL("image/png");
-        document.body.appendChild(canvas);
-      }
-    );
+  async getImage(){
+    const canvasWidth = this.canvasEl.nativeElement.scrollWidth
+    const canvasHeight = this.canvasEl.nativeElement.scrollHeight
+    
+    const dataUrl = await htmlToImage.toPng(this.canvasEl.nativeElement, {width: canvasWidth, height: canvasHeight})
+    this.saveAs(dataUrl, 'my-node.png');
+  }
+
+  saveAs (blob: string, fileName: string){
+    this.downloadImage.nativeElement.href = blob
+    this.downloadImage.nativeElement.download = fileName;
+    if (typeof this.downloadImage.nativeElement.click === 'function') {
+      this.downloadImage.nativeElement.click();
+    } else {
+      this.downloadImage.nativeElement.target = '_blank';
+      this.downloadImage.nativeElement.dispatchEvent(new MouseEvent('click', {
+        view: window,
+        bubbles: true,
+        cancelable: true
+      }));
+    }
+    URL.revokeObjectURL(this.downloadImage.nativeElement.href);
   }
 
 }
