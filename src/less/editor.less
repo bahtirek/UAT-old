@@ -34,6 +34,20 @@
                         height: 2px;
                         background-color: red;
                         overflow: auto;
+                        z-index: 10000;
+                    }
+                    position: relative;
+                    .chevron-right, .chevron-left {
+                        position: absolute;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        display: none;
+                    }
+                    .chevron-right {
+                    right: 9px;
+                    }
+                    .chevron-left {
+                    left: 9px;
                     }
                 }
             }
@@ -52,13 +66,18 @@
                     bottom: 2px;
                 }
                 &.above {
-                    top: -10px;
+                    top: 8px;
+                    left: -18px;
                 }
             }
         }
 
         .editor-canvas {
             position: relative;
+
+            img {
+                pointer-events: none;
+            }
         }
 
         

@@ -29,6 +29,9 @@ export class LineComponent implements OnInit {
 
   @ViewChild('editingParent', {static: true}) parent!: ElementRef<HTMLDivElement>;
   @ViewChild('editingItem', {static: true}) el!: ElementRef<HTMLDivElement>;
+  @ViewChild('chevronRight', {static: true}) chevronRight!: ElementRef<HTMLDivElement>;
+  @ViewChild('chevronLeft', {static: true}) chevronLeft!: ElementRef<HTMLDivElement>;
+  @ViewChild('lineContainer', {static: true}) lineContainer!: ElementRef<HTMLDivElement>;
 
   onMouseDown(event: any) {
     const rect = this.parent.nativeElement.getBoundingClientRect();
@@ -50,15 +53,21 @@ export class LineComponent implements OnInit {
 
   strokeUpdate(stroke: any){
     this.el.nativeElement.style.height = stroke.width;
+    this.chevronLeft.nativeElement.style.strokeWidth = stroke.width;
+    this.chevronRight.nativeElement.style.strokeWidth = stroke.width;
   }
   
   colorUpdate(color: any){
-    this.el.nativeElement.style.borderColor = color.color;
+    console.log(color);
+    
+    this.el.nativeElement.style.backgroundColor = color.color;
+    this.chevronRight.nativeElement.style.stroke = color.color;
+    this.chevronLeft.nativeElement.style.stroke = color.color;
   }
 
   onRotate(to: string){
     this.rotate = to == 'right' ? this.rotate + 5 : this.rotate - 5;
-    this.el.nativeElement.style.transform = `rotate(${this.rotate}deg)`; 
+    this.lineContainer.nativeElement.style.transform = `rotate(${this.rotate}deg)`; 
   }
 
 }
