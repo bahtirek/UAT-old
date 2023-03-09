@@ -3,6 +3,8 @@ import * as htmlToImage from 'html-to-image';
 import { EditorService } from 'src/app/services/editor.service';
 import { CircleComponent } from './circle/circle.component';
 import { CircleService } from './circle/circle.service';
+import { HighlightComponent } from './highlight/highlight.component';
+import { HighlightService } from './highlight/highlight.service';
 import { LineComponent } from './line/line.component';
 import { LineService } from './line/line.service';
 import { RectangleComponent } from './rectangle/rectangle.component';
@@ -26,6 +28,7 @@ export class EditorComponent implements OnInit {
     private textService: TextService, 
     private editorService: EditorService,
     private lineService: LineService,
+    private highlightService: HighlightService,
   ) { }
 
   ngOnInit(): void {
@@ -49,6 +52,7 @@ export class EditorComponent implements OnInit {
       case 'ui-br-ext-circle-button': this.circleService.addComponent(this.vcr.createComponent(CircleComponent)); break;
       case 'ui-br-ext-text-button': this.textService.addComponent(this.vcr.createComponent(TextComponent)); break;
       case 'ui-br-ext-line-button': this.lineService.addComponent(this.vcr.createComponent(LineComponent)); break;
+      case 'ui-br-ext-highlight-button': this.highlightService.addComponent(this.vcr.createComponent(HighlightComponent)); break;
       case 'ui-br-ext-save-button': this.getImage(); break;
     
       default: return false; break;

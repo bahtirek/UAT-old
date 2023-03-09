@@ -6,6 +6,7 @@ import { TextComponent } from './text/text.component';
 import { EditorMenuModule } from 'src/app/shared/editor-menu/editor-menu.module';
 import { EditorMenuComponent } from 'src/app/shared/editor-menu/editor-menu.component';
 import { LineComponent } from './line/line.component';
+import { HighlightComponent } from './highlight/highlight.component';
 
 
 
@@ -14,7 +15,8 @@ import { LineComponent } from './line/line.component';
     RectangleComponent,
     CircleComponent,
     TextComponent,
-    LineComponent
+    LineComponent,
+    HighlightComponent
   ],
   imports: [
     CommonModule,
