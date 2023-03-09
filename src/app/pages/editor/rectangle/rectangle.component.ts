@@ -15,7 +15,8 @@ export class RectangleComponent implements OnInit {
     color: true,
     stroke: true,
     fontSize: false,
-    invert: false
+    invert: false,
+    borderStyle: true
   }
 
   constructor(private dragService: DragService, private rectangleService: RectangleService) { }
@@ -43,13 +44,15 @@ export class RectangleComponent implements OnInit {
   }
 
   strokeUpdate(stroke: any){
-    console.log(stroke);
     this.el.nativeElement.style.borderWidth = stroke.width;
   }
   
   colorUpdate(color: any){
     console.log(color);
     this.el.nativeElement.style.borderColor = color.color;
-    
+  }
+
+  onBorder(style: string){
+    this.el.nativeElement.style.borderStyle = style;
   }
 }

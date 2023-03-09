@@ -21,6 +21,11 @@
         <li (click)="onStrokeClick(stroke)" class="stroke-width" [ngStyle]="{'height': stroke.width}"></li>
       </ng-container>
     </ul>
+    <ul class="menu-list" *ngIf="editorMenu.borderStyle">
+      <ng-container *ngFor="let border of borders; index as i">
+        <li (click)="onBorderClick(border.style)" class="stroke-border" [ngStyle]="{'border-style': border.style}"></li>
+      </ng-container>
+    </ul>
     <ul class="menu-list" *ngIf="editorMenu.fontSize">
       <ng-container *ngFor="let fontSize of fontSizes; index as i">
         <li (click)="onFontSizeClick(fontSize)" class="text-font-size" >{{fontSize.size}}</li>

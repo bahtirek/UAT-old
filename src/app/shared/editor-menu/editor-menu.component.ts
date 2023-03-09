@@ -50,6 +50,21 @@ export class EditorMenuComponent implements OnInit {
     },
   ]
 
+  borders: any[] = [
+    {
+      style: 'solid',
+      width: '6px'
+    },
+    {
+      style: 'dashed',
+      width: '2px'
+    },
+    {
+      style: 'dotted',
+      width: '4px'
+    },
+  ]
+
   fontSizes: any[] = [
     {
       size: '15'
@@ -92,6 +107,7 @@ export class EditorMenuComponent implements OnInit {
   @Output() onInvert = new EventEmitter<any>();
   @Output() onRotate = new EventEmitter<any>();
   @Output() onArrow = new EventEmitter<string>();
+  @Output() onBorder = new EventEmitter<string>();
 
   onDeleteClick() {
     this.onDelete.emit(true);
@@ -117,8 +133,8 @@ export class EditorMenuComponent implements OnInit {
     this.onRotate.emit(to)
   }
 
-  onBorderStyleClick(){
-
+  onBorderClick(style: string){
+    this.onBorder.emit(style)
   }
 
   onArrowClick(val: string){

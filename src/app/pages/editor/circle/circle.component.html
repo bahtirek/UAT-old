@@ -1,5 +1,11 @@
 <div class="editing-item" (mousedown)="onMouseDown($event)" (mouseup)="onMouseUp($event)" #editingParent>
-  <app-editor-menu (onDelete)="deleteComponent()" [editorMenu]="editorMenu" (onColor)="colorUpdate($event)" (onStroke)="strokeUpdate($event)"></app-editor-menu>
+  <app-editor-menu 
+  [editorMenu]="editorMenu" 
+  (onDelete)="deleteComponent()" 
+  (onColor)="colorUpdate($event)" 
+  (onBorder)="onBorder($event)" 
+  (onStroke)="strokeUpdate($event)">
+</app-editor-menu>
   <div class="resize-element border-1 circle" #editingItem>
   </div>
 </div>

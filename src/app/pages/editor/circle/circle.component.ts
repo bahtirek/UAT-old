@@ -15,7 +15,8 @@ export class CircleComponent implements OnInit {
     color: true,
     stroke: true,
     fontSize: false,
-    invert: false
+    invert: false,
+    borderStyle: true
   }
 
   constructor(private dragService: DragService, private circleService: CircleService) { }
@@ -48,6 +49,10 @@ export class CircleComponent implements OnInit {
   
   colorUpdate(color: any){
     this.el.nativeElement.style.borderColor = color.color;
+  }
+  
+  onBorder(style: string){
+    this.el.nativeElement.style.borderStyle = style;
   }
 
 }
