@@ -21,13 +21,13 @@ export class RectangleService {
     this.components.push(componentRef);
   }
 
-  deleteComponent(uuid: string): void {
+  onDelete(uuid: string): void {
 
     let componentRef = this.components.find(
       component => component.instance.uuid == uuid
     );
 
-    this.editorService.deleteComponentSubject.next(componentRef)
+    this.editorService.onDeleteSubject.next(componentRef)
 
     // removing component from the list
     this.components = this.components.filter(

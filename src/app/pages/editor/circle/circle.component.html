@@ -1,8 +1,8 @@
 <div class="editing-item" (mousedown)="onMouseDown($event)" (mouseup)="onMouseUp($event)" #editingParent>
   <app-editor-menu 
   [editorMenu]="editorMenu" 
-  (onDelete)="deleteComponent()" 
-  (onColor)="colorUpdate($event)" 
+  (onDelete)="onDelete()" 
+  (onColor)="onColor($event)" 
   (onBorder)="onBorder($event)" 
   (onStroke)="strokeUpdate($event)">
 </app-editor-menu>

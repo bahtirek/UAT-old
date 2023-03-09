@@ -35,11 +35,11 @@ export class HighlightComponent implements OnInit {
     this.dragService.onMouseUp(event, this.parent.nativeElement);
   }
 
-  deleteComponent(){
-    this.highlightService.deleteComponent(this.uuid);
+  onDelete(){
+    this.highlightService.onDelete(this.uuid);
   }
   
-  colorUpdate(color: any){
+  onColor(color: any){
     this.el.nativeElement.style.backgroundColor = color.color;
   }
 

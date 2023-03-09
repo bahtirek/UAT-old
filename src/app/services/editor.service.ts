@@ -8,7 +8,7 @@ export class EditorService {
 
   constructor() { }
 
-  deleteComponentSubject = new Subject<ComponentRef<any>>();
+  onDeleteSubject = new Subject<ComponentRef<any>>();
 
   activeBtn: string = '';
 

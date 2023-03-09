@@ -48,8 +48,8 @@ export class LineComponent implements OnInit {
     this.dragService.onMouseUp(event, this.parent.nativeElement);
   }
 
-  deleteComponent(){
-    this.lineService.deleteComponent(this.uuid);
+  onDelete(){
+    this.lineService.onDelete(this.uuid);
   }
 
   strokeUpdate(stroke: any){
@@ -58,7 +58,7 @@ export class LineComponent implements OnInit {
     this.chevronRight.nativeElement.style.strokeWidth = stroke.width;
   }
   
-  colorUpdate(color: any){
+  onColor(color: any){
     console.log(color);
     
     this.el.nativeElement.style.backgroundColor = color.color;

@@ -33,10 +33,10 @@ export class EditorComponent implements OnInit {
 
   ngOnInit(): void {
     this.editorService.activeBtnSubject.subscribe(btn => this.action(btn))
-    this.editorService.deleteComponentSubject.subscribe(component => this.deleteComponent(component))
+    this.editorService.onDeleteSubject.subscribe(component => this.onDelete(component))
   }
 
-  deleteComponent(componentRef: ComponentRef<any>){
+  onDelete(componentRef: ComponentRef<any>){
     let vcrIndex: number = this.vcr.indexOf(componentRef.hostView);
     this.vcr.remove(vcrIndex);
   }

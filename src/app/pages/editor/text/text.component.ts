@@ -43,15 +43,15 @@ export class TextComponent implements OnInit {
     if (this.timeout) clearTimeout(this.timeout)
   }
 
-  deleteComponent(){
-    this.textService.deleteComponent(this.uuid);
+  onDelete(){
+    this.textService.onDelete(this.uuid);
   }
 
   fontSizeUpdate(fontSize: any){
     this.el.nativeElement.style.fontSize = `${fontSize.size}px`;
   }
   
-  colorUpdate(color: any){
+  onColor(color: any){
     this.el.nativeElement.style.color = color.color;
     this.invertColor();
   }

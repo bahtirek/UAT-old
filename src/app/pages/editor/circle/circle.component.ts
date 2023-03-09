@@ -39,15 +39,15 @@ export class CircleComponent implements OnInit {
     this.dragService.onMouseUp(event, this.parent.nativeElement);
   }
 
-  deleteComponent(){
-    this.circleService.deleteComponent(this.uuid);
+  onDelete(){
+    this.circleService.onDelete(this.uuid);
   }
 
   strokeUpdate(stroke: any){
     this.el.nativeElement.style.borderWidth = stroke.width;
   }
   
-  colorUpdate(color: any){
+  onColor(color: any){
     this.el.nativeElement.style.borderColor = color.color;
   }
   

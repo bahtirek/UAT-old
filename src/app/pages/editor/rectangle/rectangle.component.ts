@@ -39,15 +39,15 @@ export class RectangleComponent implements OnInit {
     this.dragService.onMouseUp(event, this.parent.nativeElement);
   }
 
-  deleteComponent(){
-    this.rectangleService.deleteComponent(this.uuid);
+  onDelete(){
+    this.rectangleService.onDelete(this.uuid);
   }
 
   strokeUpdate(stroke: any){
     this.el.nativeElement.style.borderWidth = stroke.width;
   }
   
-  colorUpdate(color: any){
+  onColor(color: any){
     console.log(color);
     this.el.nativeElement.style.borderColor = color.color;
   }
