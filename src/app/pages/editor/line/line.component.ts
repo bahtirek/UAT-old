@@ -12,6 +12,7 @@ export class LineComponent implements OnInit {
 
   uuid: string;
   rotate: number = 0;
+  side : string = '';
 
   editorMenu: EditorMenu = {
     color: true,
@@ -68,6 +69,22 @@ export class LineComponent implements OnInit {
   onRotate(to: string){
     this.rotate = to == 'right' ? this.rotate + 5 : this.rotate - 5;
     this.lineContainer.nativeElement.style.transform = `rotate(${this.rotate}deg)`; 
+  }
+
+  onArrow(side: string) {
+    if(side == 'left' && this.side !="left"){
+      this.chevronRight.nativeElement.style.display = 'none';
+      this.chevronLeft.nativeElement.style.display = 'block';
+      this.side = side;
+    } else if(side == 'right' && this.side != 'right') {
+      this.chevronRight.nativeElement.style.display = 'block';
+      this.chevronLeft.nativeElement.style.display = 'none';
+      this.side = side;
+    } else {
+      this.chevronRight.nativeElement.style.display = 'none';
+      this.chevronLeft.nativeElement.style.display = 'none';
+      this.side = '';
+    }
   }
 
 }

@@ -91,6 +91,7 @@ export class EditorMenuComponent implements OnInit {
   @Output() onFontSize = new EventEmitter<any>();
   @Output() onInvert = new EventEmitter<any>();
   @Output() onRotate = new EventEmitter<any>();
+  @Output() onArrow = new EventEmitter<string>();
 
   onDeleteClick() {
     this.onDelete.emit(true);
@@ -120,17 +121,10 @@ export class EditorMenuComponent implements OnInit {
 
   }
 
-  onArrowLeftClick(){
-
+  onArrowClick(val: string){
+    this.onArrow.emit(val)
   }
 
-  onArrowRightClick(){
-
-  }
-
-  onArrowClick(){
-
-  }
 
   onButtonClick(event: Event){
     this.align = [];
